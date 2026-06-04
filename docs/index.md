@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 开始学习
-      link: /posts/backend/
+      # link: /posts/backend/  <!-- 已注释 -->
     - theme: alt
       text: 查看 GitHub
       link: https://github.com/你的GitHub用户名
@@ -20,15 +20,15 @@ features:
   - icon: 📚
     title: 算法专栏
     details: 包含 BFS、KMP、线段树等常见算法的实现、讲解和 LeetCode 题解
-    link: /posts/algorithm/
+    # link: /posts/algorithm/  <!-- 已注释 -->
   - icon: 🚀
     title: 后端专栏
     details: Java 基础、Spring Boot、MySQL、Redis、消息队列等后端技术栈
-    link: /posts/backend/
+    # link: /posts/backend/  <!-- 已注释 -->
   - icon: 💻
     title: 前端专栏
     details: Vue3、TypeScript、Vite 等前端技术学习笔记
-    link: /posts/frontend/
+    # link: /posts/frontend/  <!-- 已注释 -->
 ---
 
 ## 🛠 技术栈
@@ -43,7 +43,14 @@ features:
   <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">TypeScript</span>
 </div>
 
+## 📌 项目经历
+- **你的业务项目名称**：项目描述，使用了什么技术栈，解决了什么核心问题，有什么优化亮点
+- **个人技术博客**：基于 VitePress 搭建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
 
+## 📞 联系方式
+- GitHub：[https://github.com/sheeta2005](https://github.com/sheeta2005)
+- 邮箱：你的邮箱地址
+- 微信：你的微信号（可选）
 
 ---
 

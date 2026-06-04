@@ -8,7 +8,7 @@ export default defineConfig({
   // ========================================
 
   base: '/',
-  outDir: '../dist',
+  outDir: './.vitepress/dist',
   strict: true,
 
   themeConfig: {

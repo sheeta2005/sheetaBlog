@@ -48,7 +48,7 @@ features:
 - **[个人技术博客](你的博客链接)**：基于 VitePress 搭建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
 
 ## 📞 联系方式
-- GitHub：[https://github.com/你的GitHub用户名](https://github.com/你的GitHub用户名)
+- GitHub：[https://github.com/sheeta2005](https://github.com/sheeta2005)
 - 邮箱：你的邮箱地址
 - 微信：你的微信号（可选）
 

@@ -43,14 +43,7 @@ features:
   <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">TypeScript</span>
 </div>
 
-## 📌 项目经历
-- **[你的业务项目名称](项目GitHub链接)**：项目描述，使用了什么技术栈，解决了什么核心问题，有什么优化亮点
-- **[个人技术博客](你的博客链接)**：基于 VitePress 搭建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
 
-## 📞 联系方式
-- GitHub：[https://github.com/sheeta2005](https://github.com/sheeta2005)
-- 邮箱：你的邮箱地址
-- 微信：你的微信号（可选）
 
 ---
 

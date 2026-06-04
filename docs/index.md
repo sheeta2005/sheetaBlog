@@ -45,7 +45,7 @@ features:
 
 ## 📌 项目经历
 - **你的业务项目名称**：项目描述，使用了什么技术栈，解决了什么核心问题，有什么优化亮点
-- **个人技术博客**：基于 VitePress 搭建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
+- **个人技术博客**：基于 VitePress 搭123123建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
 
 ## 📞 联系方式
 - GitHub：[https://github.com/sheeta2005](https://github.com/sheeta2005)

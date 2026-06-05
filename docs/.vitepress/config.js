@@ -80,8 +80,9 @@ export default defineConfig({
   // Markdown 配置
   markdown: {
     lineNumbers: true,
-    highlight: {
-      theme: 'github-dark'
+    highlight: (code, lang) => {
+      // 必须 return 字符串
+      return `<pre><code>${code}</code></pre>`
     },
     math: true
   }

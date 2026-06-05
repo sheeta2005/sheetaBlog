@@ -64,7 +64,7 @@ export default defineConfig({
       docsDir: 'docs',
       docsRoot: 'docs',
       contentRoot: 'posts',
-      collapsed: true,
+      collapsed: false,
       useTitleFromFileHeading: true,
       useTitleFromFrontmatter: true,
       manualSortFileNameByPriority: ['algorithm', 'backend', 'frontend'],
@@ -72,7 +72,9 @@ export default defineConfig({
       sortByFileDatePrefix: false,
       removePrefixAfterOrdering: false,
       prefixSeparator: '.',
-      debugPrint: false
+      debugPrint: true,
+      scanAboutMe: false,
+      keepOriginalOrder: true
     })
   },
 
@@ -80,10 +82,6 @@ export default defineConfig({
   // Markdown 配置
   markdown: {
     lineNumbers: true,
-    highlight: (code, lang) => {
-      // 必须 return 字符串
-      return `<pre><code>${code}</code></pre>`
-    },
     math: true
   }
 })

@@ -1,0 +1,4 @@
+@Data、@Slf4j、@AllArgsConstructor、@NoArgsConstructor、@Getter、@Setter
+@Data：自动生成 get/set/toString/equals/hashCode
+@Slf4j：自动生成日志成员变量
+构造器、get/set 相关注解全放此处

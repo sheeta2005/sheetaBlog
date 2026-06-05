@@ -2,10 +2,9 @@ import { defineConfig } from 'vitepress'
 import { withSidebar } from 'vitepress-sidebar'
 
 export default defineConfig({
-  // ========== 这里改成你自己的信息 ==========
-  title: 'XXX 的技术博客',
+
+  title: 'sheeta1998的技术博客',
   description: '后端开发学习笔记 | Java | Redis | MySQL | 算法',
-  // ========================================
 
   base: '/',
   outDir: './.vitepress/dist',
@@ -20,7 +19,7 @@ export default defineConfig({
       { text: '算法专栏', link: '/posts/algorithm/' },
       { text: '后端专栏', link: '/posts/backend/' },
       { text: '前端专栏', link: '/posts/frontend/' },
-      { text: 'GitHub', link: 'https://github.com/你的GitHub用户名', target: '_blank' }
+      { text: 'GitHub', link: 'https://github.com/sheeta2005', target: '_blank' }
     ],
 
     // 右侧文章目录

@@ -1,6 +1,7 @@
 ---
 title: 算法专栏
 description: BFS、KMP、线段树等常见算法实现与 LeetCode 题解
+layout: doc
 ---
 
 # 算法专栏

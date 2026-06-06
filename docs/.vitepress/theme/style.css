@@ -2,13 +2,20 @@
    首页专用样式（仅在 layout: home 页面生效）
    ============================================ */
 
-/* 首页背景图 - 应用到 body 当页面是首页时 */
-
 /* 深色模式背景图 - 应用到 body 作为后备 */
 .dark.layout-home body,
 .dark body:has(.VPHome) {
     background-image: url('/background_night.jpg') !important;
     background-position: center 30% !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+
+/* 亮色模式背景图 - 应用到 body 作为后备 */
+.layout-home body,
+body:has(.VPHome) {
+    background-image: url('/background.jpg') !important;
+    background-position: center 40% !important;
     background-size: cover !important;
     background-attachment: fixed !important;
 }
@@ -24,10 +31,10 @@
 /* 背景图层 - 用于视差效果 */
 .VPHome .parallax-bg {
     position: fixed;
-    top: -10%;
-    left: -10%;
-    right: -10%;
-    bottom: -10%;
+    top: -15%;
+    left: -15%;
+    right: -15%;
+    bottom: -15%;
     background-image: url('/background.jpg');
     background-size: cover;
     background-position: center 40%;
@@ -45,22 +52,22 @@
     background-size: cover !important;
 }
 
-/* 遮罩层 - 亮色模式 */
+/* 遮罩层 - 亮色模式（淡白遮罩，保证文字可读） */
 .VPHome::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.15);
+    top: -15%;
+    left: -15%;
+    right: -15%;
+    bottom: -15%;
+    background: rgba(255, 255, 255, 0.35);
     z-index: -1;
     pointer-events: none;
 }
 
 /* 遮罩层 - 深色模式（烟花主题） */
 .dark .VPHome::before {
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.55);
 }
 
 .VPHome > * {
@@ -73,15 +80,29 @@ body:has(.VPHome) .VPNavBarTitle .logo {
     display: none !important;
 }
 
-/* 顶部导航栏 - 淡绿（亮色模式） */
+/* ============================================
+   顶部导航栏
+   ============================================ */
+
+/* 亮色模式 - 透明毛玻璃 */
 body:has(.VPHome) .VPNav,
 body:has(.VPHome) .VPNavBar,
 body:has(.VPHome) .VPNavBar .divider {
-    background: rgba(144, 238, 144, 0.35) !important;
+    background: rgba(125, 211, 192, 0.15) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
     border: none !important;
 }
 
-/* 顶部导航栏 - 烟花黑金（深色模式） */
+/* 亮色模式 - 导航栏内部元素透明（让玻璃背景透出） */
+body:has(.VPHome) .VPNavBarTitle .title,
+body:has(.VPHome) .VPNavBarSearch,
+body:has(.VPHome) .VPNavBarMenuLink,
+body:has(.VPHome) .VPNavBarMenuGroup .button {
+    background: transparent !important;
+}
+
+/* 深色模式 - 烟花黑金 */
 .dark body:has(.VPHome) .VPNav,
 .dark body:has(.VPHome) .VPNavBar,
 .dark body:has(.VPHome) .VPNavBar .divider,
@@ -107,23 +128,29 @@ body:has(.VPHome) .VPNavBar .main {
     background: transparent !important;
 }
 
-/* 首页 - 搜索栏美化 - 与导航栏颜色统一（亮色模式） */
+/* ============================================
+   搜索栏
+   ============================================ */
+
+/* 亮色模式 - 淡青玻璃 */
 body:has(.VPHome) .DocSearch-Button,
 body:has(.VPHome) .VPNavBarSearch,
 body:has(.VPHome) .VPNavBarSearch .search-box {
-    background: rgba(144, 238, 144, 0.25) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(125, 211, 192, 0.15) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(125, 211, 192, 0.3) !important;
     border-radius: 20px !important;
     box-shadow: none !important;
     transition: all 0.3s ease !important;
 }
 
 body:has(.VPHome) .DocSearch-Button:hover {
-    background: rgba(144, 238, 144, 0.4) !important;
-    border-color: rgba(255, 255, 255, 0.5) !important;
+    background: rgba(125, 211, 192, 0.3) !important;
+    border-color: rgba(255, 213, 79, 0.4) !important;
 }
 
-/* 首页 - 搜索栏美化 - 烟花黑金（深色模式） */
+/* 深色模式 - 烟花黑金 */
 .dark body:has(.VPHome) .DocSearch-Button,
 .dark body:has(.VPHome) .VPNavBarSearch,
 .dark body:has(.VPHome) .VPNavBarSearch .search-box {
@@ -139,35 +166,46 @@ body:has(.VPHome) .DocSearch-Button:hover {
     border-color: rgba(255, 215, 0, 0.6) !important;
 }
 
+/* 搜索文字 - 亮色 */
 body:has(.VPHome) .DocSearch-Button-Container,
 body:has(.VPHome) .DocSearch-Button-Placeholder {
     background: transparent !important;
-    color: #444;
+    color: #555;
 }
 
+/* 搜索文字 - 深色 */
 .dark body:has(.VPHome) .DocSearch-Button-Container,
 .dark body:has(.VPHome) .DocSearch-Button-Placeholder {
     color: #e0e0e0;
 }
 
+/* 搜索快捷键 - 亮色 */
 body:has(.VPHome) .DocSearch-Button-Key {
-    background: rgba(255, 255, 255, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    background: rgba(125, 211, 192, 0.25) !important;
+    border: 1px solid rgba(125, 211, 192, 0.35) !important;
+    color: #3d9e8f !important;
 }
 
+/* 搜索快捷键 - 深色 */
 .dark body:has(.VPHome) .DocSearch-Button-Key {
     background: rgba(255, 215, 0, 0.15) !important;
     border: 1px solid rgba(255, 215, 0, 0.3) !important;
     color: #ffd700;
 }
 
-/* 底部页脚 - 淡绿（亮色模式） */
+/* ============================================
+   底部页脚
+   ============================================ */
+
+/* 亮色模式 - 淡青玻璃 */
 body:has(.VPHome) .VPFooter {
-    background: rgba(144, 238, 144, 0.35) !important;
-    border-top: 1px solid rgba(144, 238, 144, 0.3) !important;
+    background: rgba(125, 211, 192, 0.2) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-top: 1px solid rgba(125, 211, 192, 0.25) !important;
 }
 
-/* 底部页脚 - 烟花黑金（深色模式） */
+/* 深色模式 - 烟花黑金 */
 .dark body:has(.VPHome) .VPFooter {
     background: rgba(20, 20, 20, 0.6) !important;
     border-top: 1px solid rgba(255, 215, 0, 0.25) !important;
@@ -182,25 +220,39 @@ body:has(.VPHome) .VPFooter .copyright {
     background: transparent !important;
 }
 
-/* 首页 - 专栏卡片 - 淡绿（亮色模式） */
+/* ============================================
+   专栏卡片
+   ============================================ */
+
+/* 亮色模式 - 淡青玻璃 */
 .VPHome .VPFeature {
-    background: rgba(144, 238, 144, 0.35) !important;
-    border: 1px solid rgba(144, 238, 144, 0.3) !important;
+    background: rgba(125, 211, 192, 0.2) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(125, 211, 192, 0.2) !important;
 }
 
-/* 首页 - 专栏卡片 - 烟花黑金（深色模式） */
+/* 深色模式 - 烟花黑金 */
 .dark .VPHome .VPFeature {
     background: rgba(20, 20, 20, 0.75) !important;
     border: 1px solid rgba(255, 215, 0, 0.25) !important;
 }
 
-/* 首页 - 技术栈标签（亮色模式） */
+/* ============================================
+   技术栈标签
+   ============================================ */
+
+/* 亮色模式 - 淡黄底 + 淡青边 */
 .VPHome .VPBadge,
 .VPHome span[style*="background-color"] {
-    background: rgba(144, 238, 144, 0.35) !important;
+    background: rgba(255, 213, 79, 0.12) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    color: #2d7a6f !important;
+    border: 1px solid rgba(125, 211, 192, 0.25) !important;
 }
 
-/* 首页 - 技术栈标签（深色模式） */
+/* 深色模式 - 金色 */
 .dark .VPHome .VPBadge,
 .dark .VPHome span[style*="background-color"] {
     background: rgba(255, 215, 0, 0.15) !important;
@@ -208,16 +260,21 @@ body:has(.VPHome) .VPFooter .copyright {
     border: 1px solid rgba(255, 215, 0, 0.3) !important;
 }
 
-/* 首页 - Hero 头像圆形 */
+/* ============================================
+   Hero 头像
+   ============================================ */
+
+/* 通用 - 250px 圆形（与深色模式统一） */
 .VPHome .VPHero .image-src {
     border-radius: 50% !important;
-    width: 280px !important;
-    height: 280px !important;
+    width: 250px !important;
+    height: 250px !important;
     object-fit: cover !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+    border: 2px solid rgba(125, 211, 192, 0.25) !important;
+    box-shadow: 0 6px 20px rgba(125, 211, 192, 0.12), 0 0 40px rgba(125, 211, 192, 0.06) !important;
 }
 
-/* 深色模式 - Hero 头像缩小 + 金色光晕 */
+/* 深色模式 - 金色光晕 */
 .dark .VPHome .VPHero .image-src {
     width: 250px !important;
     height: 250px !important;
@@ -225,8 +282,12 @@ body:has(.VPHome) .VPFooter .copyright {
     border: 2px solid rgba(255, 215, 0, 0.3) !important;
 }
 
-/* 深色模式 - Hero 区域改为上下布局 + 左对齐 */
-.dark body:has(.VPHome) .VPHero .container {
+/* ============================================
+   Hero 布局（通用，亮色+深色完全一致）
+   ============================================ */
+
+/* Hero 区域 - 上下布局 + 左对齐 */
+body:has(.VPHome) .VPHero .container {
     flex-direction: column-reverse !important;
     align-items: flex-start !important;
     text-align: left !important;
@@ -237,18 +298,18 @@ body:has(.VPHome) .VPFooter .copyright {
     padding-right: 2rem !important;
 }
 
-/* 深色模式 - 文字区域独立定位（与头像解绑） */
-.dark body:has(.VPHome) .VPHero .main {
+/* 文字区域独立定位（与头像解绑） */
+body:has(.VPHome) .VPHero .main {
     max-width: 100% !important;
     margin-top: 0 !important;
     padding-left: 0 !important;
     position: relative !important;
-    top: 4rem !important;        /* ← 文字向下偏移（独立控制） */
-    left: -6rem !important;      /* ← 文字向左偏移（对齐专栏） */
+    top: 4rem !important;
+    left: -6rem !important;
 }
 
-/* 深色模式 - 头像区域独立定位 */
-.dark body:has(.VPHome) .VPHero .image {
+/* 头像区域独立定位 */
+body:has(.VPHome) .VPHero .image {
     max-width: 100% !important;
     margin-bottom: 0 !important;
     padding-left: 0 !important;
@@ -258,31 +319,118 @@ body:has(.VPHome) .VPFooter .copyright {
     left: 3rem !important;
 }
 
-/* 深色模式 - 按钮容器左对齐 */
-.dark body:has(.VPHome) .VPHero .actions {
+/* 按钮容器左对齐 */
+body:has(.VPHome) .VPHero .actions {
     justify-content: flex-start !important;
 }
 
-/* 深色模式 - 首页所有内容下移，为头像腾出空间 */
-.dark body:has(.VPHome) .VPHome {
+/* 首页所有内容下移，为头像腾出空间 */
+body:has(.VPHome) .VPHome {
     padding-top: 3rem !important;
 }
 
-.dark body:has(.VPHome) .VPFeatures {
+body:has(.VPHome) .VPFeatures {
     margin-top: 3rem !important;
 }
 
-.dark body:has(.VPHome) .vp-doc {
+body:has(.VPHome) .vp-doc {
     margin-top: 2rem !important;
 }
 
-/* 深色模式 - 技术栈标题和内容下移 */
-.dark body:has(.VPHome) .vp-doc h2 {
+body:has(.VPHome) .vp-doc h2 {
     margin-top: 2.5rem !important;
 }
 
 /* ============================================
-   深色模式 - 文字可读性适配
+   亮色模式 - 文字可读性适配（淡青+淡黄主题）
+   ============================================ */
+
+/* sheeta1998 用户名 - 淡青色 + 淡黄光晕 */
+.layout-home .VPHero .name,
+body:has(.VPHome) .VPHero .name,
+.VPHero .name {
+    color: #3d9e8f !important;
+    text-shadow: 0 0 15px rgba(255, 213, 79, 0.15), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+}
+
+body:has(.VPHome) .VPHero .text {
+    color: #2d3436 !important;
+}
+
+body:has(.VPHome) .VPHero .tagline {
+    color: #636e72 !important;
+}
+
+body:has(.VPHome) .VPFeature .title {
+    color: #2d3436 !important;
+}
+
+body:has(.VPHome) .VPFeature .details {
+    color: #555 !important;
+}
+
+body:has(.VPHome) .VPHome h2 {
+    color: #2d3436 !important;
+}
+
+body:has(.VPHome) .vp-doc p {
+    color: #555 !important;
+}
+
+body:has(.VPHome) .vp-doc li {
+    color: #555 !important;
+}
+
+/* 亮色模式 - 导航栏文字 */
+body:has(.VPHome) .VPNavBarMenuLink,
+body:has(.VPHome) .VPNavBarMenuGroup .button {
+    color: #333 !important;
+}
+
+body:has(.VPHome) .VPNavBarMenuLink:hover,
+body:has(.VPHome) .VPNavBarMenuGroup .button:hover {
+    color: #3d9e8f !important;
+}
+
+/* 亮色模式 - 页脚文字 */
+body:has(.VPHome) .VPFooter .message,
+body:has(.VPHome) .VPFooter .copyright {
+    color: #666 !important;
+}
+
+/* ============================================
+   亮色模式 - Hero 按钮（淡黄+淡青）
+   ============================================ */
+
+body:has(.VPHome) .VPHero .VPButton.brand {
+    background: rgba(255, 213, 79, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 213, 79, 0.35) !important;
+    color: #3d9e8f !important;
+}
+
+body:has(.VPHome) .VPHero .VPButton.brand:hover {
+    background: rgba(255, 213, 79, 0.3) !important;
+    border-color: rgba(255, 213, 79, 0.5) !important;
+}
+
+body:has(.VPHome) .VPHero .VPButton.alt {
+    background: rgba(125, 211, 192, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(125, 211, 192, 0.3) !important;
+    color: #2d3436 !important;
+}
+
+body:has(.VPHome) .VPHero .VPButton.alt:hover {
+    background: rgba(125, 211, 192, 0.3) !important;
+    border-color: rgba(255, 213, 79, 0.4) !important;
+    color: #3d9e8f !important;
+}
+
+/* ============================================
+   深色模式 - 文字可读性适配（烟花黑金）
    ============================================ */
 
 /* sheeta1998 用户名 - 金黄色（增强选择器优先级） */
@@ -338,7 +486,10 @@ body:has(.VPHome) .VPFooter .copyright {
     color: #b0b0b0 !important;
 }
 
-/* 深色模式 - Hero 按钮样式 */
+/* ============================================
+   深色模式 - Hero 按钮（烟花黑金）
+   ============================================ */
+
 .dark body:has(.VPHome) .VPHero .VPButton.brand {
     background: rgba(255, 215, 0, 0.2) !important;
     border: 1px solid rgba(255, 215, 0, 0.4) !important;

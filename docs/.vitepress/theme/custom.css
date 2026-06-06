@@ -1,13 +1,13 @@
 /* 全局变量配置 */
 :root {
-  /* 主色调（腾讯蓝，适合后端面试风格） */
-  --vp-c-brand-1: #0078d7;
-  --vp-c-brand-2: #2b90d9;
-  --vp-c-brand-3: #52a8e8;
+  /* 主色调（淡青色，青春清新风格） */
+  --vp-c-brand-1: #3d9e8f;
+  --vp-c-brand-2: #5bb8a9;
+  --vp-c-brand-3: #7dd3c0;
 
   /* 代码块样式 */
-  --vp-code-block-bg: #24292e;
-  --vp-code-line-highlight-bg: rgba(0, 120, 215, 0.15);
+  --vp-code-block-bg: #f0f5f3;
+  --vp-code-line-highlight-bg: rgba(125, 211, 192, 0.15);
 
   /* 字体配置 */
   --vp-font-family-base: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;

@@ -187,10 +187,12 @@ body:has(.VPHome) .DocSearch-Button-Key {
 }
 
 /* 搜索快捷键 - 深色 */
-.dark body:has(.VPHome) .DocSearch-Button-Key {
+.dark body:has(.VPHome) .DocSearch-Button-Key,
+.dark .DocSearch-Button-Key {
     background: rgba(255, 215, 0, 0.15) !important;
-    border: 1px solid rgba(255, 215, 0, 0.3) !important;
-    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.4) !important;
+    color: #ffd700 !important;
+    box-shadow: none !important;
 }
 
 /* ============================================
@@ -433,12 +435,15 @@ body:has(.VPHome) .VPHero .VPButton.alt:hover {
    深色模式 - 文字可读性适配（烟花黑金）
    ============================================ */
 
-/* sheeta1998 用户名 - 金黄色（增强选择器优先级） */
+/* sheeta1998 用户名 - 金黄色（最高优先级，覆盖所有可能覆盖） */
 .dark .layout-home .VPHero .name,
 .dark body:has(.VPHome) .VPHero .name,
-.dark .VPHero .name {
+.dark .VPHero .name,
+.dark .VPHero .name span,
+.dark .VPHero .name a {
     color: #ffd700 !important;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    -webkit-text-fill-color: #ffd700 !important;
 }
 
 .dark body:has(.VPHome) .VPHero .text {

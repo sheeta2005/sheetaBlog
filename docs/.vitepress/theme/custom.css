@@ -18,11 +18,11 @@
   --vp-layout-max-width: 1400px;
 }
 
-/* 深色主题适配 */
+/* 深色主题适配 - 仅用于非首页的普通页面 */
 .dark {
-  --vp-c-brand-1: #4dabf7;
-  --vp-c-brand-2: #74c0fc;
-  --vp-c-brand-3: #a5d8ff;
+  --vp-c-brand-1: #ffd700;
+  --vp-c-brand-2: #ffdf33;
+  --vp-c-brand-3: #ffe566;
   --vp-code-block-bg: #1e1e1e;
 }
 

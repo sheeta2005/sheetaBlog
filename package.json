@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@shikijs/langs": "^4.2.0",
     "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "^1.6.4",
     "vitepress-sidebar": "^1.33.0"

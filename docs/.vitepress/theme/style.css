@@ -1,0 +1,23 @@
+/* 导航栏 Logo 圆形样式 */
+.VPNavBarTitle .logo {
+    border-radius: 50% !important;
+}
+
+/* 首页 Hero 区域头像圆形样式 */
+.VPHero .image-src {
+    border-radius: 50% !important;
+    width: 320px !important;
+    height: 320px !important;
+    object-fit: cover !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 暗色模式下的样式保持一致 */
+.dark .VPNavBarTitle .logo {
+    border-radius: 50% !important;
+}
+
+.dark .VPHero .image-src {
+    border-radius: 50% !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1) !important;
+}

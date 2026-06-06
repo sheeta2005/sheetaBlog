@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { withSidebar } from 'vitepress-sidebar'
+import { generateSidebar } from 'vitepress-sidebar'
 
 export default defineConfig({
 
@@ -11,7 +11,12 @@ export default defineConfig({
   strict: true,
 
   themeConfig: {
-    logo: '/avatar.jpg',
+    logo: {
+      src: '/avatar.jpg',
+      style: {
+        borderRadius: '50%'
+      }
+    },
 
     // 顶部导航栏（更新为新的路径）
     nav: [
@@ -42,7 +47,7 @@ export default defineConfig({
     // 页脚配置
     footer: {
       message: 'Powered by VitePress 1.6.4 | 持续更新中',
-      copyright: 'Copyright © 2026 XXX'
+      copyright: 'Copyright © 2026 sheeta1998'
     },
 
     // 最后更新时间显示
@@ -59,29 +64,53 @@ export default defineConfig({
     returnToTopLabel: '返回顶部',
     darkModeSwitchLabel: '主题切换',
 
-    // 侧边栏配置（使用 withSidebar 自动生成）
-    sidebar: withSidebar({
-      docsDir: 'docs',
-      docsRoot: 'docs',
-      contentRoot: 'posts',
-      collapsed: false,
-      useTitleFromFileHeading: true,
-      useTitleFromFrontmatter: true,
-      manualSortFileNameByPriority: ['algorithm', 'backend', 'frontend'],
-      sortByName: false,
-      sortByFileDatePrefix: false,
-      removePrefixAfterOrdering: false,
-      prefixSeparator: '.',
-      debugPrint: true,
-      scanAboutMe: false,
-      keepOriginalOrder: true
-    })
+    // 侧边栏配置（为每个专栏单独生成）
+    sidebar: generateSidebar([
+      {
+        documentRootPath: '/docs',
+        scanStartPath: 'posts/algorithm',
+        resolvePath: '/posts/algorithm/',
+        collapsed: false,
+        useTitleFromFileHeading: true,
+        useTitleFromFrontmatter: true,
+        debugPrint: true
+      },
+      {
+        documentRootPath: '/docs',
+        scanStartPath: 'posts/backend',
+        resolvePath: '/posts/backend/',
+        collapsed: false,
+        useTitleFromFileHeading: true,
+        useTitleFromFrontmatter: true,
+        debugPrint: true
+      },
+      {
+        documentRootPath: '/docs',
+        scanStartPath: 'posts/frontend',
+        resolvePath: '/posts/frontend/',
+        collapsed: false,
+        useTitleFromFileHeading: true,
+        useTitleFromFrontmatter: true,
+        debugPrint: true
+      }
+    ])
   },
 
 
   // Markdown 配置
   markdown: {
     lineNumbers: true,
-    math: true
+    math: true,
+    shiki: {
+      langs: [
+        'ini',
+        'properties',
+        'nginx',
+        'redis',
+        'yaml',
+        'xml',
+        'sql'
+      ]
+    }
   }
 })

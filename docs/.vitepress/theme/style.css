@@ -12,12 +12,14 @@ body:has(.VPHome) {
     background-attachment: fixed;
 }
 
-/* 深色模式背景图 - 烟花主题 */
+/* 深色模式背景图 - 烟花主题（放大留出边缘用于视差晃动） */
 .dark.layout-home body,
 .dark body:has(.VPHome) {
     background-image: url('/background_night.jpg');
+    background-size: 110% 110%;  /* ← 放大 10%，留出边缘供视差移动 */
     background-position: center 50%;
     background-attachment: scroll;
+    transition: background-position 0.3s ease-out;  /* ← 平滑过渡动画 */
 }
 
 /* 首页背景图 */

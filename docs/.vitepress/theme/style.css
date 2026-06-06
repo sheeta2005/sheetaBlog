@@ -3,31 +3,49 @@
    ============================================ */
 
 /* 首页背景图 - 应用到 body 当页面是首页时 */
-.layout-home body,
-body:has(.VPHome) {
-    background-image: url('/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
 
-/* 深色模式背景图 - 烟花主题（放大留出边缘用于视差晃动） */
+/* 深色模式背景图 - 应用到 body 作为后备 */
 .dark.layout-home body,
 .dark body:has(.VPHome) {
-    background-image: url('/background_night.jpg');
-    background-size: 110% 110%;  /* ← 放大 10%，留出边缘供视差移动 */
-    background-position: center 50%;
-    background-attachment: scroll;
-    transition: background-position 0.3s ease-out;  /* ← 平滑过渡动画 */
+    background-image: url('/background_night.jpg') !important;
+    background-position: center 30% !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
 }
 
-/* 首页背景图 */
+/* 首页背景图 - 创建独立背景层 */
 .VPHome {
+    position: relative;
     background: transparent !important;
+    min-height: 100vh;
+    overflow: visible;
 }
 
-/* 首页遮罩层 - 亮色模式 */
+/* 背景图层 - 用于视差效果 */
+.VPHome .parallax-bg {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    right: -10%;
+    bottom: -10%;
+    background-image: url('/background.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    z-index: -2;
+    pointer-events: none;
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+}
+
+/* 深色模式背景图 - 向上移动显示人物脸部 + 留出视差边缘 */
+.dark .VPHome .parallax-bg {
+    background-image: url('/background_night.jpg');
+    background-position: center 30% !important;
+    background-size: cover !important;
+}
+
+/* 遮罩层 - 亮色模式 */
 .VPHome::before {
     content: '';
     position: fixed;
@@ -40,7 +58,7 @@ body:has(.VPHome) {
     pointer-events: none;
 }
 
-/* 首页遮罩层 - 深色模式（烟花主题） */
+/* 遮罩层 - 深色模式（烟花主题） */
 .dark .VPHome::before {
     background: rgba(0, 0, 0, 0.45);
 }

@@ -84,11 +84,20 @@ body:has(.VPHome) .VPNavBar .divider {
 /* 顶部导航栏 - 烟花黑金（深色模式） */
 .dark body:has(.VPHome) .VPNav,
 .dark body:has(.VPHome) .VPNavBar,
-.dark body:has(.VPHome) .VPNavBar .divider {
-    background: rgba(20, 20, 20, 0.6) !important;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.25) !important;
+.dark body:has(.VPHome) .VPNavBar .divider,
+.dark body:has(.VPHome) .VPNavBarTitle .title,
+.dark body:has(.VPHome) .VPNavBarTitle .logo,
+.dark body:has(.VPHome) .VPNavBarSearch,
+.dark body:has(.VPHome) .VPNavBarMenuLink,
+.dark body:has(.VPHome) .VPNavBarMenuGroup .button {
+    background: transparent !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+}
+
+.dark body:has(.VPHome) .VPNav,
+.dark body:has(.VPHome) .VPNavBar {
+    border-bottom: 1px solid rgba(255, 215, 0, 0.25) !important;
 }
 
 body:has(.VPHome) .VPNavBar .container,

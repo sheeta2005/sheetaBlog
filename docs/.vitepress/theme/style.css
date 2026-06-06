@@ -543,14 +543,23 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc a:hover {
     text-decoration: underline !important;
 }
 
-/* 代码块 - 深绿背景 */
+/* 代码块 - 浅青绿背景（亮色模式） */
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc pre {
-    background: #1a3a32 !important;
-    border: 1px solid rgba(125, 211, 192, 0.2) !important;
+    background: #e8f5f0 !important;
+    border: 1px solid rgba(125, 211, 192, 0.25) !important;
+    box-shadow: 0 2px 12px rgba(61, 158, 143, 0.08) !important;
 }
 
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc pre code {
     background: transparent !important;
+    color: #2d4a42 !important;
+}
+
+/* 亮色模式 - 行号 */
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper {
+    color: #5a7d72 !important;
+    border-right: 1px solid rgba(125, 211, 192, 0.2) !important;
+    background: rgba(125, 211, 192, 0.08) !important;
 }
 
 /* 行内代码 */

@@ -5,9 +5,10 @@
   --vp-c-brand-2: #5bb8a9;
   --vp-c-brand-3: #7dd3c0;
 
-  /* 代码块样式 */
-  --vp-code-block-bg: #f0f5f3;
-  --vp-code-line-highlight-bg: rgba(125, 211, 192, 0.15);
+  /* 代码块样式 - 亮色模式（浅青绿底） */
+  --vp-code-block-bg: #e8f5f0;
+  --vp-code-line-highlight-bg: rgba(61, 158, 143, 0.15);
+  --vp-code-color: #2d4a42;
 
   /* 字体配置 */
   --vp-font-family-base: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -63,7 +64,7 @@
 /* 代码块美化 */
 .vp-doc pre {
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   padding: 1.2rem !important;
 }
 
@@ -71,6 +72,91 @@
   border-radius: 4px;
   padding: 0.15rem 0.4rem;
   font-size: 0.9rem;
+}
+
+/* 亮色模式 - 代码块语法高亮优化 */
+html:not(.dark) .vp-doc pre {
+  background: #e8f5f0 !important;
+  border: 1px solid rgba(125, 211, 192, 0.25) !important;
+}
+
+html:not(.dark) .vp-doc pre code {
+  color: #2d4a42 !important;
+}
+
+/* 亮色模式 - 行号颜色 */
+html:not(.dark) .vp-doc .line-numbers-wrapper {
+  color: #5a7d72 !important;
+  border-right: 1px solid rgba(125, 211, 192, 0.2) !important;
+}
+
+/* 亮色模式 - 语法高亮（Shiki 生成的 class） */
+html:not(.dark) .vp-doc pre .token.keyword {
+  color: #1a6a5a !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .vp-doc pre .token.class-name,
+html:not(.dark) .vp-doc pre .token.type,
+html:not(.dark) .vp-doc pre .token.builtin {
+  color: #3d9e8f !important;
+}
+
+html:not(.dark) .vp-doc pre .token.string,
+html:not(.dark) .vp-doc pre .token.char {
+  color: #2d7a6f !important;
+}
+
+html:not(.dark) .vp-doc pre .token.comment,
+html:not(.dark) .vp-doc pre .token.block-comment,
+html:not(.dark) .vp-doc pre .token.prolog,
+html:not(.dark) .vp-doc pre .token.doctype,
+html:not(.dark) .vp-doc pre .token.cdata {
+  color: #6b7f78 !important;
+  font-style: italic;
+}
+
+html:not(.dark) .vp-doc pre .token.number,
+html:not(.dark) .vp-doc pre .token.boolean {
+  color: #2d7a6f !important;
+}
+
+html:not(.dark) .vp-doc pre .token.function {
+  color: #4aad9e !important;
+}
+
+html:not(.dark) .vp-doc pre .token.operator,
+html:not(.dark) .vp-doc pre .token.punctuation {
+  color: #5a8a80 !important;
+}
+
+html:not(.dark) .vp-doc pre .token.property,
+html:not(.dark) .vp-doc pre .token.tag {
+  color: #1a6a5a !important;
+}
+
+html:not(.dark) .vp-doc pre .token.attr-name {
+  color: #3d9e8f !important;
+}
+
+html:not(.dark) .vp-doc pre .token.attr-value {
+  color: #2d7a6f !important;
+}
+
+html:not(.dark) .vp-doc pre .line.highlighted {
+  background: rgba(61, 158, 143, 0.15) !important;
+}
+
+/* 亮色模式 - 复制按钮 */
+html:not(.dark) .vp-doc .copy-code-button {
+  background: rgba(61, 158, 143, 0.12) !important;
+  color: #3d9e8f !important;
+  border: 1px solid rgba(125, 211, 192, 0.3) !important;
+}
+
+html:not(.dark) .vp-doc .copy-code-button:hover {
+  background: rgba(61, 158, 143, 0.25) !important;
+  color: #2d7a6f !important;
 }
 
 /* 侧边栏美化 */
@@ -97,4 +183,122 @@
 .VPFeature:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   亮色模式 - 代码块语法高亮优化
+   ============================================ */
+
+/* 行内代码 */
+html:not(.dark) .vp-doc :not(pre) > code {
+  background: rgba(125, 211, 192, 0.18) !important;
+  color: #2d6a5f !important;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+/* 代码块复制按钮 */
+html:not(.dark) .vp-doc .copy-code-button {
+  background: rgba(61, 158, 143, 0.12) !important;
+  color: #3d9e8f !important;
+  border: 1px solid rgba(125, 211, 192, 0.3) !important;
+  border-radius: 6px;
+}
+
+html:not(.dark) .vp-doc .copy-code-button:hover {
+  background: rgba(61, 158, 143, 0.25) !important;
+  color: #2d7a6f !important;
+}
+
+/* Shiki 语法高亮 - 关键字 */
+html:not(.dark) .vp-doc pre .token.keyword,
+html:not(.dark) .vp-doc pre .token.control,
+html:not(.dark) .vp-doc pre .token.directive {
+  color: #1a6a5a !important;
+  font-weight: 600;
+}
+
+/* 类型和类名 */
+html:not(.dark) .vp-doc pre .token.class-name,
+html:not(.dark) .vp-doc pre .token.type,
+html:not(.dark) .vp-doc pre .token.builtin,
+html:not(.dark) .vp-doc pre .token.primitive {
+  color: #3d9e8f !important;
+}
+
+/* 字符串和字符 */
+html:not(.dark) .vp-doc pre .token.string,
+html:not(.dark) .vp-doc pre .token.char,
+html:not(.dark) .vp-doc pre .token.regex {
+  color: #2d7a6f !important;
+}
+
+/* 注释 */
+html:not(.dark) .vp-doc pre .token.comment,
+html:not(.dark) .vp-doc pre .token.block-comment,
+html:not(.dark) .vp-doc pre .token.prolog,
+html:not(.dark) .vp-doc pre .token.doctype,
+html:not(.dark) .vp-doc pre .token.cdata {
+  color: #6b7f78 !important;
+  font-style: italic;
+}
+
+/* 数字和布尔值 */
+html:not(.dark) .vp-doc pre .token.number,
+html:not(.dark) .vp-doc pre .token.boolean,
+html:not(.dark) .vp-doc pre .token.constant {
+  color: #2d7a6f !important;
+}
+
+/* 函数名 */
+html:not(.dark) .vp-doc pre .token.function,
+html:not(.dark) .vp-doc pre .token.method {
+  color: #4aad9e !important;
+}
+
+/* 运算符和标点 */
+html:not(.dark) .vp-doc pre .token.operator,
+html:not(.dark) .vp-doc pre .token.punctuation {
+  color: #5a8a80 !important;
+}
+
+/* 属性和标签 */
+html:not(.dark) .vp-doc pre .token.property,
+html:not(.dark) .vp-doc pre .token.tag,
+html:not(.dark) .vp-doc pre .token.symbol {
+  color: #1a6a5a !important;
+}
+
+/* 属性名和值 */
+html:not(.dark) .vp-doc pre .token.attr-name {
+  color: #3d9e8f !important;
+}
+
+html:not(.dark) .vp-doc pre .token.attr-value {
+  color: #2d7a6f !important;
+}
+
+/* 变量和参数 */
+html:not(.dark) .vp-doc pre .token.variable,
+html:not(.dark) .vp-doc pre .token.parameter {
+  color: #3d5a52 !important;
+}
+
+/* 高亮行 */
+html:not(.dark) .vp-doc pre .line.highlighted {
+  background: rgba(61, 158, 143, 0.15) !important;
+  display: block;
+  margin: 0 -16px;
+  padding: 0 16px;
+}
+
+/* 插入的代码行 */
+html:not(.dark) .vp-doc pre .line.diff.add {
+  background: rgba(61, 158, 143, 0.2) !important;
+}
+
+/* 删除的代码行 */
+html:not(.dark) .vp-doc pre .line.diff.remove {
+  background: rgba(255, 100, 100, 0.15) !important;
 }

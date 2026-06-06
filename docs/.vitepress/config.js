@@ -67,33 +67,34 @@ export default defineConfig({
     // 侧边栏配置（为每个专栏单独生成）
     sidebar: generateSidebar([
       {
-        documentRootPath: '/docs',
+        documentRootPath: 'docs',
         scanStartPath: 'posts/algorithm',
         resolvePath: '/posts/algorithm/',
         collapsed: false,
         useTitleFromFileHeading: true,
         useTitleFromFrontmatter: true,
-        debugPrint: true
+        debugPrint: false
       },
       {
-        documentRootPath: '/docs',
+        documentRootPath: 'docs',
         scanStartPath: 'posts/backend',
         resolvePath: '/posts/backend/',
         collapsed: false,
         useTitleFromFileHeading: true,
         useTitleFromFrontmatter: true,
-        debugPrint: true
+        debugPrint: false
       },
       {
-        documentRootPath: '/docs',
+        documentRootPath: 'docs',
         scanStartPath: 'posts/frontend',
         resolvePath: '/posts/frontend/',
         collapsed: false,
         useTitleFromFileHeading: true,
         useTitleFromFrontmatter: true,
-        debugPrint: true
+        debugPrint: false
       }
     ])
+
   },
 
 

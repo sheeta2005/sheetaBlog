@@ -73,16 +73,6 @@
   font-size: 0.9rem;
 }
 
-/* 导航栏毛玻璃效果 */
-.VPNav {
-  backdrop-filter: blur(12px);
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-.dark .VPNav {
-  background-color: rgba(18, 18, 18, 0.85);
-}
-
 /* 侧边栏美化 */
 .VPSidebar {
   border-right: 1px solid var(--vp-c-divider-light);

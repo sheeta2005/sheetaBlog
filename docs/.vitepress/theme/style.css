@@ -664,6 +664,239 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 }
 
 /* ============================================
+   深色模式 - 阅读界面烟花黑金主题（高优先级）
+   ============================================ */
+
+/* ===== 全局背景 - 纯黑背景 ===== */
+.dark body:not(:has(.VPHome)),
+.dark body:not(:has(.VPHome)) .VPLayout,
+.dark body:not(:has(.VPHome)) .VPLocalNav,
+.dark body:not(:has(.VPHome)) .VPContent {
+    background: #0a0a0a !important;
+}
+
+/* ===== 顶部导航栏 ===== */
+.dark body:not(:has(.VPHome)) .VPNav,
+.dark body:not(:has(.VPHome)) .VPNavBar {
+    background: rgba(20, 20, 20, 0.75) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.25) !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPNavBar .container,
+.dark body:not(:has(.VPHome)) .VPNavBar .content,
+.dark body:not(:has(.VPHome)) .VPNavBar .wrapper,
+.dark body:not(:has(.VPHome)) .VPNavBar .main,
+.dark body:not(:has(.VPHome)) .VPNavBar .title,
+.dark body:not(:has(.VPHome)) .VPNavBar .content-body {
+    background: transparent !important;
+}
+
+/* ===== 左侧边栏 ===== */
+.dark body:not(:has(.VPHome)) .VPSidebar {
+    background: rgba(15, 15, 15, 0.85) !important;
+    border-right: 1px solid rgba(255, 215, 0, 0.2) !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPSidebar .curtain,
+.dark body:not(:has(.VPHome)) .VPSidebar .nav {
+    background: transparent !important;
+}
+
+/* 侧边栏文字 - 浅灰色 */
+.dark body:not(:has(.VPHome)) .VPSidebarItem .text {
+    color: #d0d0d0 !important;
+}
+
+/* 侧边栏选中项 - 金色高亮 */
+.dark body:not(:has(.VPHome)) .VPSidebarItem.is-active > .item > .link,
+.dark body:not(:has(.VPHome)) .VPSidebarItem.is-active > .item .text {
+    color: #ffd700 !important;
+    font-weight: 600 !important;
+}
+
+/* ===== 主内容区 ===== */
+.dark body:not(:has(.VPHome)) .VPDoc {
+    background: transparent !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPDoc .container,
+.dark body:not(:has(.VPHome)) .VPDoc .content,
+.dark body:not(:has(.VPHome)) .VPDoc .content-container {
+    background: transparent !important;
+}
+
+/* 右侧目录栏 */
+.dark body:not(:has(.VPHome)) .VPDocAside {
+    background: transparent !important;
+    border-left: 1px solid rgba(255, 215, 0, 0.15) !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPDocAside .outline-title {
+    color: #ffd700 !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPDocAside .outline-link {
+    color: #c0c0c0 !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPDocAside .outline-link:hover,
+.dark body:not(:has(.VPHome)) .VPDocAside .outline-link.active {
+    color: #ffd700 !important;
+}
+
+/* ===== 文章内容 ===== */
+/* 文章标题 - 金色 */
+.dark body:not(:has(.VPHome)) .vp-doc h1,
+.dark body:not(:has(.VPHome)) .vp-doc h2,
+.dark body:not(:has(.VPHome)) .vp-doc h3,
+.dark body:not(:has(.VPHome)) .vp-doc h4,
+.dark body:not(:has(.VPHome)) .vp-doc h5,
+.dark body:not(:has(.VPHome)) .vp-doc h6 {
+    color: #ffd700 !important;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* 文章正文 - 浅灰色 */
+.dark body:not(:has(.VPHome)) .vp-doc p,
+.dark body:not(:has(.VPHome)) .vp-doc li,
+.dark body:not(:has(.VPHome)) .vp-doc span {
+    color: #e0e0e0 !important;
+}
+
+/* 链接 - 金色 */
+.dark body:not(:has(.VPHome)) .vp-doc a {
+    color: #ffd700 !important;
+    text-decoration: none !important;
+}
+
+.dark body:not(:has(.VPHome)) .vp-doc a:hover {
+    color: #ffed4e !important;
+    text-decoration: underline !important;
+}
+
+/* 代码块 - 深色背景 */
+.dark body:not(:has(.VPHome)) .vp-doc pre {
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255, 215, 0, 0.2) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark body:not(:has(.VPHome)) .vp-doc pre code {
+    background: transparent !important;
+    color: #e0e0e0 !important;
+}
+
+/* 深色模式 - 行号 */
+.dark body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper {
+    color: #888 !important;
+    border-right: 1px solid rgba(255, 215, 0, 0.15) !important;
+    background: rgba(255, 215, 0, 0.05) !important;
+}
+
+/* 行内代码 */
+.dark body:not(:has(.VPHome)) .vp-doc :not(pre) > code {
+    background: rgba(255, 215, 0, 0.12) !important;
+    color: #ffd700 !important;
+}
+
+/* 分割线 */
+.dark body:not(:has(.VPHome)) .vp-doc hr {
+    border-color: rgba(255, 215, 0, 0.25) !important;
+}
+
+/* 引用块 */
+.dark body:not(:has(.VPHome)) .vp-doc blockquote {
+    border-left-color: #ffd700 !important;
+    background: rgba(255, 215, 0, 0.08) !important;
+    color: #d0d0d0 !important;
+}
+
+/* 表格 */
+.dark body:not(:has(.VPHome)) .vp-doc table {
+    border-color: rgba(255, 215, 0, 0.2) !important;
+}
+
+.dark body:not(:has(.VPHome)) .vp-doc table th {
+    background: rgba(255, 215, 0, 0.12) !important;
+    color: #ffd700 !important;
+    border-color: rgba(255, 215, 0, 0.2) !important;
+}
+
+.dark body:not(:has(.VPHome)) .vp-doc table td {
+    border-color: rgba(255, 215, 0, 0.15) !important;
+    color: #d0d0d0 !important;
+}
+
+/* ===== 底部翻页导航 ===== */
+.dark body:not(:has(.VPHome)) .VPDocFooter {
+    background: transparent !important;
+    border-top: 1px solid rgba(255, 215, 0, 0.2) !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPDocFooter .prev,
+.dark body:not(:has(.VPHome)) .VPDocFooter .next {
+    background: rgba(20, 20, 20, 0.6) !important;
+    border: 1px solid rgba(255, 215, 0, 0.2) !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPDocFooter .prev a,
+.dark body:not(:has(.VPHome)) .VPDocFooter .next a,
+.dark body:not(:has(.VPHome)) .VPDocFooter .prev .title,
+.dark body:not(:has(.VPHome)) .VPDocFooter .next .title {
+    color: #ffd700 !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPDocFooter .prev a:hover,
+.dark body:not(:has(.VPHome)) .VPDocFooter .next a:hover {
+    color: #ffed4e !important;
+}
+
+/* ===== 导航栏文字 ===== */
+.dark body:not(:has(.VPHome)) .VPNavBarMenuLink,
+.dark body:not(:has(.VPHome)) .VPNavBarMenuGroup .button {
+    color: #e0e0e0 !important;
+}
+
+.dark body:not(:has(.VPHome)) .VPNavBarMenuLink:hover,
+.dark body:not(:has(.VPHome)) .VPNavBarMenuGroup .button:hover {
+    color: #ffd700 !important;
+}
+
+/* 导航栏选中项 - 金色 */
+.dark body:not(:has(.VPHome)) .VPNavBarMenuLink.router-link-active,
+.dark body:not(:has(.VPHome)) .VPNavBarMenuGroup .button.router-link-active {
+    color: #ffd700 !important;
+}
+
+/* ===== 搜索栏 ===== */
+.dark body:not(:has(.VPHome)) .DocSearch-Button {
+    background: rgba(20, 20, 20, 0.6) !important;
+    border: 1px solid rgba(255, 215, 0, 0.35) !important;
+}
+
+.dark body:not(:has(.VPHome)) .DocSearch-Button:hover {
+    background: rgba(30, 30, 30, 0.8) !important;
+}
+
+.dark body:not(:has(.VPHome)) .DocSearch-Button-Key {
+    background: rgba(255, 215, 0, 0.15) !important;
+    border: 1px solid rgba(255, 215, 0, 0.4) !important;
+    color: #ffd700 !important;
+}
+
+.dark body:not(:has(.VPHome)) .DocSearch-Button-Container,
+.dark body:not(:has(.VPHome)) .DocSearch-Button-Placeholder {
+    color: #e0e0e0 !important;
+}
+
+/* 最后更新时间 */
+.dark body:not(:has(.VPHome)) .last-updated {
+    color: #b0b0b0 !important;
+}
+
+/* ============================================
    深色模式 - 文字可读性适配（烟花黑金）
    ============================================ */
 

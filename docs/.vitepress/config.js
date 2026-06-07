@@ -32,7 +32,8 @@ export default defineConfig({
     outline: {
       level: [2, 6],
       label: '文章目录',
-      collapsed: false
+      collapsible: true,  // 允许这个分组被折叠
+      collapsed: true     // 默认是收起状态
     },
 
     // 本地搜索
@@ -71,7 +72,8 @@ export default defineConfig({
         documentRootPath: 'docs',
         scanStartPath: 'posts/algorithm',
         resolvePath: '/posts/algorithm/',
-        collapsed: false,
+        collapsible: true,  // 允许这个分组被折叠
+        collapsed: true,   // 默认是收起状态
         useTitleFromFileHeading: true,
         useTitleFromFrontmatter: true,
         debugPrint: false
@@ -80,7 +82,8 @@ export default defineConfig({
         documentRootPath: 'docs',
         scanStartPath: 'posts/backend',
         resolvePath: '/posts/backend/',
-        collapsed: false,
+        collapsible: true,  // 允许这个分组被折叠
+        collapsed: true,   // 默认是收起状态
         useTitleFromFileHeading: true,
         useTitleFromFrontmatter: true,
         debugPrint: false
@@ -89,7 +92,8 @@ export default defineConfig({
         documentRootPath: 'docs',
         scanStartPath: 'posts/frontend',
         resolvePath: '/posts/frontend/',
-        collapsed: false,
+        collapsible: true,  // 允许这个分组被折叠
+        collapsed: true,   // 默认是收起状态
         useTitleFromFileHeading: true,
         useTitleFromFrontmatter: true,
         debugPrint: false

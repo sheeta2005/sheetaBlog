@@ -9,7 +9,7 @@ export default defineConfig({
   base: '/',
   outDir: './.vitepress/dist',
   strict: true,
-
+  ssr: true,
   themeConfig: {
     // 主题自动切换配置 - 首次访问自动检测系统偏好，只判断一次
     appearance: 'force dark',

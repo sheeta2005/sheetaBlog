@@ -8,7 +8,7 @@ export default {
         let scrollY = 0
 
         const MOUSE_PARALLAX_INTENSITY = 15
-        const SCROLL_PARALLAX_INTENSITY = 0.2
+        const SCROLL_PARALLAX_INTENSITY = 0.05
 
         function updateParallax() {
             const bgLayer = document.querySelector('.VPHome .parallax-bg')

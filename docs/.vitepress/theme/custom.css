@@ -185,6 +185,38 @@ html:not(.dark) .vp-doc .copy-code-button:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* 防止首次加载闪烁 */
+.VPHome {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
+
+/* 视差背景层基础样式 */
+.parallax-bg {
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 深色模式背景 */
+.dark .parallax-bg {
+  background-image: url('/background_night.jpg');
+}
+
+/* 亮色模式背景 */
+.light .parallax-bg {
+  background-image: url('/background.jpg');
+}
+
 /* ============================================
    亮色模式 - 代码块语法高亮优化
    ============================================ */

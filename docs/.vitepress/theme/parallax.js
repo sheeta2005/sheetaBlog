@@ -7,9 +7,8 @@ export default {
         let mouseY = window.innerHeight / 2
         let scrollY = 0
 
-        // 视差强度配置
-        const MOUSE_PARALLAX_INTENSITY = 15   // 鼠标跟随强度（像素）
-        const SCROLL_PARALLAX_INTENSITY = 0.2 // 滚动视差强度
+        const MOUSE_PARALLAX_INTENSITY = 15
+        const SCROLL_PARALLAX_INTENSITY = 0.2
 
         function updateParallax() {
             const bgLayer = document.querySelector('.VPHome .parallax-bg')
@@ -18,15 +17,12 @@ export default {
             const centerX = window.innerWidth / 2
             const centerY = window.innerHeight / 2
 
-            // 计算鼠标偏移量（-1 到 1）
             const mouseOffsetX = (mouseX - centerX) / centerX
             const mouseOffsetY = (mouseY - centerY) / centerY
 
-            // 计算位移（像素）- 反转 Y 轴方向
             const translateX = mouseOffsetX * MOUSE_PARALLAX_INTENSITY
             const translateY = -mouseOffsetY * MOUSE_PARALLAX_INTENSITY - scrollY * SCROLL_PARALLAX_INTENSITY
 
-            // 应用 transform 到背景层
             bgLayer.style.transform = `translate(${translateX}px, ${translateY}px)`
 
             ticking = false
@@ -53,27 +49,33 @@ export default {
         function init() {
             const isHomePage = document.querySelector('.VPHome')
             
-            // 创建背景层 DOM 元素
             let bgLayer = document.querySelector('.VPHome .parallax-bg')
             if (isHomePage && !bgLayer) {
                 bgLayer = document.createElement('div')
                 bgLayer.className = 'parallax-bg'
+                bgLayer.setAttribute('data-parallax', 'true')
                 isHomePage.insertBefore(bgLayer, isHomePage.firstChild)
             }
             
             if (isHomePage) {
                 window.addEventListener('scroll', onScroll, { passive: true })
                 window.addEventListener('mousemove', onMouseMove, { passive: true })
-                updateParallax()
+                requestAnimationFrame(updateParallax)
             }
         }
 
-        // 路由切换时重新初始化
-        router.onAfterRouteChanged = () => {
-            setTimeout(init, 100)
+        router.onAfterRouteChanged = (to) => {
+            if (to === '/' || to === '/index.html') {
+                setTimeout(init, 150)
+            }
         }
 
-        // 首次加载
-        init()
+        if (typeof window !== 'undefined') {
+            if (document.readyState === 'complete') {
+                init()
+            } else {
+                window.addEventListener('load', init)
+            }
+        }
     }
 }

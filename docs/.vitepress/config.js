@@ -10,8 +10,7 @@ export default defineConfig({
   outDir: './.vitepress/dist',
   strict: true,
   themeConfig: {
-    // 主题自动切换配置 - 首次访问自动检测系统偏好，只判断一次
-    appearance: 'force dark',
+    appearance: 'dark',
 
     logo: {
       src: '/avatar.jpg',
@@ -114,6 +113,15 @@ export default defineConfig({
         'xml',
         'sql'
       ]
+    }
+  },
+
+  vite: {
+    ssr: {
+      noExternal: ['vitepress']
+    },
+    optimizeDeps: {
+      exclude: ['vitepress']
     }
   }
 })

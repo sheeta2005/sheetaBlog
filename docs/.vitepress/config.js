@@ -6,6 +6,10 @@ export default defineConfig({
   title: 'sheeta1998的技术博客',
   description: '后端开发学习笔记 | Java | Redis | MySQL | 算法',
 
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }]
+  ],
+
   base: '/',
   outDir: './.vitepress/dist',
   strict: true,

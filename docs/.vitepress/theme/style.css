@@ -5,7 +5,7 @@
 /* 深色模式背景图 - 应用到 body 作为后备 */
 .dark.layout-home body,
 .dark body:has(.VPHome) {
-    background-image: url('/background_night.jpg') !important;
+    background-image: url('/background_night.webp') !important;
     background-position: center 30% !important;
     background-size: cover !important;
     background-attachment: fixed !important;
@@ -14,7 +14,7 @@
 /* 亮色模式背景图 - 应用到 body 作为后备 */
 .layout-home body,
 body:has(.VPHome) {
-    background-image: url('/background.jpg') !important;
+    background-image: url('/background.webp') !important;
     background-position: center 40% !important;
     background-size: cover !important;
     background-attachment: fixed !important;
@@ -35,7 +35,7 @@ body:has(.VPHome) {
     left: -15%;
     right: -15%;
     bottom: -15%;
-    background-image: url('/background.jpg');
+    background-image: url('/background.webp');
     background-size: cover;
     background-position: center 40%;
     background-repeat: no-repeat;
@@ -47,7 +47,7 @@ body:has(.VPHome) {
 
 /* 深色模式背景图 - 向上移动显示人物脸部 + 留出视差边缘 */
 .dark .VPHome .parallax-bg {
-    background-image: url('/background_night.jpg');
+    background-image: url('/background_night.webp');
     background-position: center 30% !important;
     background-size: cover !important;
 }

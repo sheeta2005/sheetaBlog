@@ -198,7 +198,7 @@ html:not(.dark) .vp-doc .copy-code-button:hover {
   left: -10%;
   width: 120%;
   height: 120%;
-  background-image: url('/background.jpg');
+  background-image: url('/background.webp');
   background-size: cover;
   background-position: center;
   will-change: transform;
@@ -209,12 +209,12 @@ html:not(.dark) .vp-doc .copy-code-button:hover {
 
 /* 深色模式背景 */
 .dark .parallax-bg {
-  background-image: url('/background_night.jpg');
+  background-image: url('/background_night.webp');
 }
 
 /* 亮色模式背景 */
 .light .parallax-bg {
-  background-image: url('/background.jpg');
+  background-image: url('/background.webp');
 }
 
 /* ============================================

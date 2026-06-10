@@ -1,6 +1,6 @@
 ---
 title: 算法专栏
-description: BFS、KMP、线段树等常见算法实现与 LeetCode 题解
+description: 常见算法实现与 LeetCode 题解
 layout: doc
 ---
 
@@ -10,9 +10,9 @@ layout: doc
 
 ## 📚 算法分类
 
-- 搜索算法（BFS、DFS）
-- 字符串匹配（KMP）
-- 数据结构（线段树、树状数组）
+- 搜索算法（BFS、DFS......）
+- 字符串匹配（KMP......）
+- 数据结构（线段树、树状数组......）
 - 动态规划
 - 图论算法
 

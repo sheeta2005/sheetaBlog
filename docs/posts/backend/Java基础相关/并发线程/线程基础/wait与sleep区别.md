@@ -1,6 +1,6 @@
 ---
 title: wait与sleep区别
-date: 2026-06-11
+date: 2026-06-15
 tags: [Java, 多线程, wait, sleep]
 categories: [后端技术]
 description: wait与sleep共同点、核心差异及面试问答

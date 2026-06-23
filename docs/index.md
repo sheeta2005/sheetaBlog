@@ -23,7 +23,7 @@ features:
     link: /posts/algorithm/ 
   - icon: 🚀
     title: 后端专栏
-    details: Java 基础、Spring Boot、MySQL、Redis、消息队列等后端技术栈
+    details: Java 基础、Spring Boot、MySQL、Redis、RabbitMQ等后端技术栈
     link: /posts/backend/ 
   - icon: 💻
     title: 前端专栏
@@ -38,14 +38,14 @@ features:
   <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">MyBatis-Plus</span>
   <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">MySQL</span>
   <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">Redis</span>
+  <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">RabbitMQ</span>
   <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">Docker</span>
-  <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">Vue3</span>
   <span style="padding: 0.4rem 1rem; background-color: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">TypeScript</span>
 </div>
 
 ## 📌 项目经历
-- **takeMe**：项目描述
-- **个人技术博客**：基于 VitePress 搭123123建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
+- **takeMe**：TakeMe养老服务平台面向老人提供代购、助餐、助医等志愿帮扶服务，采用SpringBoot+MySQL+Redis+RabbitMQ技术栈，依托缓存、延时消息、JWT鉴权、全局异常处理等能力，实现订单全流程异步解耦与工程规范化管控。
+- **个人技术博客**：基于 VitePress 搭建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
 
 ## 📞 联系方式
 - GitHub：[https://github.com/sheeta2005](https://github.com/sheeta2005)

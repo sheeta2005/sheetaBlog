@@ -44,7 +44,7 @@ features:
 </div>
 
 ## 📌 项目经历
-- **takeMe**：TakeMe养老服务平台面向老人提供代购、助餐、助医等志愿帮扶服务，采用SpringBoot+MySQL+Redis+RabbitMQ技术栈，依托缓存、延时消息、JWT鉴权、全局异常处理等能力，实现订单全流程异步解耦与工程规范化管控。
+- **takeMe养老服务**：面向老人提供代购、助餐、助医等志愿帮扶服务，采用SpringBoot+MySQL+Redis+RabbitMQ技术栈，依托缓存、延时消息、JWT鉴权、全局异常处理等能力，实现订单全流程异步解耦与工程规范化管控
 - **个人技术博客**：基于 VitePress 搭建的静态技术文档站，实现自动分级侧边栏、全文检索，Cloudflare 自动化部署
 
 ## 📞 联系方式

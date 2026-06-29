@@ -29,7 +29,7 @@ export default defineConfig({
       { text: '算法专栏', link: '/posts/algorithm/' },
       { text: '后端专栏', link: '/posts/backend/' },
       { text: '前端专栏', link: '/posts/frontend/' },
-      { text: 'index.md', link: '/posts/sundries/' },
+      { text: '杂项', link: '/posts/sundries/' },
       { text: 'GitHub', link: 'https://github.com/sheeta2005', target: '_blank' }
     ],
 

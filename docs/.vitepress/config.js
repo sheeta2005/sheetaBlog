@@ -29,6 +29,7 @@ export default defineConfig({
       { text: '算法专栏', link: '/posts/algorithm/' },
       { text: '后端专栏', link: '/posts/backend/' },
       { text: '前端专栏', link: '/posts/frontend/' },
+      { text: 'index.md', link: '/posts/sundries/' },
       { text: 'GitHub', link: 'https://github.com/sheeta2005', target: '_blank' }
     ],
 
@@ -96,6 +97,16 @@ export default defineConfig({
         documentRootPath: 'docs',
         scanStartPath: 'posts/frontend',
         resolvePath: '/posts/frontend/',
+        collapsible: true,  // 允许这个分组被折叠
+        collapsed: true,   // 默认是收起状态
+        useTitleFromFileHeading: true,
+        useTitleFromFrontmatter: true,
+        debugPrint: false
+      },
+      {
+        documentRootPath: 'docs',
+        scanStartPath: 'posts/sundries',
+        resolvePath: '/posts/sundries/',
         collapsible: true,  // 允许这个分组被折叠
         collapsed: true,   // 默认是收起状态
         useTitleFromFileHeading: true,

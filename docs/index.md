@@ -23,12 +23,16 @@ features:
     link: /posts/algorithm/ 
   - icon: 🚀
     title: 后端专栏
-    details: Java 基础、Spring Boot、MySQL、Redis、RabbitMQ等后端技术栈
+    details: Java 基础、Spring Boot、MybatisMySQL、Redis、RabbitMQ等后端技术栈
     link: /posts/backend/ 
   - icon: 💻
     title: 前端专栏
     details: Vue3、TypeScript、Vite 等前端技术学习笔记
     link: /posts/frontend/ 
+  - icon: 📝
+    title: 杂项
+    details: 学校课程、个人感悟
+    link: /posts/sundries/ 
 ---
 
 ## 🛠 技术栈

@@ -4,7 +4,7 @@ import { generateSidebar } from 'vitepress-sidebar'
 export default defineConfig({
 
   title: 'sheeta1998的技术博客',
-  description: '后端开发学习笔记 | Java | Redis | MySQL | 算法',
+  description: 'Java 后端实习求职 | takeMe 社区助老平台 | Redis 限流组件 | 工程实践与学习笔记',
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
@@ -23,13 +23,22 @@ export default defineConfig({
       }
     },
 
-    // 顶部导航栏（更新为新的路径）
+    // 优先展示求职项目与工程复盘，原有专栏统一收进学习笔记。
     nav: [
       { text: '首页', link: '/' },
-      { text: '算法专栏', link: '/posts/algorithm/' },
-      { text: '后端专栏', link: '/posts/backend/' },
-      { text: '前端专栏', link: '/posts/frontend/' },
-      { text: '杂项', link: '/posts/sundries/' },
+      { text: '项目实践', link: '/projects/' },
+      { text: '精选文章', link: '/articles/' },
+      {
+        text: '学习笔记',
+        items: [
+          { text: '笔记导航', link: '/notes/' },
+          { text: '后端专栏', link: '/posts/backend/' },
+          { text: '算法专栏', link: '/posts/algorithm/' },
+          { text: '前端专栏', link: '/posts/frontend/' },
+          { text: '课程与杂项', link: '/posts/sundries/' }
+        ]
+      },
+      { text: '关于我', link: '/about' },
       { text: 'GitHub', link: 'https://github.com/sheeta2005', target: '_blank' }
     ],
 
@@ -73,6 +82,21 @@ export default defineConfig({
 
     // 侧边栏配置（为每个专栏单独生成）
     sidebar: generateSidebar([
+      // 新增项目与复盘的阅读导航，沿用已有的自动侧边栏生成方式。
+      {
+        documentRootPath: 'docs',
+        scanStartPath: 'projects',
+        resolvePath: '/projects/',
+        useTitleFromFrontmatter: true,
+        useTitleFromFileHeading: true
+      },
+      {
+        documentRootPath: 'docs',
+        scanStartPath: 'articles',
+        resolvePath: '/articles/',
+        useTitleFromFrontmatter: true,
+        useTitleFromFileHeading: true
+      },
       {
         documentRootPath: 'docs',
         scanStartPath: 'posts/algorithm',

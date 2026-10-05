@@ -13,6 +13,10 @@
   /* 字体配置 */
   --vp-font-family-base: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --vp-font-family-mono: 'Fira Code', 'Consolas', monospace;
+  /* 只缩放阅读内容，避免字号偏好同时放大头像、导航与布局间距。 */
+  --reading-scale: 1;
+  --vp-code-font-size: calc(14px * var(--reading-scale));
+  --vp-custom-block-font-size: calc(16px * var(--reading-scale));
 
   /* 布局配置 */
   --vp-sidebar-width: 280px;
@@ -24,6 +28,18 @@ html {
   zoom: 1;
 }
 
+html[data-reading-size='small'] {
+  --reading-scale: 0.9;
+}
+
+html[data-reading-size='large'] {
+  --reading-scale: 1.1;
+}
+
+html[data-reading-size='extra-large'] {
+  --reading-scale: 1.2;
+}
+
 /* 深色主题适配 - 仅用于非首页的普通页面 */
 .dark {
   --vp-c-brand-1: #ffd700;
@@ -33,8 +49,31 @@ html {
 }
 
 /* 全局排版优化 */
+.vp-doc {
+  font-size: calc(17px * var(--reading-scale));
+}
+
+/* 标题与提示块采用相对行高，大字号换行时避免重叠。 */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  line-height: 1.4;
+}
+
+.vp-doc blockquote > p {
+  font-size: inherit;
+}
+
+.vp-doc .custom-block,
+.vp-doc .custom-block p {
+  line-height: 1.8;
+}
+
 .vp-doc h1 {
-  font-size: 2.2rem;
+  font-size: calc(2.2rem * var(--reading-scale));
   font-weight: 700;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
@@ -42,17 +81,29 @@ html {
 }
 
 .vp-doc h2 {
-  font-size: 1.7rem;
+  font-size: calc(1.7rem * var(--reading-scale));
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .vp-doc h3 {
-  font-size: 1.4rem;
+  font-size: calc(1.4rem * var(--reading-scale));
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 0.8rem;
+}
+
+/* 小标题、表格与代码同步跟随阅读字号。 */
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  font-size: calc(18px * var(--reading-scale));
+}
+
+.vp-doc th,
+.vp-doc td {
+  font-size: inherit;
 }
 
 .vp-doc p {
@@ -76,7 +127,7 @@ html {
 .vp-doc code {
   border-radius: 4px;
   padding: 0.15rem 0.4rem;
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--reading-scale));
 }
 
 /* 亮色模式 - 代码块语法高亮优化 */

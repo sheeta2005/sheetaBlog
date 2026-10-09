@@ -4,7 +4,7 @@ layout: home
 hero:
   name: sheeta1998
   text: 寻找 Java 后端实习
-  tagline: <span class="hero-identity">大三在读 · Java 后端开发</span><span class="hero-stack">Java / Spring Boot / MySQL / Redis</span><span class="hero-intro">从业务需求到代码实现，记录技术取舍、问题排查与测试验证。</span>
+  tagline: <span class="hero-identity">大三在读 · Java 后端开发</span><span class="hero-stack"><span>Java</span><span>Spring Boot</span><span>MySQL</span><span>Redis</span></span><span class="hero-intro">从业务需求到代码实现，记录技术取舍、问题排查与测试验证。</span>
   image:
     src: /avatar.jpg
     alt: sheeta1998 的二次元头像

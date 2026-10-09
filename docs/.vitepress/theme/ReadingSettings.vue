@@ -117,12 +117,28 @@ summary:focus-visible {
   width: 268px;
   max-width: calc(100vw - 48px);
   padding: 20px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 14px;
-  background: var(--vp-c-bg);
+  border: 1px solid var(--summer-border);
+  border-radius: 18px;
+  background: var(--summer-settings-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   color: var(--vp-c-text-1);
-  box-shadow: var(--vp-shadow-3);
+  box-shadow: var(--summer-shadow);
   white-space: normal;
+}
+
+/* 面板只在展开时轻柔入场，不影响正文的稳定阅读。 */
+details[open] .settings-panel {
+  animation: settings-unfold 180ms ease-out;
+}
+
+@keyframes settings-unfold {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  details[open] .settings-panel { animation: none; }
 }
 
 fieldset {

@@ -79,6 +79,8 @@ export default defineConfig({
     sidebarMenuLabel: '导航菜单',
     returnToTopLabel: '返回顶部',
     darkModeSwitchLabel: '主题切换',
+    lightModeSwitchTitle: '切换到薄荷晴昼',
+    darkModeSwitchTitle: '切换到花火夏夜',
 
     // 侧边栏配置（为每个专栏单独生成）
     sidebar: generateSidebar([

@@ -60,7 +60,7 @@ body:has(.VPHome) {
     left: -15%;
     right: -15%;
     bottom: -15%;
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(240, 244, 224, 0.26);
     z-index: -1;
     pointer-events: none;
 }
@@ -88,7 +88,7 @@ body:has(.VPHome) .VPNavBarTitle .logo {
 body:has(.VPHome) .VPNav,
 body:has(.VPHome) .VPNavBar,
 body:has(.VPHome) .VPNavBar .divider {
-    background: rgba(125, 211, 192, 0.15) !important;
+    background: rgba(240, 249, 234, 0.55) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
     border: none !important;
@@ -102,7 +102,7 @@ body:has(.VPHome) .VPNavBarMenuGroup .button {
     background: transparent !important;
 }
 
-/* 深色模式 - 烟花黑金 */
+/* 深色模式 - 花火夜色 */
 .dark body:has(.VPHome) .VPNav,
 .dark body:has(.VPHome) .VPNavBar,
 .dark body:has(.VPHome) .VPNavBar .divider,
@@ -118,7 +118,7 @@ body:has(.VPHome) .VPNavBarMenuGroup .button {
 
 .dark body:has(.VPHome) .VPNav,
 .dark body:has(.VPHome) .VPNavBar {
-    border-bottom: 1px solid rgba(255, 215, 0, 0.25) !important;
+    border-bottom: 1px solid rgba(226, 185, 112, 0.25) !important;
 }
 
 body:has(.VPHome) .VPNavBar .container,
@@ -136,7 +136,7 @@ body:has(.VPHome) .VPNavBar .main {
 body:has(.VPHome) .DocSearch-Button,
 body:has(.VPHome) .VPNavBarSearch,
 body:has(.VPHome) .VPNavBarSearch .search-box {
-    background: rgba(125, 211, 192, 0.15) !important;
+    background: rgba(240, 249, 234, 0.55) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border: 1px solid rgba(125, 211, 192, 0.3) !important;
@@ -147,51 +147,51 @@ body:has(.VPHome) .VPNavBarSearch .search-box {
 
 body:has(.VPHome) .DocSearch-Button:hover {
     background: rgba(125, 211, 192, 0.3) !important;
-    border-color: rgba(255, 213, 79, 0.4) !important;
+    border-color: rgba(234, 216, 158, 0.4) !important;
 }
 
-/* 深色模式 - 烟花黑金 */
+/* 深色模式 - 花火夜色 */
 .dark body:has(.VPHome) .DocSearch-Button,
 .dark body:has(.VPHome) .VPNavBarSearch,
 .dark body:has(.VPHome) .VPNavBarSearch .search-box {
-    background: rgba(20, 20, 20, 0.6) !important;
-    border: 1px solid rgba(255, 215, 0, 0.35) !important;
+    background: rgba(20, 21, 18, 0.6) !important;
+    border: 1px solid rgba(226, 185, 112, 0.35) !important;
     border-radius: 20px !important;
     box-shadow: none !important;
     transition: all 0.3s ease !important;
 }
 
 .dark body:has(.VPHome) .DocSearch-Button:hover {
-    background: rgba(30, 30, 30, 0.8) !important;
-    border-color: rgba(255, 215, 0, 0.6) !important;
+    background: rgba(34, 34, 29, 0.8) !important;
+    border-color: rgba(226, 185, 112, 0.6) !important;
 }
 
 /* 搜索文字 - 亮色 */
 body:has(.VPHome) .DocSearch-Button-Container,
 body:has(.VPHome) .DocSearch-Button-Placeholder {
     background: transparent !important;
-    color: #555;
+    color: #4f6158;
 }
 
 /* 搜索文字 - 深色 */
 .dark body:has(.VPHome) .DocSearch-Button-Container,
 .dark body:has(.VPHome) .DocSearch-Button-Placeholder {
-    color: #e0e0e0;
+    color: #e6e1dc;
 }
 
 /* 搜索快捷键 - 亮色 */
 body:has(.VPHome) .DocSearch-Button-Key {
     background: rgba(125, 211, 192, 0.25) !important;
     border: 1px solid rgba(125, 211, 192, 0.35) !important;
-    color: #3d9e8f !important;
+    color: #397e69 !important;
 }
 
 /* 搜索快捷键 - 深色 */
 .dark body:has(.VPHome) .DocSearch-Button-Key,
 .dark .DocSearch-Button-Key {
-    background: rgba(255, 215, 0, 0.15) !important;
-    border: 1px solid rgba(255, 215, 0, 0.4) !important;
-    color: #ffd700 !important;
+    background: rgba(226, 185, 112, 0.15) !important;
+    border: 1px solid rgba(226, 185, 112, 0.4) !important;
+    color: #e2b970 !important;
     box-shadow: none !important;
 }
 
@@ -207,10 +207,10 @@ body:has(.VPHome) .VPFooter {
     border-top: 1px solid rgba(125, 211, 192, 0.25) !important;
 }
 
-/* 深色模式 - 烟花黑金 */
+/* 深色模式 - 花火夜色 */
 .dark body:has(.VPHome) .VPFooter {
-    background: rgba(20, 20, 20, 0.6) !important;
-    border-top: 1px solid rgba(255, 215, 0, 0.25) !important;
+    background: rgba(20, 21, 18, 0.6) !important;
+    border-top: 1px solid rgba(226, 185, 112, 0.25) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
 }
@@ -235,10 +235,10 @@ body:has(.VPHome) .VPFooter .copyright {
     border-radius: 20px;
 }
 
-/* 深色模式 - 烟花黑金 */
+/* 深色模式 - 花火夜色 */
 .dark .VPHome .VPFeature {
-    background: rgba(20, 20, 20, 0.5) !important;
-    border: 1px solid rgba(255, 215, 0, 0.25) !important;
+    background: rgba(20, 21, 18, 0.5) !important;
+    border: 1px solid rgba(226, 185, 112, 0.25) !important;
 }
 
 /* ============================================
@@ -248,7 +248,7 @@ body:has(.VPHome) .VPFooter .copyright {
 /* 亮色模式 - 淡黄底 + 淡青边 */
 .VPHome .VPBadge,
 .VPHome span[style*="background-color"] {
-    background: rgba(255, 213, 79, 0.12) !important;
+    background: rgba(234, 216, 158, 0.12) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     color: #2d7a6f !important;
@@ -258,9 +258,9 @@ body:has(.VPHome) .VPFooter .copyright {
 /* 首页 - 技术栈标签（深色模式） */
 .dark .VPHome .VPBadge,
 .dark .VPHome span[style*="background-color"] {
-    background: rgba(255, 215, 0, 0.15) !important;
-    color: #ffd700 !important;
-    border: 1px solid rgba(255, 215, 0, 0.3) !important;
+    background: rgba(226, 185, 112, 0.15) !important;
+    color: #e2b970 !important;
+    border: 1px solid rgba(226, 185, 112, 0.3) !important;
 }
 
 /* ============================================
@@ -279,8 +279,8 @@ body:has(.VPHome) .VPFooter .copyright {
 
 /* 深色模式 - 金色光晕 */
 .dark .VPHome .VPHero .image-src {
-    box-shadow: 0 6px 30px rgba(255, 215, 0, 0.25), 0 0 60px rgba(255, 215, 0, 0.1) !important;
-    border: 2px solid rgba(255, 215, 0, 0.3) !important;
+    box-shadow: 0 6px 30px rgba(226, 185, 112, 0.25), 0 0 60px rgba(226, 185, 112, 0.1) !important;
+    border: 2px solid rgba(226, 185, 112, 0.3) !important;
 }
 
 /* ============================================
@@ -318,10 +318,10 @@ body:has(.VPHome) .VPHero .main {
     padding: 0;
 }
 
-/* 黑金模式只切换面板底色，不替换原有背景图。 */
+/* 夜间模式只切换面板底色，不替换原有背景图。 */
 .dark body:has(.VPHome) .VPHero .container {
-    background: rgba(20, 20, 20, 0.48);
-    border-color: rgba(255, 215, 0, 0.3);
+    background: rgba(20, 21, 18, 0.48);
+    border-color: rgba(226, 185, 112, 0.3);
 }
 
 /* 头像使用正常文档流，避免窄屏下的偏移与遮挡。 */
@@ -455,8 +455,8 @@ body:has(.VPHome) .vp-doc {
 }
 
 .dark .VPHome .home-panel {
-    background: rgba(20, 20, 20, 0.5);
-    border-color: rgba(255, 215, 0, 0.25);
+    background: rgba(20, 21, 18, 0.5);
+    border-color: rgba(226, 185, 112, 0.25);
 }
 
 .VPHome .vp-doc .home-panel h2 {
@@ -742,36 +742,36 @@ body:has(.VPHome) .VPHero .VPButton {
 .layout-home .VPHero .name,
 body:has(.VPHome) .VPHero .name,
 .VPHero .name {
-    color: #3d9e8f !important;
-    text-shadow: 0 0 15px rgba(255, 213, 79, 0.15), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    color: #397e69 !important;
+    text-shadow: 0 0 15px rgba(234, 216, 158, 0.15), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 
 body:has(.VPHome) .VPHero .text {
-    color: #2d3436 !important;
+    color: #2e4039 !important;
 }
 
 body:has(.VPHome) .VPHero .tagline {
-    color: #636e72 !important;
+    color: #56665e !important;
 }
 
 body:has(.VPHome) .VPFeature .title {
-    color: #2d3436 !important;
+    color: #2e4039 !important;
 }
 
 body:has(.VPHome) .VPFeature .details {
-    color: #555 !important;
+    color: #4f6158 !important;
 }
 
 body:has(.VPHome) .VPHome h2 {
-    color: #2d3436 !important;
+    color: #2e4039 !important;
 }
 
 body:has(.VPHome) .vp-doc p {
-    color: #555 !important;
+    color: #4f6158 !important;
 }
 
 body:has(.VPHome) .vp-doc li {
-    color: #555 !important;
+    color: #4f6158 !important;
 }
 
 /* 亮色模式 - 导航栏文字 */
@@ -782,7 +782,7 @@ body:has(.VPHome) .VPNavBarMenuGroup .button {
 
 body:has(.VPHome) .VPNavBarMenuLink:hover,
 body:has(.VPHome) .VPNavBarMenuGroup .button:hover {
-    color: #3d9e8f !important;
+    color: #397e69 !important;
 }
 
 /* 亮色模式 - 页脚文字 */
@@ -796,30 +796,30 @@ body:has(.VPHome) .VPFooter .copyright {
    ============================================ */
 
 body:has(.VPHome) .VPHero .VPButton.brand {
-    background: rgba(255, 213, 79, 0.15) !important;
+    background: rgba(234, 216, 158, 0.15) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(255, 213, 79, 0.35) !important;
-    color: #3d9e8f !important;
+    border: 1px solid rgba(234, 216, 158, 0.35) !important;
+    color: #397e69 !important;
 }
 
 body:has(.VPHome) .VPHero .VPButton.brand:hover {
-    background: rgba(255, 213, 79, 0.3) !important;
-    border-color: rgba(255, 213, 79, 0.5) !important;
+    background: rgba(234, 216, 158, 0.3) !important;
+    border-color: rgba(234, 216, 158, 0.5) !important;
 }
 
 body:has(.VPHome) .VPHero .VPButton.alt {
-    background: rgba(125, 211, 192, 0.15) !important;
+    background: rgba(240, 249, 234, 0.55) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     border: 1px solid rgba(125, 211, 192, 0.3) !important;
-    color: #2d3436 !important;
+    color: #2e4039 !important;
 }
 
 body:has(.VPHome) .VPHero .VPButton.alt:hover {
     background: rgba(125, 211, 192, 0.3) !important;
-    border-color: rgba(255, 213, 79, 0.4) !important;
-    color: #3d9e8f !important;
+    border-color: rgba(234, 216, 158, 0.4) !important;
+    color: #397e69 !important;
 }
 
 /* ============================================
@@ -871,7 +871,7 @@ html:not(.dark) body:not(:has(.VPHome)) .VPSidebarItem .text {
 /* 侧边栏选中项 - 青绿高亮 */
 html:not(.dark) body:not(:has(.VPHome)) .VPSidebarItem.is-active > .item > .link,
 html:not(.dark) body:not(:has(.VPHome)) .VPSidebarItem.is-active > .item .text {
-    color: #3d9e8f !important;
+    color: #397e69 !important;
     font-weight: 600 !important;
 }
 
@@ -902,7 +902,7 @@ html:not(.dark) body:not(:has(.VPHome)) .VPDocAside .outline-link {
 
 html:not(.dark) body:not(:has(.VPHome)) .VPDocAside .outline-link:hover,
 html:not(.dark) body:not(:has(.VPHome)) .VPDocAside .outline-link.active {
-    color: #3d9e8f !important;
+    color: #397e69 !important;
 }
 
 /* ===== 文章内容 ===== */
@@ -925,7 +925,7 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc span {
 
 /* 链接 - 青绿 */
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc a {
-    color: #3d9e8f !important;
+    color: #397e69 !important;
     text-decoration: none !important;
 }
 
@@ -966,7 +966,7 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc hr {
 
 /* 引用块 */
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc blockquote {
-    border-left-color: #3d9e8f !important;
+    border-left-color: #397e69 !important;
     background: rgba(125, 211, 192, 0.1) !important;
     color: #3d5a52 !important;
 }
@@ -1003,7 +1003,7 @@ html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .prev a,
 html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .next a,
 html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .prev .title,
 html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .next .title {
-    color: #3d9e8f !important;
+    color: #397e69 !important;
 }
 
 html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .prev a:hover,
@@ -1019,13 +1019,13 @@ html:not(.dark) body:not(:has(.VPHome)) .VPNavBarMenuGroup .button {
 
 html:not(.dark) body:not(:has(.VPHome)) .VPNavBarMenuLink:hover,
 html:not(.dark) body:not(:has(.VPHome)) .VPNavBarMenuGroup .button:hover {
-    color: #3d9e8f !important;
+    color: #397e69 !important;
 }
 
 /* 导航栏选中项 - 青绿 */
 html:not(.dark) body:not(:has(.VPHome)) .VPNavBarMenuLink.router-link-active,
 html:not(.dark) body:not(:has(.VPHome)) .VPNavBarMenuGroup .button.router-link-active {
-    color: #3d9e8f !important;
+    color: #397e69 !important;
 }
 
 /* ===== 搜索栏 ===== */
@@ -1041,7 +1041,7 @@ html:not(.dark) body:not(:has(.VPHome)) .DocSearch-Button:hover {
 html:not(.dark) body:not(:has(.VPHome)) .DocSearch-Button-Key {
     background: rgba(125, 211, 192, 0.28) !important;
     border: 1px solid rgba(125, 211, 192, 0.4) !important;
-    color: #3d9e8f !important;
+    color: #397e69 !important;
 }
 
 html:not(.dark) body:not(:has(.VPHome)) .DocSearch-Button-Container,
@@ -1055,24 +1055,24 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 }
 
 /* ============================================
-   深色模式 - 阅读界面烟花黑金主题（高优先级）
+   深色模式 - 阅读界面花火夜色主题（高优先级）
    ============================================ */
 
-/* ===== 全局背景 - 纯黑背景 ===== */
+/* ===== 全局背景 - 深靛蓝背景 ===== */
 .dark body:not(:has(.VPHome)),
 .dark body:not(:has(.VPHome)) .VPLayout,
 .dark body:not(:has(.VPHome)) .VPLocalNav,
 .dark body:not(:has(.VPHome)) .VPContent {
-    background: #0a0a0a !important;
+    background: #111310 !important;
 }
 
 /* ===== 顶部导航栏 ===== */
 .dark body:not(:has(.VPHome)) .VPNav,
 .dark body:not(:has(.VPHome)) .VPNavBar {
-    background: rgba(20, 20, 20, 0.75) !important;
+    background: rgba(20, 21, 18, 0.75) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.25) !important;
+    border-bottom: 1px solid rgba(226, 185, 112, 0.25) !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPNavBar .container,
@@ -1086,8 +1086,8 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 
 /* ===== 左侧边栏 ===== */
 .dark body:not(:has(.VPHome)) .VPSidebar {
-    background: rgba(15, 15, 15, 0.85) !important;
-    border-right: 1px solid rgba(255, 215, 0, 0.2) !important;
+    background: rgba(16, 18, 15, 0.85) !important;
+    border-right: 1px solid rgba(226, 185, 112, 0.2) !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPSidebar .curtain,
@@ -1097,13 +1097,13 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 
 /* 侧边栏文字 - 浅灰色 */
 .dark body:not(:has(.VPHome)) .VPSidebarItem .text {
-    color: #d0d0d0 !important;
+    color: #cbc6bc !important;
 }
 
 /* 侧边栏选中项 - 金色高亮 */
 .dark body:not(:has(.VPHome)) .VPSidebarItem.is-active > .item > .link,
 .dark body:not(:has(.VPHome)) .VPSidebarItem.is-active > .item .text {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
     font-weight: 600 !important;
 }
 
@@ -1121,20 +1121,20 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 /* 右侧目录栏 */
 .dark body:not(:has(.VPHome)) .VPDocAside {
     background: transparent !important;
-    border-left: 1px solid rgba(255, 215, 0, 0.15) !important;
+    border-left: 1px solid rgba(226, 185, 112, 0.15) !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPDocAside .outline-title {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPDocAside .outline-link {
-    color: #c0c0c0 !important;
+    color: #b8b5c5 !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPDocAside .outline-link:hover,
 .dark body:not(:has(.VPHome)) .VPDocAside .outline-link.active {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
 }
 
 /* ===== 文章内容 ===== */
@@ -1145,141 +1145,141 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 .dark body:not(:has(.VPHome)) .vp-doc h4,
 .dark body:not(:has(.VPHome)) .vp-doc h5,
 .dark body:not(:has(.VPHome)) .vp-doc h6 {
-    color: #ffd700 !important;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.2) !important;
+    color: #e2b970 !important;
+    text-shadow: 0 0 10px rgba(226, 185, 112, 0.2) !important;
 }
 
 /* 文章正文 - 浅灰色 */
 .dark body:not(:has(.VPHome)) .vp-doc p,
 .dark body:not(:has(.VPHome)) .vp-doc li,
 .dark body:not(:has(.VPHome)) .vp-doc span {
-    color: #e0e0e0 !important;
+    color: #e6e1dc !important;
 }
 
 /* 链接 - 金色 */
 .dark body:not(:has(.VPHome)) .vp-doc a {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
     text-decoration: none !important;
 }
 
 .dark body:not(:has(.VPHome)) .vp-doc a:hover {
-    color: #ffed4e !important;
+    color: #f2d49d !important;
     text-decoration: underline !important;
 }
 
 /* 代码块 - 深色背景 */
 .dark body:not(:has(.VPHome)) .vp-doc pre {
-    background: #1a1a1a !important;
-    border: 1px solid rgba(255, 215, 0, 0.2) !important;
+    background: #1b1e1a !important;
+    border: 1px solid rgba(226, 185, 112, 0.2) !important;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) !important;
 }
 
 .dark body:not(:has(.VPHome)) .vp-doc pre code {
     background: transparent !important;
-    color: #e0e0e0 !important;
+    color: #e6e1dc !important;
 }
 
 /* 深色模式 - 行号 */
 .dark body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper {
     color: #888 !important;
-    border-right: 1px solid rgba(255, 215, 0, 0.15) !important;
-    background: rgba(255, 215, 0, 0.05) !important;
+    border-right: 1px solid rgba(226, 185, 112, 0.15) !important;
+    background: rgba(226, 185, 112, 0.05) !important;
 }
 
 /* 行内代码 */
 .dark body:not(:has(.VPHome)) .vp-doc :not(pre) > code {
-    background: rgba(255, 215, 0, 0.12) !important;
-    color: #ffd700 !important;
+    background: rgba(226, 185, 112, 0.12) !important;
+    color: #e2b970 !important;
 }
 
 /* 分割线 */
 .dark body:not(:has(.VPHome)) .vp-doc hr {
-    border-color: rgba(255, 215, 0, 0.25) !important;
+    border-color: rgba(226, 185, 112, 0.25) !important;
 }
 
 /* 引用块 */
 .dark body:not(:has(.VPHome)) .vp-doc blockquote {
-    border-left-color: #ffd700 !important;
-    background: rgba(255, 215, 0, 0.08) !important;
-    color: #d0d0d0 !important;
+    border-left-color: #e2b970 !important;
+    background: rgba(226, 185, 112, 0.08) !important;
+    color: #cbc6bc !important;
 }
 
 /* 表格 */
 .dark body:not(:has(.VPHome)) .vp-doc table {
-    border-color: rgba(255, 215, 0, 0.2) !important;
+    border-color: rgba(226, 185, 112, 0.2) !important;
 }
 
 .dark body:not(:has(.VPHome)) .vp-doc table th {
-    background: rgba(255, 215, 0, 0.12) !important;
-    color: #ffd700 !important;
-    border-color: rgba(255, 215, 0, 0.2) !important;
+    background: rgba(226, 185, 112, 0.12) !important;
+    color: #e2b970 !important;
+    border-color: rgba(226, 185, 112, 0.2) !important;
 }
 
 .dark body:not(:has(.VPHome)) .vp-doc table td {
-    border-color: rgba(255, 215, 0, 0.15) !important;
-    color: #d0d0d0 !important;
+    border-color: rgba(226, 185, 112, 0.15) !important;
+    color: #cbc6bc !important;
 }
 
 /* ===== 底部翻页导航 ===== */
 .dark body:not(:has(.VPHome)) .VPDocFooter {
     background: transparent !important;
-    border-top: 1px solid rgba(255, 215, 0, 0.2) !important;
+    border-top: 1px solid rgba(226, 185, 112, 0.2) !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPDocFooter .prev,
 .dark body:not(:has(.VPHome)) .VPDocFooter .next {
-    background: rgba(20, 20, 20, 0.6) !important;
-    border: 1px solid rgba(255, 215, 0, 0.2) !important;
+    background: rgba(20, 21, 18, 0.6) !important;
+    border: 1px solid rgba(226, 185, 112, 0.2) !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPDocFooter .prev a,
 .dark body:not(:has(.VPHome)) .VPDocFooter .next a,
 .dark body:not(:has(.VPHome)) .VPDocFooter .prev .title,
 .dark body:not(:has(.VPHome)) .VPDocFooter .next .title {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPDocFooter .prev a:hover,
 .dark body:not(:has(.VPHome)) .VPDocFooter .next a:hover {
-    color: #ffed4e !important;
+    color: #f2d49d !important;
 }
 
 /* ===== 导航栏文字 ===== */
 .dark body:not(:has(.VPHome)) .VPNavBarMenuLink,
 .dark body:not(:has(.VPHome)) .VPNavBarMenuGroup .button {
-    color: #e0e0e0 !important;
+    color: #e6e1dc !important;
 }
 
 .dark body:not(:has(.VPHome)) .VPNavBarMenuLink:hover,
 .dark body:not(:has(.VPHome)) .VPNavBarMenuGroup .button:hover {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
 }
 
 /* 导航栏选中项 - 金色 */
 .dark body:not(:has(.VPHome)) .VPNavBarMenuLink.router-link-active,
 .dark body:not(:has(.VPHome)) .VPNavBarMenuGroup .button.router-link-active {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
 }
 
 /* ===== 搜索栏 ===== */
 .dark body:not(:has(.VPHome)) .DocSearch-Button {
-    background: rgba(20, 20, 20, 0.6) !important;
-    border: 1px solid rgba(255, 215, 0, 0.35) !important;
+    background: rgba(20, 21, 18, 0.6) !important;
+    border: 1px solid rgba(226, 185, 112, 0.35) !important;
 }
 
 .dark body:not(:has(.VPHome)) .DocSearch-Button:hover {
-    background: rgba(30, 30, 30, 0.8) !important;
+    background: rgba(34, 34, 29, 0.8) !important;
 }
 
 .dark body:not(:has(.VPHome)) .DocSearch-Button-Key {
-    background: rgba(255, 215, 0, 0.15) !important;
-    border: 1px solid rgba(255, 215, 0, 0.4) !important;
-    color: #ffd700 !important;
+    background: rgba(226, 185, 112, 0.15) !important;
+    border: 1px solid rgba(226, 185, 112, 0.4) !important;
+    color: #e2b970 !important;
 }
 
 .dark body:not(:has(.VPHome)) .DocSearch-Button-Container,
 .dark body:not(:has(.VPHome)) .DocSearch-Button-Placeholder {
-    color: #e0e0e0 !important;
+    color: #e6e1dc !important;
 }
 
 /* 最后更新时间 */
@@ -1288,57 +1288,57 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 }
 
 /* ============================================
-   深色模式 - 文字可读性适配（烟花黑金）
+   深色模式 - 文字可读性适配（花火夜色）
    ============================================ */
 
-/* sheeta1998 用户名 - 金黄色（最高优先级，覆盖所有可能覆盖） */
+/* sheeta1998 用户名 - 烟花金丝色（最高优先级，覆盖所有可能覆盖） */
 .dark .layout-home .VPHero .name,
 .dark body:has(.VPHome) .VPHero .name,
 .dark .VPHero .name,
 .dark .VPHero .name span,
 .dark .VPHero .name a {
-    color: #ffd700 !important;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.5) !important;
-    -webkit-text-fill-color: #ffd700 !important;
+    color: #e2b970 !important;
+    text-shadow: 0 0 18px rgba(226, 185, 112, 0.16), 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    -webkit-text-fill-color: #e2b970 !important;
 }
 
 .dark body:has(.VPHome) .VPHero .text {
-    color: #ffffff !important;
+    color: #f4f0e7 !important;
 }
 
 .dark body:has(.VPHome) .VPHero .tagline {
-    color: #e0e0e0 !important;
+    color: #e6e1dc !important;
 }
 
 .dark body:has(.VPHome) .VPFeature .title {
-    color: #ffffff !important;
+    color: #f4f0e7 !important;
 }
 
 .dark body:has(.VPHome) .VPFeature .details {
-    color: #d0d0d0 !important;
+    color: #cbc6bc !important;
 }
 
 .dark body:has(.VPHome) .VPHome h2 {
-    color: #ffffff !important;
+    color: #f4f0e7 !important;
 }
 
 .dark body:has(.VPHome) .vp-doc p {
-    color: #e0e0e0 !important;
+    color: #e6e1dc !important;
 }
 
 .dark body:has(.VPHome) .vp-doc li {
-    color: #d0d0d0 !important;
+    color: #cbc6bc !important;
 }
 
 /* 深色模式 - 导航栏文字 */
 .dark body:has(.VPHome) .VPNavBarMenuLink,
 .dark body:has(.VPHome) .VPNavBarMenuGroup .button {
-    color: #e0e0e0 !important;
+    color: #e6e1dc !important;
 }
 
 .dark body:has(.VPHome) .VPNavBarMenuLink:hover,
 .dark body:has(.VPHome) .VPNavBarMenuGroup .button:hover {
-    color: #ffd700 !important;
+    color: #e2b970 !important;
 }
 
 /* 深色模式 - 页脚文字 */
@@ -1348,28 +1348,28 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 }
 
 /* ============================================
-   深色模式 - Hero 按钮（烟花黑金）
+   深色模式 - Hero 按钮（花火夜色）
    ============================================ */
 
 .dark body:has(.VPHome) .VPHero .VPButton.brand {
-    background: rgba(255, 215, 0, 0.2) !important;
-    border: 1px solid rgba(255, 215, 0, 0.4) !important;
-    color: #ffd700 !important;
+    background: rgba(174, 135, 71, 0.14) !important;
+    border: 1px solid rgba(226, 185, 112, 0.4) !important;
+    color: #e2b970 !important;
 }
 
 .dark body:has(.VPHome) .VPHero .VPButton.brand:hover {
-    background: rgba(255, 215, 0, 0.35) !important;
-    border-color: rgba(255, 215, 0, 0.6) !important;
+    background: rgba(174, 135, 71, 0.24) !important;
+    border-color: rgba(226, 185, 112, 0.6) !important;
 }
 
 .dark body:has(.VPHome) .VPHero .VPButton.alt {
-    background: rgba(20, 20, 20, 0.6) !important;
-    border: 1px solid rgba(255, 215, 0, 0.3) !important;
-    color: #e0e0e0 !important;
+    background: rgba(20, 21, 18, 0.6) !important;
+    border: 1px solid rgba(226, 185, 112, 0.3) !important;
+    color: #e6e1dc !important;
 }
 
 .dark body:has(.VPHome) .VPHero .VPButton.alt:hover {
-    background: rgba(30, 30, 30, 0.8) !important;
-    border-color: rgba(255, 215, 0, 0.5) !important;
-    color: #ffd700 !important;
+    background: rgba(34, 34, 29, 0.8) !important;
+    border-color: rgba(226, 185, 112, 0.5) !important;
+    color: #e2b970 !important;
 }

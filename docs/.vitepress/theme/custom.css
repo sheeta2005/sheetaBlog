@@ -1,9 +1,14 @@
 /* 全局变量配置 */
 :root {
   /* 主色调（淡青色，青春清新风格） */
-  --vp-c-brand-1: #3d9e8f;
-  --vp-c-brand-2: #5bb8a9;
-  --vp-c-brand-3: #7dd3c0;
+  --vp-c-brand-1: #397e69;
+  --vp-c-brand-2: #4c927c;
+  --vp-c-brand-3: #62a68d;
+  --vp-c-brand-soft: rgba(106, 162, 133, 0.12);
+  --vp-c-text-1: #2e4039;
+  --vp-c-text-2: #56665e;
+  --vp-c-bg: #f4f8ee;
+  --vp-c-bg-soft: #e9f2e4;
 
   /* 代码块样式 - 亮色模式（浅青绿底） */
   --vp-code-block-bg: #e8f5f0;
@@ -40,12 +45,19 @@ html[data-reading-size='extra-large'] {
   --reading-scale: 1.2;
 }
 
-/* 深色主题适配 - 仅用于非首页的普通页面 */
+/* 夜间强调色呼应插画中烟花碎裂的金丝，正文保持柔白。 */
 .dark {
-  --vp-c-brand-1: #ffd700;
-  --vp-c-brand-2: #ffdf33;
-  --vp-c-brand-3: #ffe566;
-  --vp-code-block-bg: #1e1e1e;
+  --vp-c-brand-1: #e2b970;
+  --vp-c-brand-2: #ecc990;
+  --vp-c-brand-3: #c99b61;
+  --vp-c-brand-soft: rgba(226, 185, 112, 0.11);
+  --vp-c-text-1: #f4f0e7;
+  --vp-c-text-2: #cbc6bc;
+  --vp-c-bg: #111310;
+  --vp-c-bg-soft: #20211d;
+  --vp-c-bg-alt: #181a17;
+  --vp-c-divider: rgba(226, 185, 112, 0.17);
+  --vp-code-block-bg: #1b1e1a;
 }
 
 /* 全局排版优化 */

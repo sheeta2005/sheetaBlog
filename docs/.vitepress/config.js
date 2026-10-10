@@ -1,6 +1,21 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 
+// 将已有 JVM 分组提升为独立模块，文章仍沿用原地址；新模块入口指向各自导读页。
+function organizeBackendSidebar(sidebars) {
+  const items = sidebars['/posts/backend/'].items
+  const java = items.find(item => item.text === 'Java基础相关')
+  const [jvm] = java.items.splice(java.items.findIndex(item => item.text === 'JVM虚拟机'), 1)
+  jvm.link = 'Java基础相关/JVM虚拟机/'
+  const modules = ['操作系统', '计算机网络', 'Tomcat'].map(name => {
+    const [item] = items.splice(items.findIndex(item => item.text === name), 1)
+    item.link = `${name}/`
+    return item
+  })
+  items.splice(items.indexOf(java) + 1, 0, modules[0], modules[1], jvm, modules[2])
+  return sidebars
+}
+
 export default defineConfig({
 
   title: 'sheeta1998的技术博客',
@@ -13,6 +28,8 @@ export default defineConfig({
   base: '/',
   outDir: './.vitepress/dist',
   strict: true,
+  // Git 更新时间与笔记归档日期分开记录，未提交的新文只展示归档日期。
+  lastUpdated: true,
   themeConfig: {
     appearance: 'dark',
 
@@ -98,7 +115,7 @@ export default defineConfig({
     darkModeSwitchTitle: '切换到花火夏夜',
 
     // 侧边栏配置（为每个专栏单独生成）
-    sidebar: generateSidebar([
+    sidebar: organizeBackendSidebar(generateSidebar([
       // 新增项目与复盘的阅读导航，沿用已有的自动侧边栏生成方式。
       {
         documentRootPath: 'docs',
@@ -154,7 +171,7 @@ export default defineConfig({
         useTitleFromFrontmatter: true,
         debugPrint: false
       }
-    ])
+    ]))
 
   },
 

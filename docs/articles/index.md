@@ -9,12 +9,17 @@ description: 从真实项目中的失败、诊断、设计取舍与验证结果�
 
 ## 性能与问题排查
 
-- **[一次突发压测失败后的排查](./loadtest)**：建立负载模型，结合延迟、错误、GC、数据库与消息积压识别问题。
-- **[从 N+1 查询到批量装配](./sql-optimization)**：查询次数、索引、聚合与并发冷回源的优化和短测复盘。
+<!-- 整行文章入口统一展示标题与摘要，键盘聚焦时也能清楚识别目标。 -->
+<div class="article-reading-list">
+  <a href="./loadtest.html"><span class="article-list-title">一次突发压测失败后的排查</span><span class="article-list-description">建立负载模型，结合延迟、错误、GC、数据库与消息积压识别问题。</span><span class="article-list-arrow" aria-hidden="true">→</span></a>
+  <a href="./sql-optimization.html"><span class="article-list-title">从 N+1 查询到批量装配</span><span class="article-list-description">查询次数、索引、聚合与并发冷回源的优化和短测复盘。</span><span class="article-list-arrow" aria-hidden="true">→</span></a>
+</div>
 
 ## 业务正确性与技术取舍
 
-- **[订单通知为什么使用 Outbox](./outbox)**：事务提交、发送确认、重试和消费去重之间的边界。
+<div class="article-reading-list">
+  <a href="./outbox.html"><span class="article-list-title">订单通知为什么使用 Outbox</span><span class="article-list-description">事务提交、发送确认、重试和消费去重之间的边界。</span><span class="article-list-arrow" aria-hidden="true">→</span></a>
+</div>
 
 ## 阅读约定
 

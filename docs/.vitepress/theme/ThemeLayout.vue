@@ -1,12 +1,18 @@
 <script setup>
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme, { useLocalNav, useSidebar } from 'vitepress/theme'
 import { useData, useRoute } from 'vitepress'
-import { nextTick, onMounted, onUnmounted, provide, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import ReadingSettings from './ReadingSettings.vue'
 import ReadingProgress from './ReadingProgress.vue'
 import { playThemeScene } from './themeScene.js'
 
-const { isDark } = useData()
+const { isDark, frontmatter, page } = useData()
+const { hasSidebar } = useSidebar()
+const { headers } = useLocalNav()
+const isReading = computed(() => !page.value.isNotFound && (!frontmatter.value.layout || frontmatter.value.layout === 'doc'))
+// 两侧仅收起展示，不卸载导航和目录，保留滚动位置、分组与章节状态。
+const navCollapsed = ref(false)
+const outlineCollapsed = ref(false)
 const route = useRoute()
 const effect = ref('')
 const playIntro = ref(true)
@@ -113,7 +119,22 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <DefaultTheme.Layout :class="{ 'home-intro-play': playIntro }">
+  <DefaultTheme.Layout :class="{ 'home-intro-play': playIntro, 'reading-layout': isReading, 'reading-nav-collapsed': isReading && navCollapsed, 'reading-outline-collapsed': isReading && outlineCollapsed }">
+    <template #layout-top>
+      <div v-if="isReading && hasSidebar" class="reading-nav-control">
+        <button class="reading-sidebar-toggle" type="button" :aria-label="navCollapsed ? '展开文章导航' : '收起文章导航'" :title="navCollapsed ? '展开文章导航' : '收起文章导航'" :aria-expanded="!navCollapsed" aria-controls="VPSidebarNav" @click="navCollapsed = !navCollapsed">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M9 4v16" /><path :d="navCollapsed ? 'm13 9 3 3-3 3' : 'm16 9-3 3 3 3'" /></svg>
+        </button>
+      </div>
+    </template>
+    <template #sidebar-nav-before><p v-if="isReading" class="reading-sidebar-heading">文章导航</p></template>
+    <template #aside-outline-before>
+      <div v-if="isReading && headers.length" class="reading-outline-control">
+        <button class="reading-sidebar-toggle" type="button" :aria-label="outlineCollapsed ? '展开文章目录' : '收起文章目录'" :title="outlineCollapsed ? '展开文章目录' : '收起文章目录'" :aria-expanded="!outlineCollapsed" @click="outlineCollapsed = !outlineCollapsed">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M15 4v16" /><path :d="outlineCollapsed ? 'm11 9-3 3 3 3' : 'm8 9 3 3-3 3'" /></svg>
+        </button>
+      </div>
+    </template>
     <template #nav-bar-content-after><ReadingSettings /></template>
     <template #home-hero-before>
       <!-- 背景与光尘随首页挂载，阅读页不保留持续漂浮的装饰。 -->

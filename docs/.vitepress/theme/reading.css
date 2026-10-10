@@ -1,18 +1,24 @@
 /* 阅读页沿用首页的薄荷与暗金，正文底色更稳定，边缘保留轻薄玻璃。 */
 :root {
-  --reading-paper: #f9faf2;
-  --reading-sidebar: #eef3e7;
-  --reading-ink: #354b40;
-  --reading-muted: #647368;
-  --reading-code: #eef3e8;
-  --site-nav-glass: linear-gradient(110deg, rgba(240, 247, 226, .87), rgba(226, 239, 217, .77) 52%, rgba(242, 244, 226, .84));
-  --site-nav-light: radial-gradient(ellipse at 18% 0%, rgba(255, 238, 188, .18), transparent 56%), radial-gradient(ellipse at 80% 100%, rgba(102, 160, 127, .13), transparent 60%);
+  --reading-canvas: #dce7dc;
+  --reading-paper: #edf0e3;
+  --reading-sidebar: #d3e0d2;
+  --reading-ink: #30463b;
+  --reading-muted: #4c6153;
+  --reading-code: #dce6d8;
+  --reading-edge: rgba(74, 112, 87, .18);
+  --reading-shadow: 0 10px 32px rgba(46, 73, 51, .065), inset 0 1px rgba(250, 249, 228, .5);
+  --reading-note: #dce8dc;
+  --reading-warning: #e8e0c4;
+  --reading-danger: #ead8d5;
+  --site-nav-glass: linear-gradient(110deg, rgba(225, 234, 210, .91), rgba(199, 220, 201, .85) 52%, rgba(225, 232, 211, .89));
+  --site-nav-light: radial-gradient(ellipse at 18% 0%, rgba(239, 219, 162, .22), transparent 56%), radial-gradient(ellipse at 80% 100%, rgba(102, 160, 127, .16), transparent 60%);
   --reading-font-size: 17px;
   --vp-nav-height: 72px;
-  --vp-local-search-bg: rgba(247, 250, 238, .96);
+  --vp-local-search-bg: rgba(222, 234, 215, .98);
   --vp-local-search-result-bg: transparent;
-  --vp-local-search-result-selected-bg: rgba(106, 162, 133, .12);
-  --vp-local-search-highlight-bg: rgba(106, 162, 133, .20);
+  --vp-local-search-result-selected-bg: rgba(70, 127, 95, .13);
+  --vp-local-search-highlight-bg: rgba(70, 127, 95, .21);
   --vp-local-search-highlight-text: #28624c;
 }
 .dark {
@@ -28,10 +34,140 @@
   --vp-local-search-highlight-bg: rgba(226, 185, 112, .20);
   --vp-local-search-highlight-text: #f2d49e;
 }
-html:not(.dark) body:not(:has(.VPHome)),
 .dark body:not(:has(.VPHome)),
-html:not(.dark) body:not(:has(.VPHome)) :is(.Layout, .VPContent, .VPLocalNav),
 .dark body:not(:has(.VPHome)) :is(.Layout, .VPContent, .VPLocalNav) { background: var(--reading-paper) !important; }
+/* 日间分开环境底色与纸页；窗边漫光只绘在外层，正文保持均匀底色。 */
+html:not(.dark) body:not(:has(.VPHome)) {
+  --vp-c-bg: var(--reading-canvas);
+  --vp-c-bg-alt: var(--reading-sidebar);
+  --vp-c-bg-soft: var(--reading-code);
+  --vp-c-text-2: var(--reading-muted);
+  --vp-c-text-3: var(--reading-muted);
+  --summer-glass: linear-gradient(135deg, rgba(235, 238, 216, .86), rgba(204, 224, 202, .78) 60%, rgba(219, 232, 207, .83));
+  --summer-border: rgba(74, 112, 87, .26);
+  --summer-shadow: 0 12px 36px rgba(48, 73, 52, .10), inset 0 1px rgba(247, 247, 224, .55);
+  background: var(--reading-canvas) !important;
+}
+html:not(.dark) body:not(:has(.VPHome)) .Layout { background: transparent !important; }
+html:not(.dark) body:not(:has(.VPHome)) .VPContent {
+  background:
+    radial-gradient(ellipse 600px 420px at 0 0, rgba(235, 213, 151, .28), transparent 75%),
+    radial-gradient(ellipse 500px 600px at 100% 28%, rgba(106, 155, 122, .14), transparent 75%),
+    linear-gradient(115deg, rgba(97, 131, 99, .045) 0 12%, transparent 12% 26%, rgba(97, 131, 99, .035) 26% 30%, transparent 30%),
+    var(--reading-canvas) !important;
+}
+html:not(.dark) body:not(:has(.VPHome)) .VPLocalNav { background: var(--reading-sidebar) !important; }
+/* 日夜共用轻薄书页，夜间仅替换材质色与边缘柔光。 */
+.dark .reading-layout {
+  --reading-canvas: #121711;
+  --reading-paper: #1d231b;
+  --reading-sidebar: #171d15;
+  --reading-code: #252d22;
+  --reading-ink: #d8ddcf;
+  --reading-muted: #a8b09f;
+  --reading-edge: rgba(195, 168, 117, .17);
+  --reading-shadow: 0 10px 32px rgba(0, 0, 0, .16), inset 0 1px rgba(232, 212, 166, .045);
+  --reading-note: #283126;
+  --reading-warning: #332e21;
+  --reading-danger: #352724;
+}
+html body .Layout.reading-layout { --vp-sidebar-width: 240px; background: var(--reading-canvas) !important; }
+.dark body .Layout.reading-layout .VPContent {
+  background: radial-gradient(ellipse 600px 420px at 0 0, rgba(171, 136, 73, .045), transparent 75%), var(--reading-canvas) !important;
+}
+html body .Layout.reading-layout .VPDoc .content .content-container {
+  padding: 28px 32px;
+  border: 1px solid var(--reading-edge);
+  border-radius: 16px;
+  background: var(--reading-paper) !important;
+  box-shadow: var(--reading-shadow);
+}
+/* 目录减轻为细线导航；保留原有标题高度，让章节定位标记正常跟随。 */
+html body .Layout.reading-layout .VPDocAside { border-left: 0 !important; }
+.reading-layout .VPDocAsideOutline.has-outline {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.reading-layout .VPDocAsideOutline > .content { border-left-color: var(--reading-edge); padding-left: 14px; }
+html body .Layout.reading-layout .VPDocAside .outline-title { padding-right: 34px; color: var(--reading-ink) !important; }
+html body .Layout.reading-layout .VPDocAside .outline-link { padding-right: 6px; border-radius: 5px; color: var(--reading-muted) !important; }
+html body .Layout.reading-layout .VPDocAside .outline-link:is(:hover, .active) { background: var(--vp-c-brand-soft); color: var(--vp-c-brand-1) !important; }
+.reading-layout .VPDoc .vp-doc h2 {
+  border-top: 0;
+  padding-top: .35em;
+  margin-top: 1.65em;
+}
+/* 引用、提示与代码使用不同的低饱和底色，让长文有清楚而安静的节奏。 */
+html body .reading-layout .VPDoc .vp-doc blockquote { background: var(--reading-note) !important; }
+.reading-layout .VPDoc .custom-block:is(.tip, .info) { background: var(--reading-note); }
+.reading-layout .VPDoc .custom-block.warning { background: var(--reading-warning); }
+.reading-layout .VPDoc .custom-block.danger { background: var(--reading-danger); }
+.reading-layout .VPDoc .vp-doc :is(.custom-block, div[class*='language-']) { border-color: var(--reading-edge); }
+/* 工程复盘列表保留原文与链接，整行可打开，箭头仅在悬停或聚焦时轻移。 */
+.VPDoc .vp-doc .article-reading-list { display: grid; gap: 10px; margin: 1em 0; }
+.VPDoc .vp-doc .article-reading-list > a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px 18px;
+  padding: 14px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--reading-edge);
+  border-radius: 8px;
+  color: var(--reading-ink);
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.article-list-title { color: var(--vp-c-brand-1); font-weight: 600; }
+.article-list-description { grid-column: 1; color: var(--reading-muted); font-size: .88em; line-height: 1.8; }
+.article-list-arrow { grid-column: 2; grid-row: 1 / 3; align-self: center; color: var(--vp-c-brand-1); transition: transform 180ms ease; }
+.VPDoc .vp-doc .article-reading-list > a:is(:hover, :focus-visible) { background: var(--vp-c-brand-soft); border-color: var(--vp-c-brand-1); }
+.article-reading-list > a:is(:hover, :focus-visible) .article-list-arrow { transform: translateX(3px); }
+.VPDoc .vp-doc .article-reading-list > a:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+html:not(.dark) .reading-settings { --vp-c-text-2: var(--reading-muted); --vp-c-text-3: var(--reading-muted); }
+/* 桌面控制入口始终保留；隐藏导航内容会同时退出键盘与读屏的访问顺序。 */
+.reading-nav-control { display: none; }
+.reading-sidebar-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid var(--reading-edge); border-radius: 8px; color: var(--reading-muted); background: var(--reading-sidebar); cursor: pointer; }
+.reading-sidebar-toggle:hover { color: var(--vp-c-brand-1); border-color: var(--vp-c-brand-1); }
+.reading-sidebar-toggle:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+.reading-sidebar-heading { margin: 0 38px 16px 0; line-height: 32px; color: var(--reading-muted); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+.reading-outline-control { position: relative; z-index: 1; height: 0; }
+.reading-outline-control .reading-sidebar-toggle { position: absolute; top: 0; right: 0; }
+@media (min-width: 960px) {
+  .reading-layout { --reading-left-space: 240px; }
+  .reading-layout.reading-nav-collapsed { --reading-left-space: 44px; }
+  html body .Layout.reading-layout .VPContent.has-sidebar { padding-left: var(--reading-left-space); padding-right: 0; transition: padding-left 180ms ease; }
+  .Layout.reading-layout .VPLocalNav.has-sidebar { padding-left: var(--reading-left-space); }
+  .reading-layout .VPLocalNavOutlineDropdown .items { left: calc(var(--reading-left-space) + 24px); }
+  html body .Layout.reading-layout .VPSidebar { width: 240px; padding: 16px 18px 80px; border-right: 1px solid var(--reading-edge); box-shadow: none; transition: transform 180ms ease, opacity 180ms ease, visibility 180ms; }
+  .reading-layout .VPSidebar .nav { width: 204px; }
+  .Layout.reading-nav-collapsed .VPSidebar { visibility: hidden; opacity: 0; transform: translateX(-100%); pointer-events: none; }
+  .reading-layout .reading-nav-control { display: block; position: fixed; z-index: 31; top: var(--vp-nav-height); bottom: 0; left: 196px; width: 44px; padding: 16px 6px; pointer-events: none; }
+  .reading-nav-control .reading-sidebar-toggle { pointer-events: auto; }
+  .reading-nav-collapsed .reading-nav-control { left: 0; background: var(--reading-sidebar); border-right: 1px solid var(--reading-edge); }
+  .Layout.reading-layout .VPDoc { padding: 28px 28px 0; }
+  .reading-layout .VPDoc > .container { display: flex; justify-content: center; max-width: 1080px; }
+  .reading-layout .VPDoc > .container > .content { flex: 1; min-width: 0; max-width: 824px; padding: 0 0 64px; }
+}
+@media (min-width: 1280px) {
+  .reading-layout .VPDoc > .container > .aside { flex: 0 0 220px; width: 220px; max-width: 220px; padding-left: 24px; }
+  .reading-layout .VPDoc .aside-container { top: calc(var(--vp-nav-height) + 28px); width: 196px; height: calc(100vh - var(--vp-nav-height) - 28px); padding-top: 0; }
+  .reading-layout .VPDoc .aside-content { min-height: 100%; }
+  .reading-layout .VPDoc .aside-curtain { display: none; }
+  .reading-layout .VPDocAsideOutline { width: 196px; }
+  /* 收起时保留目录宽度与高度，只缩小其外层占位，避免丢失内部滚动位置。 */
+  .reading-outline-collapsed .VPDoc > .container > .aside { flex-basis: 56px; width: 56px; max-width: 56px; }
+  .reading-outline-collapsed .VPDoc .aside-container { width: 32px; }
+  .reading-outline-collapsed .VPDocAsideOutline { visibility: hidden; pointer-events: none; }
+  .reading-layout .VPDoc > .container > .aside:not(:has(.has-outline)) { display: none; }
+}
+@media (max-width: 959px) {
+  /* 手机目录从右侧展开，正文维持原宽；点击外部、选章节或按 Esc 均沿用原逻辑关闭。 */
+  .reading-layout .VPLocalNavOutlineDropdown .items { position: fixed; top: calc(var(--vp-nav-height) + 48px); right: 12px; bottom: 12px; left: auto; width: min(320px, calc(100vw - 24px)); max-height: none; grid-template-rows: auto minmax(0, 1fr); border: 1px solid var(--reading-edge); border-radius: 14px; background: var(--reading-sidebar); }
+  .reading-layout .VPLocalNavOutlineDropdown :is(.header, .outline) { background: var(--reading-sidebar); }
+  .reading-layout .VPLocalNavOutlineDropdown .outline { overflow-y: auto; }
+}
 /* 所有页面共用导航骨架；薄荷窗光与暗金柔光只落在导航玻璃内。 */
 html body .Layout .VPNav .VPNavBar {
   height: var(--vp-nav-height);
@@ -100,26 +236,26 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc :is(p, li, th, td),
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc :is(h1, h2, h3, h4, h5, h6),
 .dark body:not(:has(.VPHome)) .vp-doc :is(h1, h2, h3, h4, h5, h6) { color: var(--vp-c-text-1) !important; text-shadow: none !important; }
 /* 字号仅作用于文章；大字号使用相对行高，长词换行而代码和表格局部滚动。 */
-.Layout .VPDoc .content .content-container { max-width: 740px; }
+.Layout .VPDoc .content .content-container { max-width: 824px; }
 .VPDoc .vp-doc {
   --vp-code-font-size: calc(var(--reading-font-size) * .88);
   --vp-code-line-height: 1.7;
   --vp-custom-block-font-size: var(--reading-font-size);
   font-size: var(--reading-font-size);
-  line-height: 1.85;
+  line-height: 1.82;
   overflow-wrap: anywhere;
 }
 .VPDoc .vp-doc :is(h1, h2, h3, h4, h5, h6) { line-height: 1.45; }
-.VPDoc .vp-doc h1 { border: 0; padding-bottom: 0; margin-bottom: 12px; letter-spacing: -.035em; font-size: 1.88em; }
+.VPDoc .vp-doc h1 { border: 0; padding-bottom: 0; margin-bottom: 10px; letter-spacing: -.025em; font-size: 1.82em; }
 .VPDoc .vp-doc h2 { margin-top: 1.85em; padding-top: 1em; font-size: 1.42em; border-top-color: var(--summer-border); }
 .VPDoc .vp-doc h3 { margin-top: 1.6em; font-size: 1.18em; }
 .VPDoc .vp-doc :is(h4, h5, h6) { font-size: 1.06em; }
-.VPDoc .vp-doc :is(p, ul, ol) { margin: 1.1em 0; line-height: inherit; }
+.VPDoc .vp-doc :is(p, ul, ol) { margin: 1em 0; line-height: inherit; }
 .VPDoc .vp-doc :is(th, td) { min-width: 7em; font-size: inherit; line-height: 1.75; vertical-align: top; }
 .VPDoc .vp-doc li + li { margin-top: .4em; }
 .VPDoc .vp-doc :is(.custom-block, .custom-block p, blockquote > p) { font-size: inherit; line-height: inherit; }
 .VPDoc .vp-doc :not(pre) > code { font-size: .88em; }
-.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 0 0 30px; padding-bottom: 22px; border-bottom: 1px solid var(--summer-border); color: var(--reading-muted); font-size: 13px; line-height: 1.7; }
+.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: 0 0 22px; padding-bottom: 16px; border-bottom: 1px solid var(--reading-edge); color: var(--reading-muted); font-size: 13px; line-height: 1.7; }
 .article-meta .meta-star { color: var(--vp-c-brand-1); font-size: 19px; }
 .VPSidebarItem.is-active > .item { box-shadow: inset 2px 0 var(--vp-c-brand-1); }
 .VPDocAside .outline-link { white-space: normal; overflow: visible; line-height: 1.7; padding: 5px 0; font-size: 13px; }
@@ -132,8 +268,8 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc pre,
 .VPDoc .vp-doc div[class*='language-'] { background: var(--reading-code); border-radius: 15px; }
 .VPDoc .vp-doc div[class*='language-'].line-numbers-mode { padding-left: 0; }
 .VPDoc .vp-doc div[class*='language-'].line-numbers-mode pre { padding-left: calc(3em + 20px) !important; }
-.VPDoc .vp-doc div[class*='language-'] > .lang { top: 9px; right: 14px; font-size: 11px; color: var(--reading-muted); }
-.VPDoc .vp-doc div[class*='language-'] > button.copy { top: 32px; right: 12px; border-radius: 9px; background-color: var(--reading-paper); border-color: var(--summer-border); }
+.VPDoc .vp-doc div[class*='language-'] > .lang { top: 10px; right: 48px; font-size: 11px; color: var(--reading-muted); }
+.VPDoc .vp-doc div[class*='language-'] > button.copy { top: 6px; right: 10px; width: 30px; height: 30px; border-radius: 7px; background-color: var(--reading-paper); border-color: var(--reading-edge); }
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper,
 .dark body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper { padding-top: 30px; width: 3em; background: transparent !important; color: var(--reading-muted) !important; border-color: var(--summer-border) !important; }
 .VPDoc .vp-doc pre code { padding: 0; font-size: var(--vp-code-font-size); }
@@ -154,7 +290,8 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc :not(pre) > code,
 .VPDoc .vp-doc tbody tr:hover { background: var(--vp-c-brand-soft); }
 .VPDoc .vp-doc img { border-radius: 12px; }
 html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .pager-link,
-.dark body:not(:has(.VPHome)) .VPDocFooter .pager-link { background: var(--summer-glass) !important; border-color: var(--summer-border) !important; box-shadow: var(--summer-shadow); padding: 18px; }
+.dark body:not(:has(.VPHome)) .VPDocFooter .pager-link { background: var(--reading-paper) !important; border-color: var(--reading-edge) !important; box-shadow: none; padding: 16px; border-radius: 12px; }
+html body .reading-layout .VPDocFooter :is(.prev, .next) { background: transparent !important; border: 0 !important; }
 .VPDocFooter .desc { color: var(--reading-muted); }
 .VPNavScreen { background: var(--summer-settings-bg); }
 
@@ -192,10 +329,14 @@ html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .pager-link,
   .VPDoc .vp-doc h1 { font-size: 1.7em; }
   .Layout .VPDoc { padding: 28px 20px 64px; }
   .VPDoc .vp-doc div[class*='language-'] { margin: 1.1em 0; }
-  .article-meta { gap: 8px 12px; margin-bottom: 24px; }
+  .article-meta { gap: 6px 12px; margin-bottom: 20px; }
+  /* 手机缩小纸页外边距，给大字号、表格和代码保留可用宽度。 */
+  .Layout.reading-layout .VPDoc { padding: 20px 10px 48px; }
+  html body .Layout.reading-layout .VPDoc .content .content-container { padding: 22px 18px; border-radius: 12px; }
+  .VPDoc .vp-doc .article-reading-list > a { padding: 14px; gap: 5px 12px; }
   .VPLocalSearchBox.VPLocalSearchBox .shell { width: 100%; height: 100dvh; max-height: 100dvh; margin: 0; border: 0; border-radius: 0; padding: max(16px, env(safe-area-inset-top)) 14px max(16px, env(safe-area-inset-bottom)); }
   .VPLocalSearchBox.VPLocalSearchBox .results { flex: 1; min-height: 0; }
   .VPLocalSearchBox.VPLocalSearchBox .search-bar { min-height: 54px; padding: 0 3px; }
   .VPLocalSearchBox.VPLocalSearchBox .result > div { margin: 12px; }
 }
-@media (prefers-reduced-motion: reduce) { .VPLocalSearchBox.VPLocalSearchBox .shell { animation: none; } .VPLocalSearchBox.VPLocalSearchBox .result { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .VPLocalSearchBox.VPLocalSearchBox .shell { animation: none; } .VPLocalSearchBox.VPLocalSearchBox .result, .article-reading-list > a, .article-list-arrow, .reading-layout :is(.VPSidebar, .VPContent) { transition: none !important; } }

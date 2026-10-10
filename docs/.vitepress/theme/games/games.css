@@ -1,9 +1,9 @@
 /* 小游戏与杂项共用首页色温，棋盘保持安静，交互只做轻微反馈。 */
 :root {
-  --game-board: #f2f5e9;
-  --game-grid: rgba(86, 130, 102, .09);
-  --game-accent: #538e70;
-  --snake-body: #91bfa1;
+  --game-board: #c8dacd;
+  --game-grid: rgba(68, 111, 83, .13);
+  --game-accent: #39785a;
+  --snake-body: #76a58a;
   --game-eye: #fff7df;
   --game-berry: #cc929e;
   --cat-fur: #f5e9ce;
@@ -16,8 +16,8 @@
   --tile-5: #d09ba6;
   --tile-6: #9bb4cc;
   --tile-7: #d4af92;
-  --game-overlay: rgba(245, 248, 237, .83);
-  --game-art-bg: linear-gradient(145deg, #eaf2df, #f7f6e8 65%, #f0e8dc);
+  --game-overlay: rgba(208, 224, 208, .22);
+  --game-art-bg: linear-gradient(145deg, #c9ddce, #e3e7cb 65%, #e6dcbf);
 }
 .dark {
   --game-board: #171c16;
@@ -109,6 +109,16 @@
 .cat-cell.blocked { fill: var(--vp-c-brand-soft); }
 .cat-cell-leaf { fill: var(--snake-body); stroke: var(--game-accent); stroke-width: 1.2; pointer-events: none; }
 .cat-board:focus-within .cat-cell.chosen, .game-page:focus .cat-cell.chosen { stroke: var(--game-accent); stroke-width: 2.4; }
+/* 日间棋盘更深一层；待开始提示靠局部纸片衬字，保留静态局面可见。 */
+html:not(.dark) .game-stage { box-shadow: inset 0 2px 12px rgba(43, 77, 52, .09); }
+html:not(.dark) .game-overlay { justify-content: flex-end; gap: 0; backdrop-filter: none; }
+html:not(.dark) .game-overlay > * { width: min(100%, 310px); padding: 6px 16px; background: rgba(237, 240, 227, .92); line-height: 1.6; }
+html:not(.dark) .game-overlay .overlay-star { border-radius: 16px 16px 0 0; padding-top: 12px; padding-bottom: 0; font-size: 24px; line-height: 1; }
+html:not(.dark) .game-overlay > span:last-child { border-radius: 0 0 16px 16px; padding-top: 0; padding-bottom: 12px; }
+html:not(.dark) .game-metrics > div { padding: 14px; border: 1px solid var(--summer-border); border-radius: 12px; background: rgba(237, 240, 227, .65); }
+html:not(.dark) .game-metrics { gap: 12px; }
+html:not(.dark) .game-save-note { opacity: 1; }
+html:not(.dark) .cat-cell.blocked { fill: #a8c2ad; }
 @media (hover: hover) {
   .misc-game-card:hover { transform: translateY(-3px); border-color: var(--vp-c-brand-1); box-shadow: var(--summer-shadow); }
   .misc-game-card:hover .misc-game-link > span { transform: translateX(3px); }
@@ -140,6 +150,8 @@
   .game-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 8px; margin-bottom: 20px; }
   .game-metrics dd { font-size: 22px; }
   .game-metrics dt { font-size: 11px; }
+  html:not(.dark) .game-metrics { gap: 8px; }
+  html:not(.dark) .game-metrics > div { padding: 12px 8px; }
   .game-overlay { padding: 15px; font-size: 12px; }
   .game-overlay strong { font-size: 18px; }
   .game-touch-controls button { min-width: 44px; }

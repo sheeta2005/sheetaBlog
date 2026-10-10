@@ -18,7 +18,7 @@
   /* 字体配置 */
   --vp-font-family-base: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --vp-font-family-mono: 'Fira Code', 'Consolas', monospace;
-  /* 只缩放阅读内容，避免字号偏好同时放大头像、导航与布局间距。 */
+  /* 首页使用固定比例，阅读字号在 .VPDoc 内单独计算。 */
   --reading-scale: 1;
   --vp-code-font-size: calc(14px * var(--reading-scale));
   --vp-custom-block-font-size: calc(16px * var(--reading-scale));
@@ -31,18 +31,6 @@
 /* 使用正常缩放，让首页和阅读页按真实视口触发响应式布局。 */
 html {
   zoom: 1;
-}
-
-html[data-reading-size='small'] {
-  --reading-scale: 0.9;
-}
-
-html[data-reading-size='large'] {
-  --reading-scale: 1.1;
-}
-
-html[data-reading-size='extra-large'] {
-  --reading-scale: 1.2;
 }
 
 /* 夜间强调色呼应插画中烟花碎裂的金丝，正文保持柔白。 */

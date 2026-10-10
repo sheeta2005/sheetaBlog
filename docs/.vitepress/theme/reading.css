@@ -1,0 +1,201 @@
+/* 阅读页沿用首页的薄荷与暗金，正文底色更稳定，边缘保留轻薄玻璃。 */
+:root {
+  --reading-paper: #f9faf2;
+  --reading-sidebar: #eef3e7;
+  --reading-ink: #354b40;
+  --reading-muted: #647368;
+  --reading-code: #eef3e8;
+  --site-nav-glass: linear-gradient(110deg, rgba(240, 247, 226, .87), rgba(226, 239, 217, .77) 52%, rgba(242, 244, 226, .84));
+  --site-nav-light: radial-gradient(ellipse at 18% 0%, rgba(255, 238, 188, .18), transparent 56%), radial-gradient(ellipse at 80% 100%, rgba(102, 160, 127, .13), transparent 60%);
+  --reading-font-size: 17px;
+  --vp-nav-height: 72px;
+  --vp-local-search-bg: rgba(247, 250, 238, .96);
+  --vp-local-search-result-bg: transparent;
+  --vp-local-search-result-selected-bg: rgba(106, 162, 133, .12);
+  --vp-local-search-highlight-bg: rgba(106, 162, 133, .20);
+  --vp-local-search-highlight-text: #28624c;
+}
+.dark {
+  --reading-paper: #171915;
+  --reading-sidebar: #131611;
+  --reading-ink: #e5e3d9;
+  --reading-muted: #aaa99b;
+  --reading-code: #20231c;
+  --site-nav-glass: linear-gradient(110deg, rgba(26, 27, 23, .85), rgba(19, 21, 20, .77) 52%, rgba(29, 27, 23, .83));
+  --site-nav-light: radial-gradient(ellipse at 22% 0%, rgba(199, 153, 86, .12), transparent 56%), radial-gradient(ellipse at 80% 100%, rgba(118, 103, 128, .10), transparent 60%);
+  --vp-local-search-bg: rgba(27, 29, 23, .97);
+  --vp-local-search-result-selected-bg: rgba(226, 185, 112, .10);
+  --vp-local-search-highlight-bg: rgba(226, 185, 112, .20);
+  --vp-local-search-highlight-text: #f2d49e;
+}
+html:not(.dark) body:not(:has(.VPHome)),
+.dark body:not(:has(.VPHome)),
+html:not(.dark) body:not(:has(.VPHome)) :is(.Layout, .VPContent, .VPLocalNav),
+.dark body:not(:has(.VPHome)) :is(.Layout, .VPContent, .VPLocalNav) { background: var(--reading-paper) !important; }
+/* 所有页面共用导航骨架；薄荷窗光与暗金柔光只落在导航玻璃内。 */
+html body .Layout .VPNav .VPNavBar {
+  height: var(--vp-nav-height);
+  background: var(--site-nav-light), var(--site-nav-glass) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--summer-border) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, .035);
+}
+html body .Layout .VPNav .VPNavBar .wrapper { padding: 0 32px; }
+html body .Layout .VPNav .VPNavBar .container { max-width: calc(var(--vp-layout-max-width) - 64px); }
+html body .Layout .VPNav .VPNavBar .container > .title { position: static; padding: 0; width: auto; height: var(--vp-nav-height); }
+html body .Layout .VPNav .VPNavBar .content { position: static; padding: 0; min-width: 0; }
+html body .Layout .VPNav .VPNavBar :is(.wrapper, .container, .content, .content-body, .title, .VPNavBarMenuLink, .VPNavBarMenuGroup .button) {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html body .Layout .VPNav .VPNavBar .VPNavBarTitle .title { border: 0 !important; font-size: 16px; }
+html body .Layout .VPNav .VPNavBar .VPNavBarTitle .logo { display: block !important; width: 28px; height: 28px; object-fit: cover; margin-right: 10px; }
+html body .Layout .VPNav .VPNavBar .VPNavBarSearch { padding-left: 28px; background: transparent !important; border: 0 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+html body .Layout .VPNav .VPNavBar .DocSearch-Button {
+  height: 36px;
+  margin: 0;
+  padding: 0 12px;
+  border: 1px solid var(--summer-border) !important;
+  border-radius: 18px !important;
+  background: var(--vp-c-brand-soft) !important;
+  color: var(--vp-c-text-2);
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html body .Layout .VPNav .VPNavBar .DocSearch-Button:hover { border-color: var(--vp-c-brand-1) !important; }
+html body .Layout .VPNav .VPNavBar .divider { display: none; }
+/* 手机阅读时保留搜索与字号入口，进度线始终贴着导航底边。 */
+@media (max-width: 959px) {
+  .Layout .VPNav { position: sticky; top: 0; }
+  .Layout .VPLocalNav { top: var(--vp-nav-height); }
+}
+/* 桌面侧栏从导航下方开始，避免阅读页单独形成一块实色页眉。 */
+@media (min-width: 960px) {
+  .Layout .VPSidebar { top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px)); padding-top: 24px; }
+  .Layout .VPSidebar .curtain { display: none; }
+}
+@media (max-width: 1099px) {
+  .Layout .VPNavBar :is(.VPNavBarMenu, .VPNavBarExtra) { display: none; }
+  .Layout .VPNavBar .VPNavBarHamburger { display: flex; }
+  .Layout .VPNav .VPNavScreen { display: block; }
+}
+@media (max-width: 767px) {
+  :root { --vp-nav-height: 60px; --reading-font-size: 16px; }
+  html body .Layout .VPNav .VPNavBar .wrapper { padding: 0 16px; }
+  html body .Layout .VPNav .VPNavBar .container > .title { flex-shrink: 1; min-width: 0; }
+  html body .Layout .VPNav .VPNavBar .content { flex: 0 0 auto; }
+  html body .Layout .VPNav .VPNavBar .VPNavBarSearch { padding-left: 8px; }
+  html body .Layout .VPNav .VPNavBar .DocSearch-Button { padding: 0 8px; }
+  html body .Layout .VPNav .VPNavBar .VPNavBarTitle .title { font-size: 14px; }
+  html body .Layout .VPNav .VPNavBar .VPNavBarTitle .logo { width: 24px; height: 24px; margin-right: 8px; }
+}
+html:not(.dark) body:not(:has(.VPHome)) .VPSidebar,
+.dark body:not(:has(.VPHome)) .VPSidebar { background: var(--reading-sidebar) !important; border-right-color: var(--summer-border) !important; }
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc :is(p, li, th, td),
+.dark body:not(:has(.VPHome)) .vp-doc :is(p, li, th, td) { color: var(--reading-ink) !important; }
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc :is(h1, h2, h3, h4, h5, h6),
+.dark body:not(:has(.VPHome)) .vp-doc :is(h1, h2, h3, h4, h5, h6) { color: var(--vp-c-text-1) !important; text-shadow: none !important; }
+/* 字号仅作用于文章；大字号使用相对行高，长词换行而代码和表格局部滚动。 */
+.Layout .VPDoc .content .content-container { max-width: 740px; }
+.VPDoc .vp-doc {
+  --vp-code-font-size: calc(var(--reading-font-size) * .88);
+  --vp-code-line-height: 1.7;
+  --vp-custom-block-font-size: var(--reading-font-size);
+  font-size: var(--reading-font-size);
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.VPDoc .vp-doc :is(h1, h2, h3, h4, h5, h6) { line-height: 1.45; }
+.VPDoc .vp-doc h1 { border: 0; padding-bottom: 0; margin-bottom: 12px; letter-spacing: -.035em; font-size: 1.88em; }
+.VPDoc .vp-doc h2 { margin-top: 1.85em; padding-top: 1em; font-size: 1.42em; border-top-color: var(--summer-border); }
+.VPDoc .vp-doc h3 { margin-top: 1.6em; font-size: 1.18em; }
+.VPDoc .vp-doc :is(h4, h5, h6) { font-size: 1.06em; }
+.VPDoc .vp-doc :is(p, ul, ol) { margin: 1.1em 0; line-height: inherit; }
+.VPDoc .vp-doc :is(th, td) { min-width: 7em; font-size: inherit; line-height: 1.75; vertical-align: top; }
+.VPDoc .vp-doc li + li { margin-top: .4em; }
+.VPDoc .vp-doc :is(.custom-block, .custom-block p, blockquote > p) { font-size: inherit; line-height: inherit; }
+.VPDoc .vp-doc :not(pre) > code { font-size: .88em; }
+.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 0 0 30px; padding-bottom: 22px; border-bottom: 1px solid var(--summer-border); color: var(--reading-muted); font-size: 13px; line-height: 1.7; }
+.article-meta .meta-star { color: var(--vp-c-brand-1); font-size: 19px; }
+.VPSidebarItem.is-active > .item { box-shadow: inset 2px 0 var(--vp-c-brand-1); }
+.VPDocAside .outline-link { white-space: normal; overflow: visible; line-height: 1.7; padding: 5px 0; font-size: 13px; }
+.VPDocAside .outline-marker { width: 2px; border-radius: 2px; }
+html:not(.dark) body:not(:has(.VPHome)) .VPDocAside,
+.dark body:not(:has(.VPHome)) .VPDocAside { border-left-color: var(--summer-border) !important; }
+/* 让 Shiki 的每个词元保留自己的颜色，代码容器与行号仅调整底色。 */
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc pre,
+.dark body:not(:has(.VPHome)) .vp-doc pre { background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 30px 24px 24px !important; }
+.VPDoc .vp-doc div[class*='language-'] { background: var(--reading-code); border-radius: 15px; }
+.VPDoc .vp-doc div[class*='language-'].line-numbers-mode { padding-left: 0; }
+.VPDoc .vp-doc div[class*='language-'].line-numbers-mode pre { padding-left: calc(3em + 20px) !important; }
+.VPDoc .vp-doc div[class*='language-'] > .lang { top: 9px; right: 14px; font-size: 11px; color: var(--reading-muted); }
+.VPDoc .vp-doc div[class*='language-'] > button.copy { top: 32px; right: 12px; border-radius: 9px; background-color: var(--reading-paper); border-color: var(--summer-border); }
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper,
+.dark body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper { padding-top: 30px; width: 3em; background: transparent !important; color: var(--reading-muted) !important; border-color: var(--summer-border) !important; }
+.VPDoc .vp-doc pre code { padding: 0; font-size: var(--vp-code-font-size); }
+.VPDoc .vp-doc blockquote { border-left-width: 3px; padding: 2px 20px; }
+.VPDoc .vp-doc .custom-block { border-radius: 14px; padding: 18px 22px; }
+.VPDoc .vp-doc .custom-block-title { font-weight: 600; }
+.VPDoc .vp-doc table { max-width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow-x: auto; }
+.VPDoc .vp-doc :is(table, pre) { scrollbar-width: thin; scrollbar-color: var(--summer-border) transparent; }
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc table th,
+.dark body:not(:has(.VPHome)) .vp-doc table th { background: var(--vp-c-brand-soft) !important; border-color: var(--summer-border) !important; color: var(--reading-ink) !important; }
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc table td,
+.dark body:not(:has(.VPHome)) .vp-doc table td { border-color: var(--summer-border) !important; color: var(--reading-ink) !important; }
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc blockquote,
+.dark body:not(:has(.VPHome)) .vp-doc blockquote { background: var(--vp-c-brand-soft) !important; border-left-color: var(--vp-c-brand-1) !important; }
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc :not(pre) > code,
+.dark body:not(:has(.VPHome)) .vp-doc :not(pre) > code { background: var(--vp-c-brand-soft) !important; color: var(--vp-c-brand-1) !important; }
+.VPDoc .vp-doc tr:nth-child(2n) { background: transparent; }
+.VPDoc .vp-doc tbody tr:hover { background: var(--vp-c-brand-soft); }
+.VPDoc .vp-doc img { border-radius: 12px; }
+html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .pager-link,
+.dark body:not(:has(.VPHome)) .VPDocFooter .pager-link { background: var(--summer-glass) !important; border-color: var(--summer-border) !important; box-shadow: var(--summer-shadow); padding: 18px; }
+.VPDocFooter .desc { color: var(--reading-muted); }
+.VPNavScreen { background: var(--summer-settings-bg); }
+
+/* 进度线固定在导航底边，不占用正文高度。 */
+.reading-progress { position: fixed; z-index: 32; top: calc(var(--vp-nav-height) - 2px); left: 0; width: 100%; height: 2px; background: var(--vp-c-brand-1); transform-origin: left; pointer-events: none; opacity: .75; }
+
+/* 搜索沿用原有索引、焦点管理和快捷键，只改弹层与结果的视觉层次。 */
+.VPLocalSearchBox.VPLocalSearchBox .backdrop { background: rgba(30, 43, 33, .36); backdrop-filter: blur(5px); }
+.dark .VPLocalSearchBox.VPLocalSearchBox .backdrop { background: rgba(5, 7, 5, .62); }
+.VPLocalSearchBox.VPLocalSearchBox .shell { width: min(calc(100vw - 64px), 780px); padding: 20px; gap: 18px; border: 1px solid var(--summer-border); border-radius: 24px; background: var(--vp-local-search-bg); box-shadow: var(--summer-shadow), 0 24px 100px rgba(19, 37, 26, .18); backdrop-filter: blur(22px); animation: search-unfold 180ms ease-out; }
+.VPLocalSearchBox.VPLocalSearchBox .search-bar { min-height: 56px; padding: 0 10px; border-radius: 14px; border-color: var(--summer-border); background: var(--reading-paper); }
+.VPLocalSearchBox.VPLocalSearchBox .search-bar:focus-within { border-color: var(--vp-c-brand-1); box-shadow: 0 0 0 3px var(--vp-c-brand-soft); }
+.VPLocalSearchBox.VPLocalSearchBox .search-input { padding: 12px 8px; font-size: 16px; color: var(--vp-c-text-1); }
+.VPLocalSearchBox.VPLocalSearchBox .search-actions button { border-radius: 9px; min-height: 36px; }
+.VPLocalSearchBox.VPLocalSearchBox .search-input { min-width: 0; }
+.VPLocalSearchBox.VPLocalSearchBox .search-actions { flex-shrink: 0; }
+.VPLocalSearchBox.VPLocalSearchBox .search-actions button:hover { background: var(--vp-c-brand-soft); }
+.VPLocalSearchBox.VPLocalSearchBox .results { gap: 5px; padding: 3px; scrollbar-width: thin; scrollbar-color: var(--summer-border) transparent; }
+.VPLocalSearchBox.VPLocalSearchBox .result { position: relative; border: 1px solid transparent; border-radius: 13px; background: transparent; line-height: 1.65; transition: background-color 160ms ease; }
+.VPLocalSearchBox.VPLocalSearchBox .result > div { margin: 13px 16px; }
+.VPLocalSearchBox.VPLocalSearchBox .result.selected { background: var(--vp-local-search-result-selected-bg); border-color: transparent; box-shadow: inset 2px 0 var(--vp-c-brand-1); }
+.VPLocalSearchBox.VPLocalSearchBox .titles { gap: 4px 7px; align-items: center; }
+.VPLocalSearchBox.VPLocalSearchBox .title:not(.main) { color: var(--reading-muted); font-size: 13px; }
+.VPLocalSearchBox.VPLocalSearchBox .title.main { font-weight: 600; font-size: 15px; }
+.VPLocalSearchBox.VPLocalSearchBox .title-icon { font-size: 14px; }
+.VPLocalSearchBox.VPLocalSearchBox .result.selected .titles { color: var(--vp-c-text-1) !important; }
+.VPLocalSearchBox.VPLocalSearchBox mark { padding: 1px 3px; border-radius: 4px; }
+.VPLocalSearchBox.VPLocalSearchBox .excerpt { max-height: 100px; margin-top: 9px; opacity: .75; }
+.VPLocalSearchBox.VPLocalSearchBox .excerpt .article-meta { display: none; }
+.VPLocalSearchBox.VPLocalSearchBox .search-keyboard-shortcuts { padding: 12px 4px 0; border-top: 1px solid var(--summer-border); color: var(--reading-muted); opacity: 1; gap: 20px; }
+.VPLocalSearchBox.VPLocalSearchBox .search-keyboard-shortcuts kbd { box-shadow: none; border-color: var(--summer-border); border-radius: 5px; }
+.VPLocalSearchBox.VPLocalSearchBox .no-results { padding: 48px 12px; color: var(--reading-muted); }
+@keyframes search-unfold { from { opacity: 0; transform: translateY(-7px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 767px) {
+  .VPDoc .vp-doc h1 { font-size: 1.7em; }
+  .Layout .VPDoc { padding: 28px 20px 64px; }
+  .VPDoc .vp-doc div[class*='language-'] { margin: 1.1em 0; }
+  .article-meta { gap: 8px 12px; margin-bottom: 24px; }
+  .VPLocalSearchBox.VPLocalSearchBox .shell { width: 100%; height: 100dvh; max-height: 100dvh; margin: 0; border: 0; border-radius: 0; padding: max(16px, env(safe-area-inset-top)) 14px max(16px, env(safe-area-inset-bottom)); }
+  .VPLocalSearchBox.VPLocalSearchBox .results { flex: 1; min-height: 0; }
+  .VPLocalSearchBox.VPLocalSearchBox .search-bar { min-height: 54px; padding: 0 3px; }
+  .VPLocalSearchBox.VPLocalSearchBox .result > div { margin: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .VPLocalSearchBox.VPLocalSearchBox .shell { animation: none; } .VPLocalSearchBox.VPLocalSearchBox .result { transition: none; } }

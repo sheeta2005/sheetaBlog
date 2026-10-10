@@ -918,8 +918,7 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc h6 {
 
 /* 文章正文 - 深绿灰 */
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc p,
-html:not(.dark) body:not(:has(.VPHome)) .vp-doc li,
-html:not(.dark) body:not(:has(.VPHome)) .vp-doc span {
+html:not(.dark) body:not(:has(.VPHome)) .vp-doc li {
     color: #3d5a52 !important;
 }
 
@@ -1151,8 +1150,7 @@ html:not(.dark) body:not(:has(.VPHome)) .last-updated {
 
 /* 文章正文 - 浅灰色 */
 .dark body:not(:has(.VPHome)) .vp-doc p,
-.dark body:not(:has(.VPHome)) .vp-doc li,
-.dark body:not(:has(.VPHome)) .vp-doc span {
+.dark body:not(:has(.VPHome)) .vp-doc li {
     color: #e6e1dc !important;
 }
 

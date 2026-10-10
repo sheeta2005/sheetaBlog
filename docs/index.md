@@ -65,7 +65,7 @@ features:
 <div class="home-bottom-grid">
   <section class="home-panel home-notes" aria-labelledby="home-notes-title">
     <h2 id="home-notes-title">我的学习笔记</h2>
-    <p>保留算法题解、后端基础、前端学习与大学课程记录，也记录项目实践之外的知识整理。</p>
+    <p>保留算法题解、后端基础与前端学习，也记录项目实践之外的知识整理。</p>
     <a class="home-panel-link" href="/notes/">浏览学习笔记 →</a>
   </section>
   <section class="home-panel home-contact" aria-labelledby="home-contact-title">

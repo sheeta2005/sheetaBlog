@@ -3,6 +3,7 @@ import DefaultTheme from 'vitepress/theme'
 import { useData, useRoute } from 'vitepress'
 import { nextTick, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import ReadingSettings from './ReadingSettings.vue'
+import ReadingProgress from './ReadingProgress.vue'
 import { playThemeScene } from './themeScene.js'
 
 const { isDark } = useData()
@@ -133,6 +134,7 @@ onUnmounted(() => {
       </div>
     </template>
   </DefaultTheme.Layout>
+  <ReadingProgress />
   <Teleport to="body">
     <div v-if="effect" class="theme-effect" :class="`theme-effect-${effect}`" aria-hidden="true">
       <canvas ref="effectCanvas" />

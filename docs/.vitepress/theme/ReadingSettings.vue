@@ -2,21 +2,17 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const settings = ref(null)
-const fontSize = ref('standard')
+const fontSize = ref(17)
 const storageKey = 'sheeta-reading-size'
-const sizes = [
-  { value: 'small', label: '偏小' },
-  { value: 'standard', label: '标准' },
-  { value: 'large', label: '偏大' },
-  { value: 'extra-large', label: '特大' }
-]
+const defaultSize = ref(17)
 
-// 仅改变阅读文字的比例，图片、布局间距与导航尺寸保持独立。
+// 只改变文章正文基准字号，首页、导航和侧栏维持原有尺寸。
 function applySize(value) {
-  fontSize.value = value
-  document.documentElement.dataset.readingSize = value
+  const nextSize = Math.min(40, Math.max(10, Math.round(Number(value) || defaultSize.value)))
+  fontSize.value = nextSize
+  document.documentElement.style.setProperty('--reading-font-size', `${nextSize}px`)
   try {
-    localStorage.setItem(storageKey, value)
+    localStorage.setItem(storageKey, String(nextSize))
   } catch {
     // 浏览器禁止存储时，当前页面仍然可以正常调整字号。
   }
@@ -34,15 +30,16 @@ function closeOnEscape() {
 }
 
 onMounted(() => {
+  defaultSize.value = window.matchMedia('(max-width: 767px)').matches ? 16 : 17
   // 静态构建不读取浏览器偏好，挂载后恢复本站上次保存的字号。
   try {
     const saved = localStorage.getItem(storageKey)
-    if (sizes.some(size => size.value === saved)) {
-      fontSize.value = saved
-      document.documentElement.dataset.readingSize = saved
-    }
+    // 原四档偏好换算成像素，升级后继续保留用户之前的选择。
+    const oldScale = { small: .9, standard: 1, large: 1.1, 'extra-large': 1.2 }[saved]
+    const pixels = oldScale ? defaultSize.value * oldScale : Number(saved)
+    applySize(pixels >= 10 && pixels <= 40 ? pixels : defaultSize.value)
   } catch {
-    // 无法读取偏好时使用标准字号。
+    applySize(defaultSize.value)
   }
   document.addEventListener('pointerdown', closeOnOutsideClick)
 })
@@ -63,16 +60,25 @@ onUnmounted(() => {
     </summary>
     <div class="settings-panel">
       <fieldset>
-        <legend>字体大小</legend>
-        <div class="size-options">
-          <label v-for="size in sizes" :key="size.value">
-            <input type="radio" name="reading-size" :value="size.value" :checked="fontSize === size.value" @change="applySize(size.value)">
-            <span>{{ size.label }}</span>
-          </label>
+        <legend>正文大小 <strong>{{ fontSize }}px</strong></legend>
+        <div class="size-control">
+          <span aria-hidden="true">10</span>
+          <input
+            v-model.number="fontSize"
+            type="range"
+            min="10"
+            max="40"
+            step="1"
+            aria-label="正文大小"
+            :aria-valuetext="`${fontSize} 像素`"
+            @input="applySize(fontSize)"
+          >
+          <span aria-hidden="true">40</span>
         </div>
+        <div class="size-scale" aria-hidden="true"><span>更小</span><span>更大</span></div>
       </fieldset>
-      <p>自动记住你的阅读偏好</p>
-      <button type="button" @click="applySize('standard')">恢复默认</button>
+      <p>文章页会记住你的字号偏好</p>
+      <button type="button" @click="applySize(defaultSize)">恢复默认（{{ defaultSize }}px）</button>
     </div>
   </details>
 </template>
@@ -153,42 +159,36 @@ legend {
   font-weight: 600;
 }
 
-.size-options {
+.size-control {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  color: var(--vp-c-text-2);
+  font-size: 12px;
 }
 
-label {
-  position: relative;
+input[type='range'] {
+  width: 100%;
+  height: 28px;
+  accent-color: var(--vp-c-brand-1);
   cursor: pointer;
 }
 
-input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
+.size-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  color: var(--vp-c-text-3);
+  font-size: 11px;
 }
 
-label span {
-  display: block;
-  padding: 8px 0;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  text-align: center;
-}
-
-input:checked + span {
-  color: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
-}
-
-input:focus-visible + span {
+input[type='range']:focus-visible {
   outline: 2px solid var(--vp-c-brand-1);
   outline-offset: 2px;
 }
+
+legend strong { color: var(--vp-c-brand-1); font-variant-numeric: tabular-nums; }
 
 p {
   margin: 14px 0 8px;

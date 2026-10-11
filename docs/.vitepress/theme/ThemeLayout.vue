@@ -9,6 +9,7 @@ import { playThemeScene } from './themeScene.js'
 const { isDark, frontmatter, page } = useData()
 const { hasSidebar } = useSidebar()
 const { headers } = useLocalNav()
+const isHome = computed(() => frontmatter.value.layout === 'home')
 const isReading = computed(() => !page.value.isNotFound && (!frontmatter.value.layout || frontmatter.value.layout === 'doc'))
 // 两侧仅收起展示，不卸载导航和目录，保留滚动位置、分组与章节状态。
 const navCollapsed = ref(false)
@@ -16,14 +17,63 @@ const outlineCollapsed = ref(false)
 const route = useRoute()
 const effect = ref('')
 const playIntro = ref(true)
+const introWaiting = ref(false)
+const backgroundStarted = ref(false)
+const backgroundLoaded = ref({ day: false, night: false })
+const backgroundPending = computed(() => isHome.value && backgroundStarted.value && !backgroundLoaded.value[isDark.value ? 'night' : 'day'])
 const effectCanvas = ref(null)
+const backgroundRequests = new Map()
 let switching = false
 let transition
 let cancelScene
 let targetDark
 let introTimer
+let backgroundWaitTimer
+let mounted = false
 let motionPreference
 let switchId = 0
+
+// 背景成功、失败或等待超过 1.2 秒时，都释放内容；入场动画继续沿用原有节奏。
+function showHomeContent() {
+  clearTimeout(backgroundWaitTimer)
+  backgroundWaitTimer = undefined
+  introWaiting.value = false
+  if (playIntro.value && !introTimer) {
+    introTimer = window.setTimeout(() => { playIntro.value = false }, 2400)
+  }
+}
+
+function loadHomeBackground(dark) {
+  const key = dark ? 'night' : 'day'
+  if (backgroundRequests.has(key)) return backgroundRequests.get(key)
+  const background = new Image()
+  background.decoding = 'async'
+  background.fetchPriority = dark === isDark.value ? 'high' : 'low'
+  background.src = dark ? '/background_night.webp' : '/background.webp'
+  // 已完成的图片缓存保持清晰显示，避免脚本较晚到达时先退回占位再重新淡入。
+  if (background.complete && background.naturalWidth > 0) backgroundLoaded.value[key] = true
+  // 等待图片解码后再露出高清层；失败时保留占位插画，下次进入或切换可重新请求。
+  const request = background.decode().then(() => {
+    if (mounted) backgroundLoaded.value[key] = true
+  }, () => { backgroundRequests.delete(key) })
+  backgroundRequests.set(key, request)
+  return request
+}
+
+function prepareHomeBackground() {
+  backgroundStarted.value = true
+  if (playIntro.value && !introTimer && !backgroundWaitTimer) {
+    introWaiting.value = true
+    backgroundWaitTimer = window.setTimeout(showHomeContent, 1200)
+  }
+  const dark = isDark.value
+  loadHomeBackground(dark).then(() => {
+    if (!mounted || !isHome.value || dark !== isDark.value) return
+    showHomeContent()
+    // 当前主题完成后才低优先级缓存另一张插画，避免争抢首屏带宽。
+    loadHomeBackground(!dark)
+  })
+}
 
 function finishSwitch() {
   switchId++
@@ -97,19 +147,27 @@ watch(() => route.path, () => {
   if (switching) stopMotion({ matches: true })
 })
 
+// 路由返回与日夜切换共用加载状态，旧请求不会释放另一套主题的入场等待。
+watch([isHome, isDark], ([home]) => {
+  if (!mounted) return
+  if (home) prepareHomeBackground()
+  else showHomeContent()
+})
+
 onMounted(() => {
-  introTimer = window.setTimeout(() => { playIntro.value = false }, 2400)
+  mounted = true
+  if (isHome.value) prepareHomeBackground()
+  else showHomeContent()
   motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
   motionPreference.addEventListener('change', stopMotion)
   window.addEventListener('resize', stopOnResize)
   document.addEventListener('visibilitychange', stopWhenHidden)
-  // 提前缓存另一张插画，主题切换时避免背景临时空白。
-  const background = new Image()
-  background.src = isDark.value ? '/background.webp' : '/background_night.webp'
 })
 
 onUnmounted(() => {
+  mounted = false
   clearTimeout(introTimer)
+  clearTimeout(backgroundWaitTimer)
   transition?.skipTransition()
   motionPreference?.removeEventListener('change', stopMotion)
   window.removeEventListener('resize', stopOnResize)
@@ -119,7 +177,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <DefaultTheme.Layout :class="{ 'home-intro-play': playIntro, 'reading-layout': isReading, 'reading-nav-collapsed': isReading && navCollapsed, 'reading-outline-collapsed': isReading && outlineCollapsed }">
+  <DefaultTheme.Layout :class="{ 'home-intro-play': playIntro, 'home-intro-waiting': introWaiting, 'home-background-pending': backgroundPending, 'reading-layout': isReading, 'reading-nav-collapsed': isReading && navCollapsed, 'reading-outline-collapsed': isReading && outlineCollapsed }">
     <template #layout-top>
       <div v-if="isReading && hasSidebar" class="reading-nav-control">
         <button class="reading-sidebar-toggle" type="button" :aria-label="navCollapsed ? '展开文章导航' : '收起文章导航'" :title="navCollapsed ? '展开文章导航' : '收起文章导航'" :aria-expanded="!navCollapsed" aria-controls="VPSidebarNav" @click="navCollapsed = !navCollapsed">

@@ -26,6 +26,9 @@
 .home-intro-play .VPHome .VPHero .image { animation: summer-enter 800ms 940ms both; }
 .home-intro-play .VPHome .VPHero .actions { animation: summer-enter 700ms 1080ms both; }
 .home-intro-play .VPHome :is(.home-section-heading, .VPFeatures, .vp-doc) { animation: summer-enter 700ms 1260ms both; }
+/* 等待当前背景时短暂暂停入场；脚本未初始化时仍沿用可自行结束的 CSS 动画。 */
+.home-intro-waiting .VPHome .VPHero :is(.container, .heading, .tagline, .image, .actions),
+.home-intro-waiting .VPHome :is(.home-section-heading, .VPFeatures, .vp-doc) { animation-play-state: paused; }
 @keyframes summer-panel-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes summer-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -146,5 +149,6 @@ html[data-theme-transition='dawn']::view-transition-new(root) { animation: summe
   .VPHome *, .VPButton, .VPNavBarMenuLink::after, .VPDocFooter .pager-link { animation: none !important; transition: none !important; }
   .home-light-dust, .theme-effect { display: none; }
   .VPHome .parallax-bg, .avatar-stars { transform: none !important; will-change: auto; }
+  .VPHome .parallax-bg::after { transition: none !important; }
   ::view-transition-group(*), ::view-transition-new(*), ::view-transition-old(*) { animation: none !important; }
 }

@@ -1,0 +1,22 @@
+/* 首屏样式内联到页面头部；微型插画无需请求，完整图片沿用原来的裁切。 */
+html { background-color: #dce7dc; }
+html.dark { background-color: #111310; }
+:root {
+  --home-background-color: #dce7dc;
+  --home-background-preview: url("data:image/webp;base64,UklGRj4BAABXRUJQVlA4IDIBAABQCwCdASowAEQAPv1wrFArJyQisRn+2WAfiUAXwJKKJQhIn6750/GdsdDleoNKVY4ztKUkKhd3cX6O682QWKGPiicAg7iprqN9qoVH3BVzkv3zfEtKVjz/2f0pjWCmBCVVC8AA/u1QfMO/qzoIQoqViezTRY4Kgq6SrJ8t9J/T6ByNYvFC1RsHwr2O9eob3fd9xZbe2AN9Qu9xcc5Gx5EpoYZZJUA0Sm5tNmcdMeytQrgEt7J89BBP2fi6uoloFYzHarl9UjR9BTMtVzsDqN/6rIouoHa8rrR3Stbzyof5EG5tV59EzYQ2m8HukzbIHXUZhvV9KWAGHrt4BXtLeow3ck+0fEHgmP6inhivGBhHXtwr+QZbzqLA8mnTNpJMEX4ithfpL+M0v8AdMezzbOz0AAA=");
+  --home-background-image: url('/background.webp');
+  --home-background-position: center 40%;
+}
+:root.dark {
+  --home-background-color: #111310;
+  --home-background-preview: url("data:image/webp;base64,UklGRlgBAABXRUJQVlA4IEwBAADwCwCdASowAEQAPwlsq1ArpaOit3RsAXAhCWIAwB+8yFiP//eWWY2FqgiH0Y7D5R8SlqVY1GVqIkm9HPcKZS3GWO/tT+9gGf0fAMl6LvWhZLvIcHwF5VTR9YaxOEoDJsw1jAf1YfE6AAD+25D0OYSuPsyQ8aYAangFURAW9RJeJAd9453JdppmzBi0DUoVzxFYvqusePPQPfHD74NKvgfr89GWcwBU68oaL8qZ2uI67ehdkADYdpMq2C+PXMIV8+x3hcnU+pQNl8mgeOagk0a0QobvS43iPKPhl/CIwKsgJ3NueKgWyYpJtItYDLN5UB3qiu7P/M5maebWvJmiWnIPS5ThBmBQYaAhkOobQ2wLEL82EvcE7bUyoZE0Xe6aLmP2wxW5ZJdAjn1Egcc828lBjj56e/eq/uz/o0JOhV1wpEFn8gelroNTZySAAA==");
+  --home-background-image: url('/background_night.webp');
+  --home-background-position: center 30%;
+}
+body:has(.VPHome) {
+  background-color: var(--home-background-color) !important;
+  background-image: var(--home-background-preview) !important;
+  background-position: var(--home-background-position) !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}

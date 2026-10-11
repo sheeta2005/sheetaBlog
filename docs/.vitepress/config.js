@@ -1,5 +1,9 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
+import { readFileSync } from 'node:fs'
+
+// 内联首屏底色与微型插画，外部样式和背景图片未到时也有完整的主题底色。
+const homeBackgroundStyle = readFileSync(new URL('./theme/homeBackground.css', import.meta.url), 'utf8')
 
 // 将已有 JVM 分组提升为独立模块，文章仍沿用原地址；新模块入口指向各自导读页。
 function organizeBackendSidebar(sidebars) {
@@ -22,8 +26,30 @@ export default defineConfig({
   description: 'Java 后端实习求职 | takeMe 社区助老平台 | Redis 限流组件 | 工程实践与学习笔记',
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }]
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['style', { id: 'home-background-fallback' }, homeBackgroundStyle]
   ],
+
+  transformHead({ pageData }) {
+    if (pageData.frontmatter.layout !== 'home') return []
+    // 此脚本排在 VitePress 的主题初始化之后，只优先请求当前主题的完整插画。
+    return [['script', { id: 'preload-home-background' }, `(() => {
+      const background = document.createElement('link')
+      background.rel = 'preload'
+      background.as = 'image'
+      background.type = 'image/webp'
+      background.fetchPriority = 'high'
+      background.href = document.documentElement.classList.contains('dark') ? '/background_night.webp' : '/background.webp'
+      document.head.appendChild(background)
+    })()`]]
+  },
+
+  transformHtml(html) {
+    // 将兜底样式、原有主题判断和背景预加载提前到外部样式之前，慢网时避免先闪出浅色底。
+    const earlyTags = html.match(/<(style|script) id="(?:home-background-fallback|check-dark-mode|preload-home-background)"[^>]*>[\s\S]*?<\/\1>/g) || []
+    for (const tag of earlyTags) html = html.replace(tag, '')
+    return html.replace(/<meta name="viewport"[^>]*>/, tag => `${tag}\n${earlyTags.join('\n')}`)
+  },
 
   base: '/',
   outDir: './.vitepress/dist',

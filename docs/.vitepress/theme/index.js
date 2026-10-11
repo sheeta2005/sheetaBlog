@@ -1,6 +1,7 @@
 import DefaultTheme from 'vitepress/theme'
 import ThemeLayout from './ThemeLayout.vue'
 import ArticleMeta from './ArticleMeta.vue'
+import ReadingTable from './ReadingTable.vue'
 import './custom.css'
 import './style.css'
 import './summer.css'
@@ -16,6 +17,7 @@ export default {
   enhanceApp(ctx) {
     DefaultTheme.enhanceApp?.(ctx)
     ctx.app.component('ArticleMeta', ArticleMeta)
+    ctx.app.component('ReadingTable', ReadingTable)
     parallax.enhanceApp(ctx)
     client.enhanceApp(ctx)
   }

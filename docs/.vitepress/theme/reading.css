@@ -16,6 +16,7 @@
   --site-nav-glass: linear-gradient(110deg, rgba(225, 234, 210, .91), rgba(199, 220, 201, .85) 52%, rgba(225, 232, 211, .89));
   --site-nav-light: radial-gradient(ellipse at 18% 0%, rgba(239, 219, 162, .22), transparent 56%), radial-gradient(ellipse at 80% 100%, rgba(102, 160, 127, .16), transparent 60%);
   --reading-font-size: 17px;
+  --vp-code-copy-copied-text-content: '已复制';
   --vp-nav-height: 72px;
   /* 导航及其菜单高于进度条，手机抽屉与搜索仍沿用主题原有层级。 */
   --vp-z-index-nav: 40;
@@ -279,6 +280,9 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc :is(h1, h2, h3, h4, h5, h6),
 .VPDoc .vp-doc :not(pre) > code { font-size: .88em; }
 .article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: 0 0 22px; padding-bottom: 16px; border-bottom: 1px solid var(--reading-edge); color: var(--reading-muted); font-size: 13px; line-height: 1.7; }
 .article-meta .meta-star { color: var(--vp-c-brand-1); font-size: 19px; }
+/* 标题下已有日期时隐藏页尾重复信息，保留编辑链接与上一篇、下一篇。 */
+.reading-layout .content-container:has(.article-meta) .VPDocFooter .last-updated,
+.reading-layout .content-container:has(.article-meta) .VPDocFooter .edit-info:not(:has(.edit-link)) { display: none; }
 .VPSidebarItem.is-active > .item { box-shadow: inset 2px 0 var(--vp-c-brand-1); }
 .VPDocAside .outline-link { white-space: normal; overflow: visible; line-height: 1.7; padding: 5px 0; font-size: 13px; }
 .VPDocAside .outline-marker { width: 2px; border-radius: 2px; }
@@ -300,6 +304,15 @@ html:not(.dark) body:not(:has(.VPHome)) .vp-doc .line-numbers-wrapper,
 .VPDoc .vp-doc .custom-block-title { font-weight: 600; }
 .VPDoc .vp-doc table { max-width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow-x: auto; }
 .VPDoc .vp-doc :is(table, pre) { scrollbar-width: thin; scrollbar-color: var(--summer-border) transparent; }
+/* 渐隐固定在表格容器边缘，不拦截触摸、滚轮与键盘滚动。 */
+.reading-table { position: relative; max-width: 100%; margin: 20px 0; border-radius: 12px; }
+.reading-table-scroll { overflow-x: auto; border-radius: inherit; scrollbar-width: thin; scrollbar-color: var(--summer-border) transparent; }
+.VPDoc .vp-doc .reading-table table { display: table; width: 100%; max-width: none; margin: 0; overflow: visible; }
+.reading-table::before, .reading-table::after { content: ''; position: absolute; z-index: 1; top: 0; bottom: 6px; width: 22px; opacity: 0; pointer-events: none; transition: opacity 160ms ease; }
+.reading-table::before { left: 0; background: linear-gradient(to right, var(--reading-paper), transparent); }
+.reading-table::after { right: 0; background: linear-gradient(to left, var(--reading-paper), transparent); }
+.reading-table.can-scroll-left::before, .reading-table.can-scroll-right::after { opacity: 1; }
+.reading-table-scroll:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc table th,
 .dark body:not(:has(.VPHome)) .vp-doc table th { background: var(--vp-c-brand-soft) !important; border-color: var(--summer-border) !important; color: var(--reading-ink) !important; }
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc table td,
@@ -316,6 +329,26 @@ html:not(.dark) body:not(:has(.VPHome)) .VPDocFooter .pager-link,
 html body .reading-layout .VPDocFooter :is(.prev, .next) { background: transparent !important; border: 0 !important; }
 .VPDocFooter .desc { color: var(--reading-muted); }
 .VPNavScreen { background: var(--summer-settings-bg); }
+
+/* 404 沿用本站玻璃边缘与稳定底色，日间青绿、夜间暗金。 */
+.Layout .NotFound { width: min(640px, calc(100% - 40px)); margin: 48px auto 64px; padding: 56px 28px; border: 1px solid var(--summer-border); border-radius: 24px; background: var(--reading-paper); box-shadow: var(--summer-shadow); }
+.Layout .NotFound .code { color: var(--vp-c-brand-1); font-size: clamp(64px, 12vw, 96px); line-height: 1.15; letter-spacing: .04em; }
+.Layout .NotFound .title { padding-top: 18px; color: var(--reading-ink); font-size: 22px; line-height: 1.5; letter-spacing: 0; }
+.Layout .NotFound .divider { background: var(--summer-border); }
+.Layout .NotFound .quote { max-width: 380px; color: var(--reading-muted); font-size: 15px; line-height: 1.85; }
+.Layout .NotFound .link { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 20px; border-radius: 12px; background: var(--vp-c-brand-soft); }
+.Layout .NotFound .link:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+
+@media (max-width: 959px) {
+  /* 手机侧栏入口增大点按面积，同时保持原有 48px 导航行高。 */
+  .reading-layout .VPLocalNav .menu { min-width: 44px; min-height: 44px; }
+  .reading-layout .VPLocalNavOutlineDropdown { padding: 2px 16px; }
+  .reading-layout .VPLocalNavOutlineDropdown > button { min-width: 44px; min-height: 44px; }
+  /* 复制入口常显且留出独立顶栏，避免扩大按钮后压住代码首行。 */
+  .VPDoc .vp-doc div[class*='language-'] > button.copy { width: 44px; height: 44px; opacity: 1; }
+  .VPDoc .vp-doc div[class*='language-'] > .lang { top: 16px; right: 64px; }
+  html body:not(:has(.VPHome)) .VPDoc .vp-doc :is(pre, .line-numbers-wrapper) { padding-top: 56px !important; }
+}
 
 /* 进度线贴在导航底边外侧，菜单和设置面板展开时自然盖住它，不占用正文高度。 */
 .reading-progress { position: fixed; z-index: 32; top: var(--vp-nav-height); left: 0; width: 100%; height: 2px; background: var(--vp-c-brand-1); transform-origin: left; pointer-events: none; opacity: .75; }
@@ -361,4 +394,4 @@ html body .reading-layout .VPDocFooter :is(.prev, .next) { background: transpare
   .VPLocalSearchBox.VPLocalSearchBox .search-bar { min-height: 54px; padding: 0 3px; }
   .VPLocalSearchBox.VPLocalSearchBox .result > div { margin: 12px; }
 }
-@media (prefers-reduced-motion: reduce) { .VPLocalSearchBox.VPLocalSearchBox .shell { animation: none; } .VPLocalSearchBox.VPLocalSearchBox .result, .article-reading-list > a, .article-list-arrow, .reading-layout :is(.VPSidebar, .VPContent) { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .VPLocalSearchBox.VPLocalSearchBox .shell { animation: none; } .VPLocalSearchBox.VPLocalSearchBox .result, .article-reading-list > a, .article-list-arrow, .reading-layout :is(.VPSidebar, .VPContent), .reading-table::before, .reading-table::after { transition: none !important; } }

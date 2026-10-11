@@ -4,6 +4,10 @@ import { readFileSync } from 'node:fs'
 
 // 内联首屏底色与微型插画，外部样式和背景图片未到时也有完整的主题底色。
 const homeBackgroundStyle = readFileSync(new URL('./theme/homeBackground.css', import.meta.url), 'utf8')
+// 分享卡片与页面标题共用站点信息。
+const siteTitle = 'sheeta1998的技术博客'
+const siteDescription = 'Java 后端实习求职 | takeMe 社区助老平台 | Redis 限流组件 | 工程实践与学习笔记'
+const siteOrigin = 'https://bblog.sheeta1998.com'
 
 // 将已有 JVM 分组提升为独立模块，文章仍沿用原地址；新模块入口指向各自导读页。
 function organizeBackendSidebar(sidebars) {
@@ -22,13 +26,47 @@ function organizeBackendSidebar(sidebars) {
 
 export default defineConfig({
 
-  title: 'sheeta1998的技术博客',
-  description: 'Java 后端实习求职 | takeMe 社区助老平台 | Redis 限流组件 | 工程实践与学习笔记',
+  title: siteTitle,
+  description: siteDescription,
+  lang: 'zh-CN',
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['style', { id: 'home-background-fallback' }, homeBackgroundStyle]
+    ['style', { id: 'home-background-fallback' }, homeBackgroundStyle],
+    ['meta', { property: 'og:site_name', content: siteTitle }],
+    ['meta', { property: 'og:locale', content: 'zh_CN' }],
+    ['meta', { property: 'og:image', content: `${siteOrigin}/social-card.png` }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:image:alt', content: 'sheeta1998的技术博客分享封面' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: `${siteOrigin}/social-card.png` }]
   ],
+
+  transformPageData(pageData) {
+    // 写入页面数据，让直接访问和站内跳转都更新文章的分享标题、摘要与地址。
+    const title = pageData.title || siteTitle
+    const description = pageData.description || siteDescription
+    const path = '/' + pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '.html')
+    // 自定义 404 承接中文页面数据，画面仍复用主题已有的错误页结构。
+    const isNotFound = pageData.relativePath === '404.md'
+    const article = !isNotFound && (!pageData.frontmatter.layout || pageData.frontmatter.layout === 'doc')
+    return {
+      isNotFound,
+      frontmatter: {
+        ...pageData.frontmatter,
+        head: [
+          ...(pageData.frontmatter.head || []),
+          ['meta', { property: 'og:type', content: article ? 'article' : 'website' }],
+          ['meta', { property: 'og:title', content: title }],
+          ['meta', { property: 'og:description', content: description }],
+          ['meta', { property: 'og:url', content: new URL(path, siteOrigin).href }],
+          ['meta', { name: 'twitter:title', content: title }],
+          ['meta', { name: 'twitter:description', content: description }]
+        ]
+      }
+    }
+  },
 
   transformHead({ pageData }) {
     if (pageData.frontmatter.layout !== 'home') return []
@@ -134,6 +172,14 @@ export default defineConfig({
     lightModeSwitchTitle: '切换到薄荷晴昼',
     darkModeSwitchTitle: '切换到花火夏夜',
 
+    // 404 复用默认主题结构，中文提示与阅读页材质保持一致。
+    notFound: {
+      title: '这一页暂时不在这里',
+      quote: '也许链接已经搬家，回到首页，再找找想读的内容。',
+      linkLabel: '返回博客首页',
+      linkText: '返回首页 →'
+    },
+
     // 侧边栏配置（为每个专栏单独生成）
     sidebar: organizeBackendSidebar(generateSidebar([
       // 新增项目与复盘的阅读导航，沿用已有的自动侧边栏生成方式。
@@ -208,6 +254,7 @@ export default defineConfig({
 
   // Markdown 配置
   markdown: {
+    codeCopyButtonTitle: '复制代码',
     // 阅读信息由正文计算，插入首个一级标题之后，避免逐篇维护同样的模板。
     config(md) {
       md.core.ruler.after('inline', 'reading-minutes', state => {
@@ -223,6 +270,11 @@ export default defineConfig({
         const firstTitle = tokens.findIndex(token => token.type === 'heading_close' && token.tag === 'h1')
         return index === firstTitle ? `${heading}<ArticleMeta />\n` : heading
       }
+      // 表格内容保持原样，仅增加局部滚动与边缘提示容器。
+      const openTable = md.renderer.rules.table_open || ((tokens, index, options, env, renderer) => renderer.renderToken(tokens, index, options))
+      const closeTable = md.renderer.rules.table_close || ((tokens, index, options, env, renderer) => renderer.renderToken(tokens, index, options))
+      md.renderer.rules.table_open = (...args) => `<ReadingTable>\n${openTable(...args)}`
+      md.renderer.rules.table_close = (...args) => `${closeTable(...args)}</ReadingTable>\n`
     },
     lineNumbers: true,
     math: true,

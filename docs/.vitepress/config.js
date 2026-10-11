@@ -51,7 +51,8 @@ export default defineConfig({
           { text: '笔记导航', link: '/notes/' },
           { text: '后端专栏', link: '/posts/backend/' },
           { text: '算法专栏', link: '/posts/algorithm/' },
-          { text: '前端专栏', link: '/posts/frontend/' }
+          { text: '前端专栏', link: '/posts/frontend/' },
+          { text: '学校学习相关', link: '/posts/sundries/' }
         ]
       },
       { text: '杂项', link: '/misc/' },
@@ -170,6 +171,16 @@ export default defineConfig({
         useTitleFromFileHeading: true,
         useTitleFromFrontmatter: true,
         debugPrint: false
+      },
+      // 随笔沿用自动导航，新文章放入此目录即可出现在专栏中。
+      {
+        documentRootPath: 'docs',
+        scanStartPath: 'misc/essays',
+        resolvePath: '/misc/essays/',
+        rootGroupText: '随笔',
+        rootGroupCollapsed: false,
+        useTitleFromFrontmatter: true,
+        useTitleFromFileHeading: true
       }
     ]))
 

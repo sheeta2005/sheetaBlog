@@ -5,6 +5,8 @@
   --reading-sidebar: #d3e0d2;
   --reading-ink: #30463b;
   --reading-muted: #4c6153;
+  --reading-scroll-thumb: rgba(64, 112, 91, .32);
+  --reading-scroll-thumb-hover: rgba(64, 112, 91, .52);
   --reading-code: #dce6d8;
   --reading-edge: rgba(74, 112, 87, .18);
   --reading-shadow: 0 10px 32px rgba(46, 73, 51, .065), inset 0 1px rgba(250, 249, 228, .5);
@@ -15,6 +17,8 @@
   --site-nav-light: radial-gradient(ellipse at 18% 0%, rgba(239, 219, 162, .22), transparent 56%), radial-gradient(ellipse at 80% 100%, rgba(102, 160, 127, .16), transparent 60%);
   --reading-font-size: 17px;
   --vp-nav-height: 72px;
+  /* 导航及其菜单高于进度条，手机抽屉与搜索仍沿用主题原有层级。 */
+  --vp-z-index-nav: 40;
   --vp-local-search-bg: rgba(222, 234, 215, .98);
   --vp-local-search-result-bg: transparent;
   --vp-local-search-result-selected-bg: rgba(70, 127, 95, .13);
@@ -26,6 +30,8 @@
   --reading-sidebar: #131611;
   --reading-ink: #e5e3d9;
   --reading-muted: #aaa99b;
+  --reading-scroll-thumb: rgba(189, 155, 96, .30);
+  --reading-scroll-thumb-hover: rgba(189, 155, 96, .52);
   --reading-code: #20231c;
   --site-nav-glass: linear-gradient(110deg, rgba(26, 27, 23, .85), rgba(19, 21, 20, .77) 52%, rgba(29, 27, 23, .83));
   --site-nav-light: radial-gradient(ellipse at 22% 0%, rgba(199, 153, 86, .12), transparent 56%), radial-gradient(ellipse at 80% 100%, rgba(118, 103, 128, .10), transparent 60%);
@@ -134,6 +140,17 @@ html:not(.dark) .reading-settings { --vp-c-text-2: var(--reading-muted); --vp-c-
 .reading-sidebar-heading { margin: 0 38px 16px 0; line-height: 32px; color: var(--reading-muted); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
 .reading-outline-control { position: relative; z-index: 1; height: 0; }
 .reading-outline-control .reading-sidebar-toggle { position: absolute; top: 0; right: 0; }
+/* 侧栏使用细滑块与透明轨道，去掉系统箭头，避免白色滚动槽切开阅读背景。 */
+.reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline) { scrollbar-width: thin; scrollbar-color: var(--reading-scroll-thumb) transparent; }
+.reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline)::-webkit-scrollbar { width: 5px; height: 5px; }
+.reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline)::-webkit-scrollbar-track { background: transparent; }
+.reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline)::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--reading-scroll-thumb); }
+.reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline)::-webkit-scrollbar-thumb:hover { background: var(--reading-scroll-thumb-hover); }
+.reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline)::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+@supports selector(::-webkit-scrollbar) {
+  /* Chromium 优先使用上述 5px 样式，避免标准属性覆盖滑块圆角与箭头设置。 */
+  .reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline) { scrollbar-width: auto; scrollbar-color: auto; }
+}
 @media (min-width: 960px) {
   .reading-layout { --reading-left-space: 240px; }
   .reading-layout.reading-nav-collapsed { --reading-left-space: 44px; }
@@ -143,7 +160,7 @@ html:not(.dark) .reading-settings { --vp-c-text-2: var(--reading-muted); --vp-c-
   html body .Layout.reading-layout .VPSidebar { width: 240px; padding: 16px 18px 80px; border-right: 1px solid var(--reading-edge); box-shadow: none; transition: transform 180ms ease, opacity 180ms ease, visibility 180ms; }
   .reading-layout .VPSidebar .nav { width: 204px; }
   .Layout.reading-nav-collapsed .VPSidebar { visibility: hidden; opacity: 0; transform: translateX(-100%); pointer-events: none; }
-  .reading-layout .reading-nav-control { display: block; position: fixed; z-index: 31; top: var(--vp-nav-height); bottom: 0; left: 196px; width: 44px; padding: 16px 6px; pointer-events: none; }
+  .reading-layout .reading-nav-control { display: block; position: fixed; z-index: 31; top: var(--vp-nav-height); bottom: 0; left: 192px; width: 44px; padding: 16px 6px; pointer-events: none; }
   .reading-nav-control .reading-sidebar-toggle { pointer-events: auto; }
   .reading-nav-collapsed .reading-nav-control { left: 0; background: var(--reading-sidebar); border-right: 1px solid var(--reading-edge); }
   .Layout.reading-layout .VPDoc { padding: 28px 28px 0; }
@@ -204,6 +221,11 @@ html body .Layout .VPNav .VPNavBar .DocSearch-Button {
 }
 html body .Layout .VPNav .VPNavBar .DocSearch-Button:hover { border-color: var(--vp-c-brand-1) !important; }
 html body .Layout .VPNav .VPNavBar .divider { display: none; }
+/* 日间下拉菜单与阅读设置共用青绿材质，悬停、键盘聚焦和当前入口均清楚可辨。 */
+html:not(.dark) .Layout .VPNavBarMenuGroup .VPMenu { border-color: var(--summer-border); background: rgba(212, 229, 216, .98); color: var(--reading-ink); box-shadow: var(--summer-shadow); }
+html:not(.dark) .Layout .VPNavBarMenuGroup .VPMenuLink .link { color: var(--reading-ink); }
+html:not(.dark) .Layout .VPNavBarMenuGroup .VPMenuLink .link:is(:hover, :focus-visible, .active) { color: var(--vp-c-brand-1); background: #c0d9c6; }
+html:not(.dark) .Layout .VPNavBarMenuGroup .VPMenuLink .link:focus-visible { outline: 2px solid var(--vp-c-brand-2); outline-offset: 2px; }
 /* 手机阅读时保留搜索与字号入口，进度线始终贴着导航底边。 */
 @media (max-width: 959px) {
   .Layout .VPNav { position: sticky; top: 0; }
@@ -295,8 +317,8 @@ html body .reading-layout .VPDocFooter :is(.prev, .next) { background: transpare
 .VPDocFooter .desc { color: var(--reading-muted); }
 .VPNavScreen { background: var(--summer-settings-bg); }
 
-/* 进度线固定在导航底边，不占用正文高度。 */
-.reading-progress { position: fixed; z-index: 32; top: calc(var(--vp-nav-height) - 2px); left: 0; width: 100%; height: 2px; background: var(--vp-c-brand-1); transform-origin: left; pointer-events: none; opacity: .75; }
+/* 进度线贴在导航底边外侧，菜单和设置面板展开时自然盖住它，不占用正文高度。 */
+.reading-progress { position: fixed; z-index: 32; top: var(--vp-nav-height); left: 0; width: 100%; height: 2px; background: var(--vp-c-brand-1); transform-origin: left; pointer-events: none; opacity: .75; }
 
 /* 搜索沿用原有索引、焦点管理和快捷键，只改弹层与结果的视觉层次。 */
 .VPLocalSearchBox.VPLocalSearchBox .backdrop { background: rgba(30, 43, 33, .36); backdrop-filter: blur(5px); }

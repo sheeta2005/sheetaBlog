@@ -1,6 +1,6 @@
 ---
 title: 学习笔记导航
-description: Java 后端、算法与前端学习记录。
+description: Java 后端、算法、前端与学校课程学习记录。
 ---
 
 # 学习笔记导航
@@ -12,6 +12,7 @@ description: Java 后端、算法与前端学习记录。
 | [后端专栏](/posts/backend/) | Java、操作系统、计算机网络、JVM、Tomcat、Spring、MySQL 与 Redis |
 | [算法专栏](/posts/algorithm/) | 数据结构、算法讲解与 LeetCode 题解 |
 | [前端专栏](/posts/frontend/) | Vue、TypeScript 与前端实践 |
+| [学校学习相关](/posts/sundries/) | 数字电子技术基础、数据库系统概论与软件工程概论 |
 
 ## 项目相关的旧笔记
 

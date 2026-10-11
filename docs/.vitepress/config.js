@@ -33,13 +33,6 @@ export default defineConfig({
   themeConfig: {
     appearance: 'dark',
 
-    logo: {
-      src: '/avatar.jpg',
-      style: {
-        borderRadius: '50%'
-      }
-    },
-
     // 优先展示求职项目与工程复盘，原有专栏统一收进学习笔记。
     nav: [
       { text: '首页', link: '/' },

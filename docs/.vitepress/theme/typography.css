@@ -5,6 +5,9 @@ html body .Layout .VPNav .VPNavBar .VPNavBarTitle .title { font-size: calc(16px 
 .Layout .VPNavScreenMenuLink, .Layout .VPNavScreenMenuGroup .button,
 .Layout .VPNavScreenAppearance .text, .Layout .VPNavBarSearch .DocSearch-Button,
 .VPFooter :is(.message, .copyright), .VPDocFooter .title { font-size: calc(14px * var(--site-ui-scale)); line-height: 1.7; }
+/* 下拉导航的内层文字继承按钮排版，避免主题固定的 14px 字号覆盖全站比例。 */
+.Layout :is(.VPNavBarMenuGroup, .VPNavScreenMenuGroup) .button { font-family: var(--vp-font-family-base); font-weight: 500; }
+.Layout .VPNavBarMenuGroup .button .text { font-family: inherit; font-size: inherit; font-weight: inherit; line-height: inherit; }
 .VPNavScreenMenuLink, .VPNavScreenMenuGroup .button { height: auto; min-height: 48px; padding-top: 8px; padding-bottom: 8px; }
 .VPNavScreenMenuGroup .item .link { font-size: calc(14px * var(--site-ui-scale)); line-height: 1.7; }
 .Layout .DocSearch-Button .DocSearch-Button-Placeholder { font-size: calc(13px * var(--site-ui-scale)); }

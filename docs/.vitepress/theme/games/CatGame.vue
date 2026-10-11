@@ -41,7 +41,7 @@ function onKey(event) {
 </script>
 
 <template>
-  <GameFrame ref="frame" title="围堵猫猫" subtitle="封住一格，猫猫走一步。把这位想溜走的小客人留下来。" :phase="phase" :metrics="metrics" :message="phase === 'won' ? '抓住这只小猫啦！' : '猫猫从边缘溜走啦'" @start="start" @restart="restart" @pause="pause" @key="onKey">
+  <GameFrame ref="frame" title="围堵猫猫" subtitle="如果能亲手抓住自己的幸福就好了。" :phase="phase" :metrics="metrics" :message="phase === 'won' ? '抓住这只小猫啦！' : '猫猫从边缘溜走啦'" @start="start" @restart="restart" @pause="pause" @key="onKey">
     <svg class="cat-board" viewBox="0 0 388 340" role="group" aria-label="围堵猫猫蜂窝棋盘">
       <g v-for="cell in cells" :key="`${cell.row},${cell.col}`" :transform="`translate(${point(cell).x} ${point(cell).y})`" role="button" :aria-label="`第${cell.row + 1}行第${cell.col + 1}格${isCat(cell) ? '，猫猫所在' : blocked(cell) ? '，已封闭' : '，可封闭'}`" :aria-disabled="phase !== 'running' || blocked(cell) || isCat(cell)" :tabindex="phase === 'running' && cursor.row === cell.row && cursor.col === cell.col ? 0 : -1" @click="seal(cell)">
         <path class="cat-cell" :class="{ blocked: blocked(cell), chosen: cursor.row === cell.row && cursor.col === cell.col }" d="M-9-16Q-6-18-3-18H7Q10-18 12-15L20-3Q22 0 20 3L12 15Q10 18 7 18H-7Q-10 18-12 15L-20 3Q-22 0-20-3L-12-15Q-11-16-9-16Z" />

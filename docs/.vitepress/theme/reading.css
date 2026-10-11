@@ -9,6 +9,8 @@
   --reading-scroll-thumb-hover: rgba(64, 112, 91, .52);
   --reading-code: #dce6d8;
   --reading-edge: rgba(74, 112, 87, .18);
+  --reading-nav-divider: rgba(74, 112, 87, .42);
+  --reading-item-divider: rgba(74, 112, 87, .28);
   --reading-shadow: 0 10px 32px rgba(46, 73, 51, .065), inset 0 1px rgba(250, 249, 228, .5);
   --reading-note: #dce8dc;
   --reading-warning: #e8e0c4;
@@ -73,6 +75,8 @@ html:not(.dark) body:not(:has(.VPHome)) .VPLocalNav { background: var(--reading-
   --reading-ink: #d8ddcf;
   --reading-muted: #a8b09f;
   --reading-edge: rgba(195, 168, 117, .17);
+  --reading-nav-divider: rgba(195, 168, 117, .38);
+  --reading-item-divider: rgba(195, 168, 117, .26);
   --reading-shadow: 0 10px 32px rgba(0, 0, 0, .16), inset 0 1px rgba(232, 212, 166, .045);
   --reading-note: #283126;
   --reading-warning: #332e21;
@@ -97,7 +101,7 @@ html body .Layout.reading-layout .VPDocAside { border-left: 0 !important; }
   border-radius: 0;
   background: transparent;
 }
-.reading-layout .VPDocAsideOutline > .content { border-left-color: var(--reading-edge); padding-left: 14px; }
+.reading-layout .VPDocAsideOutline > .content { border-left-color: var(--reading-nav-divider); padding-left: 14px; }
 html body .Layout.reading-layout .VPDocAside .outline-title { padding-right: 34px; color: var(--reading-ink) !important; }
 html body .Layout.reading-layout .VPDocAside .outline-link { padding-right: 6px; border-radius: 5px; color: var(--reading-muted) !important; }
 html body .Layout.reading-layout .VPDocAside .outline-link:is(:hover, .active) { background: var(--vp-c-brand-soft); color: var(--vp-c-brand-1) !important; }
@@ -141,6 +145,10 @@ html:not(.dark) .reading-settings { --vp-c-text-2: var(--reading-muted); --vp-c-
 .reading-sidebar-heading { margin: 0 38px 16px 0; line-height: 32px; color: var(--reading-muted); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
 .reading-outline-control { position: relative; z-index: 1; height: 0; }
 .reading-outline-control .reading-sidebar-toggle { position: absolute; top: 0; right: 0; }
+/* 分类分隔更清楚，文章条目用细线和留白分开，长标题换行后仍属于同一条目。 */
+.reading-layout .VPSidebar { border-right: 1px solid var(--reading-nav-divider); }
+.reading-layout .VPSidebar .group + .group { border-top: 1px solid var(--reading-nav-divider); }
+.reading-layout .VPSidebar .VPSidebarItem .items > .VPSidebarItem > .item { padding: 6px 0; border-bottom: 1px solid var(--reading-item-divider); }
 /* 侧栏使用细滑块与透明轨道，去掉系统箭头，避免白色滚动槽切开阅读背景。 */
 .reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline) { scrollbar-width: thin; scrollbar-color: var(--reading-scroll-thumb) transparent; }
 .reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline)::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -153,22 +161,30 @@ html:not(.dark) .reading-settings { --vp-c-text-2: var(--reading-muted); --vp-c-
   .reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline) { scrollbar-width: auto; scrollbar-color: auto; }
 }
 @media (min-width: 960px) {
-  .reading-layout { --reading-left-space: 240px; }
+  .reading-layout { --reading-left-space: 240px; --reading-paper-width: 824px; --reading-frame-width: 1080px; }
+  /* 收起左栏释放横向空间；宽度只作用于实际带文章导航的页面。 */
   .reading-layout.reading-nav-collapsed { --reading-left-space: 44px; }
+  .reading-layout.reading-nav-collapsed:has(.VPDoc.has-sidebar) { --reading-paper-width: 1040px; --reading-frame-width: 1040px; }
   html body .Layout.reading-layout .VPContent.has-sidebar { padding-left: var(--reading-left-space); padding-right: 0; transition: padding-left 180ms ease; }
   .Layout.reading-layout .VPLocalNav.has-sidebar { padding-left: var(--reading-left-space); }
   .reading-layout .VPLocalNavOutlineDropdown .items { left: calc(var(--reading-left-space) + 24px); }
-  html body .Layout.reading-layout .VPSidebar { width: 240px; padding: 16px 18px 80px; border-right: 1px solid var(--reading-edge); box-shadow: none; transition: transform 180ms ease, opacity 180ms ease, visibility 180ms; }
+  html body .Layout.reading-layout .VPSidebar { width: 240px; padding: 16px 18px 80px; border-right: 1px solid var(--reading-nav-divider); box-shadow: none; transition: transform 180ms ease, opacity 180ms ease, visibility 180ms; }
   .reading-layout .VPSidebar .nav { width: 204px; }
+  /* 分组跟随导航实际宽度，放大侧栏时分隔线不会停留在原来的窄列中。 */
+  .reading-layout .VPSidebar .group { width: 100%; }
   .Layout.reading-nav-collapsed .VPSidebar { visibility: hidden; opacity: 0; transform: translateX(-100%); pointer-events: none; }
   .reading-layout .reading-nav-control { display: block; position: fixed; z-index: 31; top: var(--vp-nav-height); bottom: 0; left: 192px; width: 44px; padding: 16px 6px; pointer-events: none; }
   .reading-nav-control .reading-sidebar-toggle { pointer-events: auto; }
-  .reading-nav-collapsed .reading-nav-control { left: 0; background: var(--reading-sidebar); border-right: 1px solid var(--reading-edge); }
+  .reading-nav-collapsed .reading-nav-control { left: 0; background: var(--reading-sidebar); border-right: 1px solid var(--reading-nav-divider); }
   .Layout.reading-layout .VPDoc { padding: 28px 28px 0; }
-  .reading-layout .VPDoc > .container { display: flex; justify-content: center; max-width: 1080px; }
-  .reading-layout .VPDoc > .container > .content { flex: 1; min-width: 0; max-width: 824px; padding: 0 0 64px; }
+  .reading-layout .VPDoc > .container { display: flex; justify-content: center; max-width: var(--reading-frame-width); }
+  .reading-layout .VPDoc > .container > .content { flex: 1; min-width: 0; max-width: var(--reading-paper-width); padding: 0 0 64px; }
 }
 @media (min-width: 1280px) {
+  /* 框架包括右侧目录或其展开入口，两侧同时收起时正文可继续扩展到 1280px。 */
+  .reading-layout.reading-nav-collapsed:has(.VPDoc.has-sidebar) { --reading-frame-width: calc(var(--reading-paper-width) + var(--reading-right-width, 220px)); }
+  .reading-layout.reading-outline-collapsed { --reading-paper-width: 1040px; --reading-frame-width: calc(var(--reading-paper-width) + 56px); }
+  .reading-layout.reading-nav-collapsed.reading-outline-collapsed:has(.VPDoc.has-sidebar) { --reading-paper-width: 1280px; --reading-frame-width: calc(var(--reading-paper-width) + 56px); }
   .reading-layout .VPDoc > .container > .aside { flex: 0 0 220px; width: 220px; max-width: 220px; padding-left: 24px; }
   .reading-layout .VPDoc .aside-container { top: calc(var(--vp-nav-height) + 28px); width: 196px; height: calc(100vh - var(--vp-nav-height) - 28px); padding-top: 0; }
   .reading-layout .VPDoc .aside-content { min-height: 100%; }
@@ -253,13 +269,13 @@ html:not(.dark) .Layout .VPNavBarMenuGroup .VPMenuLink .link:focus-visible { out
   html body .Layout .VPNav .VPNavBar .VPNavBarTitle .logo { width: 24px; height: 24px; margin-right: 8px; }
 }
 html:not(.dark) body:not(:has(.VPHome)) .VPSidebar,
-.dark body:not(:has(.VPHome)) .VPSidebar { background: var(--reading-sidebar) !important; border-right-color: var(--summer-border) !important; }
+.dark body:not(:has(.VPHome)) .VPSidebar { background: var(--reading-sidebar) !important; border-right-color: var(--reading-nav-divider) !important; }
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc :is(p, li, th, td),
 .dark body:not(:has(.VPHome)) .vp-doc :is(p, li, th, td) { color: var(--reading-ink) !important; }
 html:not(.dark) body:not(:has(.VPHome)) .vp-doc :is(h1, h2, h3, h4, h5, h6),
 .dark body:not(:has(.VPHome)) .vp-doc :is(h1, h2, h3, h4, h5, h6) { color: var(--vp-c-text-1) !important; text-shadow: none !important; }
 /* 字号仅作用于文章；大字号使用相对行高，长词换行而代码和表格局部滚动。 */
-.Layout .VPDoc .content .content-container { max-width: 824px; }
+.Layout .VPDoc .content .content-container { max-width: var(--reading-paper-width, 824px); }
 .VPDoc .vp-doc {
   --vp-code-font-size: calc(var(--reading-font-size) * .88);
   --vp-code-line-height: 1.7;

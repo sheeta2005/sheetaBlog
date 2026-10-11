@@ -27,7 +27,7 @@ features:
     linkText: 了解业务设计与验证
   - icon: 🚦
     title: 项目二 · Redis 限流 Starter
-    details: 基于 Redis + Lua 的固定窗口限流组件，探索 Spring Boot 自动配置、AOP 与 SpEL 动态限流维度。
+    details: 基于 Redis + Lua 的双窗口限流组件，实践条件自动配置、AOP 与 SpEL 业务维度，以及放行和拒绝的故障策略。
     link: /projects/rate-limiter
     linkText: 了解组件实现与边界
 ---
@@ -56,6 +56,18 @@ features:
       <a href="/articles/outbox">
         <strong>订单通知为什么使用 Outbox</strong>
         <span>梳理数据库提交、消息重试与消费去重的关系。</span>
+      </a>
+    </li>
+    <li>
+      <a href="/articles/order-concurrency">
+        <strong>从重复下单到并发接单</strong>
+        <span>用 requestId、行锁与条件更新，处理重复提交、接单竞争和锁顺序冲突。</span>
+      </a>
+    </li>
+    <li>
+      <a href="/articles/rate-limiter-windows">
+        <strong>Redis 双窗口限流的取舍</strong>
+        <span>对比 HASH 固定窗口与 ZSET 滑动窗口，理解时间边界、状态量和 Lua 原子判断。</span>
       </a>
     </li>
   </ul>

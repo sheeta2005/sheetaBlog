@@ -1,13 +1,13 @@
 ---
 title: takeMe 社区助老平台
-description: 面向社区助老服务的业务系统，记录订单幂等、状态约束、Outbox 通知及性能验证。
+description: 面向社区助老服务的业务系统，展开订单并发、预约超时、认证、OSS 头像、缓存、通知和性能验证。
 ---
 
 # takeMe 社区助老平台
 
 takeMe 围绕老人预约服务、志愿者接单、管理员审批与通知展开。项目重点是让订单和服务状态保持正确，并在通知失败、重复提交和并发操作时保留恢复路径。
 
-[项目仓库](https://github.com/sheeta2005/takeMe) · [压测复盘](/articles/loadtest) · [查询优化复盘](/articles/sql-optimization)
+[项目仓库](https://github.com/sheeta2005/takeMe) · [订单并发](/articles/order-concurrency) · [压测复盘](/articles/loadtest)
 
 ## 项目概览
 
@@ -17,6 +17,7 @@ takeMe 围绕老人预约服务、志愿者接单、管理员审批与通知展�
 | 后端 | Java 21、Spring Boot 3.2.5、MyBatis-Plus、Druid |
 | 数据与通知 | MySQL、Redis、RabbitMQ、WebSocket |
 | 身份校验 | JWT、角色拦截器、数据库实时账号状态、BCrypt |
+| 文件存储 | 阿里云 OSS，头像扩展名与大小校验、UUID 对象名 |
 | 部署假设 | 单个后端 JVM、单个 MySQL，面向单小区规模 |
 | 支付范围 | 模拟支付与退款，未接入真实资金渠道 |
 
@@ -34,6 +35,10 @@ MySQL 保存订单与支付模拟记录的真值。Redis 缓存可重建的目�
 
 这套设计利用单库事务、行锁和唯一约束处理当前场景，没有额外引入 Redis 建单锁或分布式 ID 服务。状态变更也使用条件更新，避免不符合前置状态的请求覆盖现有结果。
 
+接单采用读已提交隔离级别，固定志愿者账号、父订单、服务项的加锁顺序。同人抢多项先按账号串行化，多人抢同项则在锁定记录后复核归属与状态。修复材料记录过锁顺序冲突造成的死锁，并补充了 20 次重复竞争回归。
+
+**[展开阅读：订单幂等与并发接单](/articles/order-concurrency)**
+
 可核对文件：`takeMe/server/src/main/java/com/me/service/Impl/OrderServiceImpl.java`、`docs/business-simplification.md`。
 
 ## 重点二：通知可靠性与超时处理
@@ -42,7 +47,9 @@ MySQL 保存订单与支付模拟记录的真值。Redis 缓存可重建的目�
 
 预约超时由定时任务按数据库预约时间复核。当前不再为新订单、新接单生产固定 30 分钟 TTL 消息；历史超时消息保留兼容处理路径。
 
-**[展开阅读：Outbox 通知与消费去重](/articles/outbox)**
+未支付超时取消整单，无人接单或超时未开始则处理对应服务项，再汇总父订单状态。候选扫描与执行分开，每项进入独立事务重新核对，避免超时操作覆盖已经开始的服务。
+
+**[展开阅读：Outbox 通知与消费去重](/articles/outbox)** · **[预约超时处理](/articles/order-timeout)**
 
 ## 重点三：查询、缓存与性能诊断
 
@@ -50,7 +57,15 @@ MySQL 保存订单与支付模拟记录的真值。Redis 缓存可重建的目�
 
 单 JVM 缓存通过固定锁条带合并并发回源，并协调目录修改后的主动失效。TTL 增加抖动，异常时查询缓存可回源数据库；这与安全限流的故障策略分别处理。
 
-**[展开阅读：N+1 查询与缓存优化](/articles/sql-optimization)**
+**[展开阅读：N+1 查询优化](/articles/sql-optimization)** · **[服务目录缓存设计](/articles/redis-cache)**
+
+## 重点四：认证与资料更新
+
+三类角色分别校验 JWT、当前账号状态与数据归属。登录以账号限频为主、较宽松的 IP 配额为辅助，通过 Redis Lua 在密码校验与查询之前判断频率，避免共享出口的正常用户共用过小的配额。
+
+头像使用 OSS 存储，按扩展名和大小校验，以日期、角色和 UUID 生成对象名。保存地址时只更新头像字段，删除时显式置空，避免整条实体覆盖其他请求修改的积分或状态。OSS 与数据库不在同一个本地事务里，跨系统失败仍有需要完善的恢复窗口。
+
+**[展开阅读：JWT、角色与登录限频](/articles/login-security)** · **[OSS 头像与字段更新](/articles/avatar-storage)**
 
 ## 如何验证
 
@@ -62,7 +77,7 @@ MySQL 保存订单与支付模拟记录的真值。Redis 缓存可重建的目�
 
 ## 当前边界
 
-- 单 JVM 的账号锁与缓存回源合并不代表已经验证多节点部署。
+- 账号和订单约束依赖同一 MySQL 的事务与行锁；缓存回源合并仅在当前 JVM 内生效，完整多节点部署尚未验证。
 - Outbox 加消费去重提供恢复路径，不宣称端到端 Exactly Once。
 - WebSocket 是在线提醒通道，连接数不等于同时执行订单操作的人数。
 - 退出依赖前端删除 JWT 和断开连接，未实现全局 JWT 撤销列表。
@@ -81,4 +96,4 @@ MySQL 保存订单与支付模拟记录的真值。Redis 缓存可重建的目�
 | 通知发送任务 | `takeMe/server/src/main/java/com/me/service/task/OutboxDispatchTask.java` |
 | 压测复现入口 | `tools/README.md`、`tools/loadtest/community.jmx` |
 
-本文依据截至 2026 年 10 月 5 日的本地版本整理，引用既有测试记录，本次博客整理没有重新运行后端压测。
+本文结合简历项目经历，并于 2026 年 10 月 11 日核对本地实现。性能数据引用原有测试记录，本次博客整理没有重新运行后端压测。

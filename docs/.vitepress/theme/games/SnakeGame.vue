@@ -62,7 +62,7 @@ onUnmounted(() => { clearTimeout(timer); observer?.disconnect() })
 </script>
 
 <template>
-  <GameFrame ref="frame" title="贪吃蛇" subtitle="让薄荷小蛇慢慢长大，记得给自己留一条回头路。" :phase="phase" :metrics="metrics" :message="game.won ? '小蛇填满了整个花园！' : '小蛇需要歇一会儿啦'" @start="start" @restart="restart" @pause="pause" @key="onKey">
+  <GameFrame ref="frame" title="贪吃蛇" subtitle="如果还有回头的路就好了。" :phase="phase" :metrics="metrics" :message="game.won ? '小蛇填满了整个花园！' : '小蛇需要歇一会儿啦'" @start="start" @restart="restart" @pause="pause" @key="onKey">
     <canvas ref="canvas" class="snake-board" role="img" :aria-label="`贪吃蛇棋盘，当前得分 ${game.score}`" />
     <template #controls>
       <div class="direction-pad"><button aria-label="向上" @click="turn('up')">↑</button><button aria-label="向左" @click="turn('left')">←</button><button aria-label="向下" @click="turn('down')">↓</button><button aria-label="向右" @click="turn('right')">→</button></div>

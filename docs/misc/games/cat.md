@@ -1,6 +1,6 @@
 ---
 title: 围堵猫猫
-description: 每回合封住一个格子，围住想溜走的猫猫。
+description: 一定要亲手抓住。
 layout: page
 sidebar: false
 outline: false

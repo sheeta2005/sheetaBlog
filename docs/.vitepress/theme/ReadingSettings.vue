@@ -4,14 +4,14 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 const settings = ref(null)
 const controls = ref([
   { key: 'body', label: '正文大小', min: 10, max: 40, unit: 'px', value: 17, default: 17, storage: 'sheeta-reading-size', property: '--reading-font-size' },
-  { key: 'interface', label: '全站界面大小', min: 60, max: 200, unit: '%', value: 100, default: 100, storage: 'sheeta-interface-size', property: '--site-ui-scale' },
+  { key: 'interface', label: '全站界面大小', min: 60, max: 120, unit: '%', value: 100, default: 100, storage: 'sheeta-interface-size', property: '--site-ui-scale' },
   { key: 'sidebar', label: '侧栏字号', min: 10, max: 40, unit: 'px', value: 15, default: 15, storage: 'sheeta-sidebar-size', property: '--sidebar-font-size' }
 ])
 const presets = computed(() => [
   { label: '小', values: [14, 85, 13] },
   { label: '中', values: controls.value.map(control => control.default) },
   { label: '大', values: [20, 115, 18] },
-  { label: '特大', values: [24, 130, 21] }
+  { label: '特大', values: [24, 120, 21] }
 ])
 const activePreset = computed(() => presets.value.find(preset => preset.values.every((value, index) => value === controls.value[index].value))?.label)
 
@@ -69,7 +69,9 @@ onMounted(() => {
     // 旧版正文四档偏好迁移为像素，新组合预设不覆盖已有的单项选择。
     const oldScale = control.key === 'body' && { small: .9, standard: 1, large: 1.1, 'extra-large': 1.2 }[saved]
     const value = oldScale ? control.default * oldScale : Number(saved)
-    applySize(control, value >= control.min && value <= control.max ? value : control.default)
+    // 界面上限缩小后，原有更大比例收回到上限，正文和侧栏仍沿用原来的恢复规则。
+    const restored = control.key === 'interface' && Number.isFinite(value) && value > control.max ? control.max : value
+    applySize(control, restored >= control.min && restored <= control.max ? restored : control.default)
   }
   document.addEventListener('pointerdown', closeOnOutsideClick)
   window.addEventListener('resize', updateNavHeight)

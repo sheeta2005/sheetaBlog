@@ -3,9 +3,9 @@ import { data as notes } from '../../../misc/misc.data.js'
 import GameArtwork from './GameArtwork.vue'
 
 const games = [
-  { kind: 'snake', title: '贪吃蛇', description: '前进的时候，也要给自己留一条回头路。', url: '/misc/games/snake.html' },
+  { kind: 'snake', title: '贪吃蛇', description: '还要编织多久，才能织成美丽的形状呢。', url: '/misc/games/snake.html' },
   { kind: 'cat', title: '围堵猫猫', description: '幸福来时不会自己敲门，走时又难以留住。', url: '/misc/games/cat.html' },
-  { kind: 'tetris', title: '俄罗斯方块', description: '追求完美。', url: '/misc/games/tetris.html' }
+  { kind: 'tetris', title: '俄罗斯方块', description: '走错一步就会倒霉的游戏。', url: '/misc/games/tetris.html' }
 ]
 </script>
 

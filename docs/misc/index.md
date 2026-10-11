@@ -1,6 +1,6 @@
 ---
 title: 杂项
-description: 放慢一点，玩一局小游戏，读一些课程记录与随记。
+description: 如果可以的话就好了。
 layout: page
 sidebar: false
 outline: false

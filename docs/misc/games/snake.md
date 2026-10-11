@@ -1,6 +1,6 @@
 ---
 title: 贪吃蛇
-description: 薄荷小蛇与小莓果，支持键盘与手机按钮。
+description: 努力变长。
 layout: page
 sidebar: false
 outline: false

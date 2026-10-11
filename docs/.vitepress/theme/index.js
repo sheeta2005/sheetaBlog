@@ -7,6 +7,7 @@ import './style.css'
 import './summer.css'
 import './reading.css'
 import './games/games.css'
+import './typography.css'
 import parallax from './parallax.js'
 import client from './client.js'
 

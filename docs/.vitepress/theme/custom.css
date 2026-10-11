@@ -18,8 +18,10 @@
   /* 字体配置 */
   --vp-font-family-base: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --vp-font-family-mono: 'Fira Code', 'Consolas', monospace;
-  /* 首页使用固定比例，阅读字号在 .VPDoc 内单独计算。 */
-  --reading-scale: 1;
+  /* 首页跟随界面缩放，文章正文仍在 .VPDoc 内单独计算字号。 */
+  --site-ui-scale: 1;
+  --sidebar-font-size: 15px;
+  --reading-scale: var(--site-ui-scale);
   --vp-code-font-size: calc(14px * var(--reading-scale));
   --vp-custom-block-font-size: calc(16px * var(--reading-scale));
 

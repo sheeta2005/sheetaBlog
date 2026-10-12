@@ -22,10 +22,11 @@ export function turnSnake(state, direction) {
 export function stepSnake(state, random = Math.random) {
   if (state.over) return state
   const [dx, dy] = directions[state.nextDirection]
-  const head = { x: state.body[0].x + dx, y: state.body[0].y + dy }
+  // 四边互通，先把蛇头映射到对侧格子，再判断吃食物和撞到自身。
+  const head = { x: (state.body[0].x + dx + state.size) % state.size, y: (state.body[0].y + dy + state.size) % state.size }
   const eating = state.food && head.x === state.food.x && head.y === state.food.y
   const occupied = eating ? state.body : state.body.slice(0, -1)
-  if (head.x < 0 || head.y < 0 || head.x >= state.size || head.y >= state.size || occupied.some(point => point.x === head.x && point.y === head.y)) {
+  if (occupied.some(point => point.x === head.x && point.y === head.y)) {
     return { ...state, over: true }
   }
   const body = [head, ...state.body]

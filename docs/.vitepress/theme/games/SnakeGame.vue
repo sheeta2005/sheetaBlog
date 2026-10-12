@@ -67,6 +67,6 @@ onUnmounted(() => { clearTimeout(timer); observer?.disconnect() })
     <template #controls>
       <div class="direction-pad"><button aria-label="向上" @click="turn('up')">↑</button><button aria-label="向左" @click="turn('left')">←</button><button aria-label="向下" @click="turn('down')">↓</button><button aria-label="向右" @click="turn('right')">→</button></div>
     </template>
-    <template #instructions><p>吃到小莓果，身体就会变长。</p><p>碰墙或撞到自己，本局结束。</p><p><kbd>方向键</kbd> / <kbd>W A S D</kbd> 转向<br><kbd>空格</kbd> / <kbd>P</kbd> 暂停</p><p>手机可使用棋盘下方的方向按钮。</p></template>
+    <template #instructions><p>吃到小莓果，身体就会变长。</p><p>边界可以穿越，撞到自己才会结束。</p><p><kbd>方向键</kbd> / <kbd>W A S D</kbd> 转向<br><kbd>空格</kbd> / <kbd>P</kbd> 暂停</p><p>手机可使用棋盘下方的方向按钮。</p></template>
   </GameFrame>
 </template>

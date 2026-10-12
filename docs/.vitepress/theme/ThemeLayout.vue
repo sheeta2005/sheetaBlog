@@ -22,6 +22,11 @@ const backgroundStarted = ref(false)
 const backgroundLoaded = ref({ day: false, night: false })
 const backgroundPending = computed(() => isHome.value && backgroundStarted.value && !backgroundLoaded.value[isDark.value ? 'night' : 'day'])
 const effectCanvas = ref(null)
+const avatarImage = ref(null)
+const avatarReady = ref(false)
+const avatarCached = ref(false)
+// 从当前头像生成的 40px 微型预览内嵌到首页，慢网时不需要额外请求占位图片。
+const avatarPreview = 'data:image/webp;base64,UklGRjABAABXRUJQVlA4ICQBAAAwCQCdASooACgAPu1iqk6ppaQiNVgNUTAdiWQAxy2/gdZF0KPot3YAqX+JlfBQRSSVb9DjhH4ztnlmI6YW0lQLpSlWyP5zyR5FWwnwdo4ghgfwAP73CEB4aJDgzneYVg73hHarWpIHI0LWSm54vtBpxQxHEZSs2z0bEOMVFraX26/74U34m4dljJdnLgjTvVL6mGOqOyQ56yf9o6/iTLhm00jvTBwUvUlHY0k7DZ/8ory4T39vaJHCL71T7GdeDDDg3CIjDFclgMraWyQz/rZdzId/EgGO6LJLrxJwndsPiMQkCGjAJfxu//1PNPjSKZouDHoHwTXH92oczsqmn9tkJjJF4f9rdofCsT69dYRHyMu1cacYT98zquN3YmXiLw+LAAAA'
 const backgroundRequests = new Map()
 let switching = false
 let transition
@@ -32,6 +37,25 @@ let backgroundWaitTimer
 let mounted = false
 let motionPreference
 let switchId = 0
+
+// 高清头像解码成功后才淡入；失败时继续显示预览，不阻塞介绍和背景入场。
+async function revealAvatar(image, cached = false) {
+  if (!image || avatarReady.value) return
+  if (cached) avatarCached.value = true
+  try {
+    await image.decode()
+  } catch {
+    return
+  }
+  if (image === avatarImage.value) avatarReady.value = true
+}
+
+// 首屏缓存和返回首页时可能错过 load 事件，检查已完成的图片并直接显示。
+watch(avatarImage, image => {
+  avatarReady.value = false
+  avatarCached.value = false
+  if (image?.complete && image.naturalWidth > 0) revealAvatar(image, true)
+}, { flush: 'post' })
 
 // 背景成功、失败或等待超过 1.2 秒时，都释放内容；入场动画继续沿用原有节奏。
 function showHomeContent() {
@@ -202,7 +226,9 @@ onUnmounted(() => {
       </div>
     </template>
     <template #home-hero-image>
-      <img class="image-src" src="/avatar.jpg" alt="sheeta1998 的二次元头像" width="250" height="250">
+      <span class="image-src hero-avatar" :class="{ 'is-ready': avatarReady, 'is-cached': avatarCached }" :style="{ backgroundImage: `url(${avatarPreview})` }">
+        <img ref="avatarImage" class="hero-avatar-full" src="/avatar.jpg" alt="sheeta1998 的二次元头像" width="250" height="250" loading="eager" fetchpriority="high" decoding="async" @load="revealAvatar($event.target)" @error="avatarReady = false">
+      </span>
       <span class="avatar-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i></span>
     </template>
     <template #home-features-before>

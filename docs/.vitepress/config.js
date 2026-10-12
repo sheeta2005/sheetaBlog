@@ -71,7 +71,10 @@ export default defineConfig({
   transformHead({ pageData }) {
     if (pageData.frontmatter.layout !== 'home') return []
     // 此脚本排在 VitePress 的主题初始化之后，只优先请求当前主题的完整插画。
-    return [['script', { id: 'preload-home-background' }, `(() => {
+    return [
+      // 仅首页提前请求头像，与页面中的图片共用请求，避免慢网时等到解析介绍区才开始下载。
+      ['link', { rel: 'preload', as: 'image', href: '/avatar.jpg', fetchpriority: 'high' }],
+      ['script', { id: 'preload-home-background' }, `(() => {
       const background = document.createElement('link')
       background.rel = 'preload'
       background.as = 'image'
@@ -79,7 +82,8 @@ export default defineConfig({
       background.fetchPriority = 'high'
       background.href = document.documentElement.classList.contains('dark') ? '/background_night.webp' : '/background.webp'
       document.head.appendChild(background)
-    })()`]]
+    })()`]
+    ]
   },
 
   transformHtml(html) {

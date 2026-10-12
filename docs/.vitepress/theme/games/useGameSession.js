@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 
-// 三个游戏共用暂停与本地记录；计时和规则仍由各自的游戏负责。
+// 游戏共用暂停与本地记录；计时和规则仍由各自的游戏负责。
 export function useGameSession(name, smallest = false) {
   const phase = ref('ready'), best = ref(null)
   const storageKey = `sheeta-game-${name}`

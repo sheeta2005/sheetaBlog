@@ -1,0 +1,12 @@
+/* 猫猫使用数字与表情双重区分，棋盘放大后仍保持四乘四的比例。 */
+.cat2048-board { position: relative; width: 100%; height: 100%; touch-action: none; user-select: none; }
+.cat2048-cells { position: absolute; inset: 12px; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); }
+.cat2048-cells i { margin: 4px; border: 1px solid var(--summer-border); border-radius: 12px; background: var(--vp-c-brand-soft); }
+.cat2048-tiles { position: absolute; inset: 12px; }
+.cat2048-tile { position: absolute; width: 25%; height: 25%; padding: 4px; transition: left 140ms ease, top 140ms ease; }
+.cat2048-tile > div { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; border: 1px solid var(--summer-border); border-radius: 12px; background: var(--tile-color); box-shadow: inset 0 1px 0 rgba(255,255,255,.22); }
+.cat2048-tile .cat-face { width: 65%; height: 65%; }
+.cat2048-tile strong { color: #293e31; font-size: clamp(14px, 3vw, 30px); line-height: 1.1; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cat2048-tile.is-merged > div { animation: cat2048-merge 160ms ease; }
+@keyframes cat2048-merge { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.07); } }
+@media (max-width: 767px) { .cat2048-cells, .cat2048-tiles { inset: 6px; } .cat2048-tile { padding: 3px; } .cat2048-cells i { margin: 3px; } .cat2048-tile strong { font-size: clamp(12px, 4vw, 20px); } }

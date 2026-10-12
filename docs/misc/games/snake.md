@@ -7,7 +7,7 @@ outline: false
 ---
 
 <script setup>
-import SnakeGame from '../../.vitepress/theme/games/SnakeGame.vue'
+import GamePortal from '../../.vitepress/theme/games/GamePortal.vue'
 </script>
 
-<SnakeGame />
+<GamePortal id="snake" />

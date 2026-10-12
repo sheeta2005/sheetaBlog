@@ -4,6 +4,8 @@ import { readFileSync } from 'node:fs'
 
 // 内联首屏底色与微型插画，外部样式和背景图片未到时也有完整的主题底色。
 const homeBackgroundStyle = readFileSync(new URL('./theme/homeBackground.css', import.meta.url), 'utf8')
+// 只有游戏列表和准备页带上轻量入口样式；实际棋盘样式继续由动态游戏模块加载。
+const gameEntryStyle = readFileSync(new URL('./theme/games/games.css', import.meta.url), 'utf8')
 // 分享卡片与页面标题共用站点信息。
 const siteTitle = 'sheeta1998的技术博客'
 const siteDescription = 'Java 后端实习求职 | takeMe 社区助老平台 | Redis 限流组件 | 工程实践与学习笔记'
@@ -57,6 +59,7 @@ export default defineConfig({
         ...pageData.frontmatter,
         head: [
           ...(pageData.frontmatter.head || []),
+          ...(pageData.relativePath.startsWith('misc/') && pageData.frontmatter.layout === 'page' ? [['style', { id: 'game-entry-style' }, gameEntryStyle]] : []),
           ['meta', { property: 'og:type', content: article ? 'article' : 'website' }],
           ['meta', { property: 'og:title', content: title }],
           ['meta', { property: 'og:description', content: description }],

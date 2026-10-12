@@ -46,6 +46,8 @@ async function start() {
   await nextTick(); frame.value.focus()
 }
 function restart() { phase.value = 'ready'; start() }
+// 轻量准备页完成加载后，由统一入口开始这一局。
+defineExpose({ start })
 function turn(direction) { if (phase.value === 'running') game.value = turnSnake(game.value, direction) }
 function onKey(event) {
   // 按钮保留回车与空格的原生点击，其余按键在整个游戏区域内可用。

@@ -1,0 +1,112 @@
+/* 只有点击开始并加载游戏后，才下载实际棋盘与游玩界面的样式。 */
+.game-page { width: 100%; max-width: 1440px; margin: 0 auto; padding: 28px 32px 48px; color: var(--reading-ink); outline: none; overflow-wrap: anywhere; }
+.game-page h1 { margin: 0; color: var(--vp-c-text-1); font-size: calc(30px * var(--site-ui-scale)); line-height: 1.3; font-weight: 600; letter-spacing: -.03em; }
+.game-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
+.game-heading > div:first-child { min-width: 0; }
+.game-subtitle { margin: 8px 0 0; color: var(--reading-muted); font-size: calc(13px * var(--site-ui-scale)); line-height: 1.8; }
+.game-actions { display: flex; flex-wrap: wrap; flex-shrink: 0; gap: 8px; }
+.game-page :is(button, a, summary, [role='button']):focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+.game-status-row { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; }
+.game-metrics { display: flex; flex: 1; flex-wrap: wrap; gap: 10px; margin: 0; }
+.game-metrics > div { min-width: 100px; padding: 10px 16px; border: 1px solid var(--summer-border); border-radius: 12px; background: var(--reading-paper); }
+.game-metrics dt { font-size: calc(11px * var(--site-ui-scale)); color: var(--reading-muted); }
+.game-metrics dd { margin: 3px 0 0; color: var(--vp-c-brand-1); font-size: calc(23px * var(--site-ui-scale)); line-height: 1.3; font-variant-numeric: tabular-nums; }
+.game-state { margin: 0; color: var(--vp-c-brand-1); font-size: calc(12px * var(--site-ui-scale)); white-space: nowrap; }
+.game-state::before { content: '●'; margin-right: 7px; font-size: 8px; }
+.game-display-notice { margin: 0 0 12px; color: var(--vp-c-brand-1); font-size: 12px; }
+.game-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 24px; padding: 20px; border: 1px solid var(--summer-border); border-radius: 24px; background: var(--summer-glass); box-shadow: var(--summer-shadow); }
+.game-play-area { min-width: 0; }
+.game-stage { position: relative; width: min(100%, var(--stage-width)); aspect-ratio: var(--board-aspect); margin: 0 auto; overflow: hidden; border: 1px solid var(--summer-border); border-radius: 16px; background: var(--game-board); container-type: inline-size; }
+.game-stage canvas, .cat-board { display: block; width: 100%; height: 100%; }
+.snake-board { aspect-ratio: 1; }
+.tetris-board { aspect-ratio: 1 / 2; }
+.game-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; padding: 16px; background: var(--game-overlay); backdrop-filter: blur(3px); }
+.game-overlay-card { display: flex; width: min(100%, 310px); flex-direction: column; align-items: center; gap: 10px; padding: 20px; border: 1px solid var(--summer-border); border-radius: 18px; background: var(--reading-paper); color: var(--reading-muted); font-size: calc(12px * var(--site-ui-scale)); line-height: 1.7; cursor: pointer; }
+.game-overlay-card strong { color: var(--vp-c-text-1); font-size: calc(19px * var(--site-ui-scale)); font-weight: 500; }
+.overlay-star { color: var(--vp-c-brand-1); font-size: 28px; }
+/* 竖长棋盘在横屏中较窄，暂停卡片缩短文案，操作按钮仍在顶部。 */
+@container (max-width: 220px) {
+  .game-overlay { padding: 8px; }
+  .game-overlay-card { padding: 12px 6px; gap: 6px; }
+  .game-overlay-card strong { font-size: 14px; line-height: 1.5; }
+  .game-overlay-card > span:last-child { display: none; }
+  .overlay-star { font-size: 20px; }
+}
+.game-touch-controls { margin-top: 12px; }
+.game-touch-controls:empty { display: none; }
+.direction-pad, .tetris-controls, .breakout-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.game-touch-controls button { min-width: 44px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--summer-border); border-radius: 10px; background: var(--reading-paper); color: var(--vp-c-brand-1); font-size: calc(17px * var(--site-ui-scale)); touch-action: manipulation; user-select: none; }
+.game-touch-controls button:active { background: var(--vp-c-brand-soft); }
+.tetris-controls button:last-child, .breakout-controls button { font-size: calc(13px * var(--site-ui-scale)); }
+.game-instructions { padding: 16px; border: 1px solid var(--summer-border); border-radius: 14px; background: var(--reading-paper); }
+.game-instructions summary { display: flex; justify-content: space-between; font-size: calc(14px * var(--site-ui-scale)); font-weight: 600; cursor: pointer; list-style: none; }
+.game-instructions summary::-webkit-details-marker { display: none; }
+.game-instructions[open] summary > span { transform: rotate(45deg); }
+.game-instructions p { margin: 12px 0 0; color: var(--reading-muted); font-size: calc(13px * var(--site-ui-scale)); line-height: 1.9; }
+.game-instructions kbd { padding: 2px 4px; border: 1px solid var(--summer-border); border-radius: 4px; font-family: inherit; font-size: .9em; }
+.game-save-note { margin: 16px 0; color: var(--reading-muted); font-size: calc(11px * var(--site-ui-scale)); line-height: 1.8; }
+.next-piece { margin: 0 0 16px; padding: 16px; border: 1px solid var(--summer-border); border-radius: 14px; background: var(--game-board); }
+.next-piece h2 { margin: 0 0 8px; font-size: calc(13px * var(--site-ui-scale)); font-weight: 600; }
+.next-piece svg { display: block; width: 120px; height: 88px; margin: 0 auto; }
+.cat-board { padding: 8px; }
+.cat-cell { fill: var(--game-board); stroke: var(--summer-border); stroke-width: 1.3; cursor: pointer; transition: fill 160ms ease; }
+.cat-cell.blocked { fill: var(--vp-c-brand-soft); }
+.cat-cell-leaf { fill: var(--snake-body); stroke: var(--game-accent); stroke-width: 1.2; pointer-events: none; }
+.cat-board:focus-within .cat-cell.chosen, .game-page:focus .cat-cell.chosen { stroke: var(--game-accent); stroke-width: 2.4; }
+/* 日间棋盘更深一层；待开始提示靠局部纸片衬字，保留静态局面可见。 */
+html:not(.dark) .game-stage { box-shadow: inset 0 2px 12px rgba(43, 77, 52, .09); }
+html:not(.dark) .cat-cell.blocked { fill: #a8c2ad; }
+/* 扩大与原生全屏共用布局，恢复尺寸不会重新创建棋盘。 */
+.game-page.is-immersive { position: fixed; inset: 0; z-index: 500; width: 100%; height: 100dvh; max-width: none; padding: 16px 24px; overflow: auto; background: var(--vp-c-bg); }
+.game-immersive-open, .game-immersive-open body { overflow: hidden; }
+.game-page.is-immersive .misc-back { margin-bottom: 10px; }
+.game-page.is-immersive :is(.misc-eyebrow, .game-subtitle) { display: none; }
+.game-page.is-immersive h1 { font-size: calc(24px * var(--site-ui-scale)); }
+.game-page.is-immersive .game-heading { margin-bottom: 12px; }
+.game-page.is-immersive .game-workspace { padding: 12px; }
+.game-page.is-immersive .game-metrics > div { padding: 6px 12px; }
+.game-page.is-immersive .game-metrics dd { font-size: calc(20px * var(--site-ui-scale)); }
+/* 大界面仍能滚动结束提示，不裁掉重开或继续挑战按钮。 */
+html[data-large-interface='true'] .game-overlay { overflow-y: auto; }
+@media (hover: hover) { .game-button:hover, .game-touch-controls button:hover { border-color: var(--vp-c-brand-1); } .cat-board [aria-disabled='false']:hover .cat-cell { fill: var(--vp-c-brand-soft); stroke: var(--game-accent); } }
+@media (max-width: 1000px) { .game-workspace { grid-template-columns: 1fr; } .game-aside { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; } .game-instructions { flex: 1; min-width: 160px; } .game-save-note { flex: 1; min-width: 140px; } .next-piece { margin: 0; } }
+@media (max-width: 767px) {
+  .game-page { padding: 20px 12px 40px; }
+  .game-page h1 { font-size: calc(26px * var(--site-ui-scale)); }
+  .game-heading { flex-wrap: wrap; gap: 14px; margin-bottom: 14px; }
+  .game-heading .misc-eyebrow { display: none; }
+  .game-actions { gap: 6px; }
+  .game-actions .game-button { padding: 8px 12px; }
+  .game-status-row { flex-wrap: wrap; gap: 8px; }
+  .game-metrics { gap: 6px; }
+  .game-metrics > div { flex: 1; min-width: 65px; padding: 8px; }
+  .game-metrics dd { font-size: calc(20px * var(--site-ui-scale)); }
+  .game-metrics dt { font-size: calc(10px * var(--site-ui-scale)); }
+  .game-status-row .game-state { width: 100%; }
+  .game-workspace { padding: 10px; gap: 18px; border-radius: 18px; }
+  .game-page.is-immersive { padding: 10px; }
+  .game-page.is-immersive .game-actions .game-button { min-height: 36px; padding: 6px 10px; }
+  .game-page.is-immersive .game-status-row .game-state { display: none; }
+  .game-overlay-card { padding: 12px; gap: 6px; }
+  .game-overlay-card strong { font-size: calc(16px * var(--site-ui-scale)); }
+}
+/* 横屏把分数移到说明上方，避免顶部占去一半高度；棋盘保留原比例。 */
+@media (max-height: 500px) and (min-width: 600px) {
+  .game-page.is-immersive { padding: 8px 16px; }
+  .game-page.is-immersive .misc-back { position: absolute; right: 28px; bottom: 12px; z-index: 1; }
+  .game-page.is-immersive .game-heading { flex-wrap: nowrap; margin-bottom: 6px; gap: 8px; }
+  .game-page.is-immersive h1 { font-size: calc(20px * var(--site-ui-scale)); }
+  .game-page.is-immersive .game-actions { gap: 6px; }
+  .game-page.is-immersive .game-actions .game-button { min-height: 36px; padding: 6px 10px; }
+  .game-page.is-immersive .game-workspace { grid-template-columns: minmax(0, 1fr) 180px; padding: 10px; gap: 16px; }
+  .game-page.is-immersive .game-aside { display: block; padding-top: 148px; }
+  .game-page.is-immersive .game-status-row { position: absolute; right: 28px; top: 72px; width: 180px; margin: 0; z-index: 1; }
+  .game-page.is-immersive .game-metrics { gap: 6px; }
+  .game-page.is-immersive .game-metrics > div { flex: 1; min-width: 65px; padding: 5px 8px; }
+  .game-page.is-immersive .game-metrics dt { font-size: calc(10px * var(--site-ui-scale)); line-height: 1.4; }
+  .game-page.is-immersive .game-state { display: none; }
+  .game-page.is-immersive .game-instructions { padding: 12px; }
+  .game-page.is-immersive .next-piece { display: none; }
+  .game-page.is-immersive .breakout-controls > span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .game-page * { animation: none !important; transition: none !important; } }

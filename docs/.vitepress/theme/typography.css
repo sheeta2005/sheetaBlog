@@ -65,14 +65,6 @@ html[data-large-interface='true'] .reading-settings .settings-label { display: n
 html body .Layout .VPNav .VPNavBar .DocSearch-Button { min-height: 36px; height: auto; }
 .reading-layout .VPLocalNav .container { min-height: 48px; height: auto; }
 
-/* 放大界面时文字与操作换行，游戏棋盘和插画维持原来的尺寸。 */
-.misc-section-heading, .game-heading, .game-actions, .direction-pad, .tetris-controls, .next-piece { flex-wrap: wrap; }
-.misc-page, .game-page { overflow-wrap: anywhere; }
-.game-metrics > div { min-width: 0; }
-html[data-large-interface='true'] .misc-game-card { display: block; }
-html[data-large-interface='true'] .misc-game-card .game-art { margin-bottom: 16px; }
-html[data-large-interface='true'] .game-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-html[data-large-interface='true'] .game-overlay { overflow-y: auto; justify-content: flex-start; }
 
 @media (min-width: 960px) {
   .reading-layout { --reading-left-width: clamp(240px, calc(240px + (var(--sidebar-font-size) - 15px) * 5), 360px); --reading-left-space: var(--reading-left-width); }

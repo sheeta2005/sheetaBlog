@@ -7,7 +7,7 @@ outline: false
 ---
 
 <script setup>
-import TetrisGame from '../../.vitepress/theme/games/TetrisGame.vue'
+import GamePortal from '../../.vitepress/theme/games/GamePortal.vue'
 </script>
 
-<TetrisGame />
+<GamePortal id="tetris" />

@@ -46,6 +46,8 @@ async function start() {
   await nextTick(); frame.value.focus()
 }
 function restart() { phase.value = 'ready'; start() }
+// 轻量准备页完成加载后，由统一入口开始这一局。
+defineExpose({ start })
 function action(name) {
   if (phase.value !== 'running') return
   const state = game.value
@@ -70,7 +72,7 @@ onUnmounted(() => { clearTimeout(timer); observer?.disconnect() })
 </script>
 
 <template>
-  <GameFrame ref="frame" class="tetris-page" title="俄罗斯方块" subtitle="如果完美地匹配住每一行就好了。" :phase="phase" :metrics="metrics" message="方块已经堆到顶啦" @start="start" @restart="restart" @pause="pause" @key="onKey">
+  <GameFrame ref="frame" class="tetris-page" title="俄罗斯方块" subtitle="如果完美地匹配住每一行就好了。" :aspect=".5" :phase="phase" :metrics="metrics" message="方块已经堆到顶啦" @start="start" @restart="restart" @pause="pause" @key="onKey">
     <canvas ref="canvas" class="tetris-board" role="img" :aria-label="`俄罗斯方块棋盘，得分 ${game.score}，已消除 ${game.lines} 行`" />
     <template #controls><div class="tetris-controls"><button aria-label="左移" @click="action('left')">←</button><button aria-label="旋转" @click="action('rotate')">↻</button><button aria-label="右移" @click="action('right')">→</button><button aria-label="向下落一格" @click="action('down')">↓</button><button aria-label="直接落到底" @click="action('drop')">落下</button></div></template>
     <template #preview><section class="next-piece"><h2>下一个</h2><svg viewBox="0 0 120 88" role="img" aria-label="下一个方块预览"><rect v-for="cell in preview" :key="`${cell.x},${cell.y}`" :x="14 + cell.x * 23" :y="8 + cell.y * 23" width="20" height="20" rx="4" :fill="`var(--tile-${cell.value})`" /></svg></section></template>

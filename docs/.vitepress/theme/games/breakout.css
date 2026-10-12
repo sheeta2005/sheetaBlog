@@ -1,0 +1,5 @@
+.breakout-board { touch-action: none; cursor: ew-resize; }
+.breakout-controls { align-items: center; }
+.breakout-controls > span { color: var(--reading-muted); font-size: calc(12px * var(--site-ui-scale)); line-height: 1.6; }
+.breakout-controls button:disabled { opacity: .6; cursor: default; }
+@media (max-width: 767px) { .breakout-controls > span { width: 100%; text-align: center; } }

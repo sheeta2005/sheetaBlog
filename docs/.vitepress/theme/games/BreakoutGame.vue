@@ -122,7 +122,7 @@ defineExpose({ start })
 </script>
 
 <template>
-  <GameFrame ref="frame" title="猫猫吃鱼干" subtitle="弹起来的小猫，和一整盘小鱼干。" :phase="phase" :metrics="metrics" :aspect="1.6" :message="game.won ? '三盘鱼干都吃光啦，猫猫很满足！' : '猫猫吃饱了，歇一会儿再来吧。'" @start="start" @restart="restart" @pause="pause" @key="onKey" @keyup="keys.delete(direction($event.key))">
+  <GameFrame ref="frame" title="猫猫吃鱼干" subtitle="如果能接住就好了。" :phase="phase" :metrics="metrics" :aspect="1.6" :message="game.won ? '三盘鱼干都吃光啦，猫猫很满足！' : '猫猫吃饱了，歇一会儿再来吧。'" @start="start" @restart="restart" @pause="pause" @key="onKey" @keyup="keys.delete(direction($event.key))">
     <component :is="'style'" data-game-style="breakout" v-html="styles" />
     <canvas ref="canvas" class="breakout-board" role="img" :aria-label="`猫猫吃鱼干棋盘，猫猫表情：${expressionLabel}，还剩${game.fish.length}条鱼干`" @pointerdown="press" @pointermove="point" />
     <template #controls><div class="breakout-controls"><button :disabled="game.ball.launched || phase !== 'running'" @click="launch">{{ game.ball.launched ? '猫猫出发啦' : '发球 · 空格' }}</button><span>{{ game.ball.launched ? '接住小猫，继续吃鱼干。' : '准备好后发球，每盘鱼干都不赶时间。' }}</span></div></template>

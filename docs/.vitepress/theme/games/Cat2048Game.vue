@@ -68,7 +68,7 @@ defineExpose({ start })
 </script>
 
 <template>
-  <GameFrame ref="frame" title="猫猫 2048" subtitle="两只一样的小猫，会变成怎样的新表情呢。" :phase="phase" :metrics="metrics" :can-continue="!game.over" :message="phase === 'won' ? '合成 2048，猫猫开心极了！' : '小猫挤满了，换个思路再来吧。'" save-note="棋盘与最高分保存在当前浏览器，刷新后还能接着玩。" @start="start" @restart="restart" @pause="pause" @continue="continueGame" @key="onKey">
+  <GameFrame ref="frame" title="猫猫 2048" subtitle="如果能算对每一步就好了。" :phase="phase" :metrics="metrics" :can-continue="!game.over" :message="phase === 'won' ? '合成 2048，猫猫开心极了！' : '小猫挤满了，换个思路再来吧。'" save-note="棋盘与最高分保存在当前浏览器，刷新后还能接着玩。" @start="start" @restart="restart" @pause="pause" @continue="continueGame" @key="onKey">
     <component :is="'style'" data-game-style="2048" v-html="styles" />
     <div class="cat2048-board" role="group" aria-label="猫猫 2048 棋盘" @pointerdown="swipeStart" @pointerup="swipeEnd" @pointercancel="pointer = undefined">
       <div class="cat2048-cells" aria-hidden="true"><i v-for="cell in 16" :key="cell" /></div>

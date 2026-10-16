@@ -7,6 +7,6 @@ description: 正在自主开发的校园食堂点评与论坛项目，目前采�
 
 西邮点评家（XU_speakToMe）是自己正在开发的校园食堂点评与论坛项目，希望让同学们分享食堂、档口和菜品体验，交流校园美食信息，用户端采用微信小程序。
 
-后端目前采用 Java 21、Spring Boot、MyBatis-Plus、MySQL 和 Redis，按用户、点评、内容审核与后台管理拆分模块。当前仍在开发和完善功能，后续计划向微服务架构演进，逐步拓展论坛交流场景。
+后端目前采用 Java 21、Spring Boot、MyBatis-Plus、MySQL 和 Redis，按用户、点评、内容审核与后台管理拆分模块。当前仍在开发和完善功能，期望逐步拓展论坛交流场景。
 
 [查看项目仓库](https://github.com/sheeta2005/XU_speakToMe)

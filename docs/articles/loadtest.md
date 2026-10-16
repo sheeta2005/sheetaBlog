@@ -3,11 +3,6 @@ title: 一次突发压测失败后的排查
 description: takeMe 的负载模型、突发失败、GC 排查与后续短测，记录证据与未验证的边界。
 ---
 
-# 一次突发压测失败后的排查
-
-takeMe 面向单小区业务。压测首先回答的是“当前实现能否在假设的常规与高峰流量下正确工作”，再观察突发时如何退化和恢复。
-
-本文根据项目已有压测与优化文档整理，整理日期为 2026 年 10 月 5 日。
 
 ## 从人口假设到请求模型
 
@@ -21,7 +16,7 @@ takeMe 面向单小区业务。压测首先回答的是“当前实现能否在�
 
 JMeter 混合查询、建单、重试、模拟支付和取消操作，检查 HTTP 与 JSON 业务结果。推送连接另外统计，不能与 HTTP 虚拟用户相加成吞吐能力。
 
-后端、JMeter、MySQL、Redis 和 RabbitMQ 共用一台 Windows 主机，约 15.7 GB 内存、16 个逻辑处理器。历史测试 JVM 使用 G1，初始堆 512 MB、最大堆 1024 MB。
+后端、JMeter、MySQL、Redis 和 RabbitMQ 共用一台 Windows 主机，约 15.7 GB 内存、16 个逻辑处理器。历史测试 JVM 使用 G1，初始堆 512 MB（后调整为1024避免动态扩容=w=）、最大堆 1024 MB。
 
 ## 失败具体表现在哪里
 
@@ -76,8 +71,3 @@ JMeter 混合压测先发现订单列表在并发下响应变慢；随后查看�
 - Outbox 积压代表发送延迟，还是已经丢消息？怎样验证最终落库和恢复？
 - 同机短测能回答什么，独立环境与持续测试还需要验证什么？
 
-## 证据来源
-
-在 [takeMe 仓库](https://github.com/sheeta2005/takeMe) 中核对：`docs/loadtest-verification.md`、`docs/loadtest-interview.md`、`docs/loadtest-measurements.json`、`docs/sql-gc-redis-optimization.md` 和 `docs/sql-gc-redis-measurements.json`。部分材料可能尚未同步到公开分支。
-
-本文引用已有记录，本次整理没有重新运行压测；合成测试数据不代表真实生产用户或交易。

@@ -46,10 +46,4 @@ description: takeMe 与 Redis 限流 Starter 的订单并发、缓存、认证�
 - **理解性能改进**：[压测排查](./loadtest) → [查询优化](./sql-optimization) → [缓存设计](./redis-cache)。
 - **理解通用组件**：[限流项目](/projects/rate-limiter) → [双窗口算法](./rate-limiter-windows) → [接入链路](./rate-limiter-integration) → [故障策略](./rate-limiter-failure) → [测试设计](./rate-limiter-testing)。
 
-## 阅读约定
-
-文章依据简历项目经历、本地源码和既有文档整理。新增专题于 2026 年 10 月 11 日核对实现，性能复盘保留原测试时间与环境；单次诊断、短测、持续测试和历史验收结果分别说明。
-
-本次博客整理没有重新执行后端压测或 Redis 容器测试，文章中的功能设计与测试成绩按各自材料说明。
-
 更多基础知识和练习见 [学习笔记](/notes/)，项目全貌见 [项目实践](/projects/)。

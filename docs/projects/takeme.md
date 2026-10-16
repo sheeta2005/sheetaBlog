@@ -95,5 +95,3 @@ JMeter 压测先暴露订单列表在并发下响应变慢；查看 MyBatis SQL 
 | 脱敏短测统计 | `docs/sql-gc-redis-measurements.json` |
 | 通知发送任务 | `takeMe/server/src/main/java/com/me/service/task/OutboxDispatchTask.java` |
 | 压测复现入口 | `tools/README.md`、`tools/loadtest/community.jmx` |
-
-本文结合简历项目经历，并于 2026 年 10 月 11 日核对本地实现。性能数据引用原有测试记录，本次博客整理没有重新运行后端压测。

@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 60
 title: 从 N+1 查询到批量装配
 description: takeMe 订单列表、看板聚合与 Redis 冷回源的诊断、最小优化和验证记录。
 ---

@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 50
 title: 一次突发压测失败后的排查
 description: takeMe 的负载模型、突发失败、GC 排查与后续短测，记录证据与未验证的边界。
 ---

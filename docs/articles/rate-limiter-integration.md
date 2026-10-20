@@ -1,4 +1,6 @@
 ---
+project: rate-limiter
+order: 20
 title: 一个限流注解如何接入 Spring Boot
 description: Rate Limiter Starter 的条件自动装配、AOP 代理、三级规则合并、SpEL 参数解析和业务键设计。
 date: 2026-10-11

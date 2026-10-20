@@ -1,4 +1,6 @@
 ---
+project: rate-limiter
+order: 40
 title: 用真实 Redis 验证限流：从阈值到故障策略
 description: JUnit 5 与 Testcontainers 覆盖限流算法、窗口恢复、用户隔离、SpEL、条件装配和 Redis 故障，区分历史成绩与当前报告。
 date: 2026-10-11

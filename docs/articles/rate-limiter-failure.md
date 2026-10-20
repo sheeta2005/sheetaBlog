@@ -1,4 +1,6 @@
 ---
+project: rate-limiter
+order: 30
 title: Redis 不可用时，限流应该放行还是拒绝
 description: 限流 Starter 的 pass 与 deny 策略、Redis 异常和业务异常的边界，以及 Lua 初始化与 EVALSHA 回退。
 date: 2026-10-11

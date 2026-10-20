@@ -149,6 +149,9 @@ html:not(.dark) .reading-settings { --vp-c-text-2: var(--reading-muted); --vp-c-
 .reading-layout .VPSidebar { border-right: 1px solid var(--reading-nav-divider); }
 .reading-layout .VPSidebar .group + .group { border-top: 1px solid var(--reading-nav-divider); }
 .reading-layout .VPSidebar .VPSidebarItem .items > .VPSidebarItem > .item { padding: 6px 0; border-bottom: 1px solid var(--reading-item-divider); }
+/* 项目标题与文章列表区分层级，选中标记留在缩进后的文章范围内。 */
+.project-reading-layout .VPSidebar .VPSidebarItem.level-0 > .items { margin-left: 8px; padding-left: 12px; border-left: 1px solid var(--reading-nav-divider); }
+.project-reading-layout .VPSidebar .VPSidebarItem.level-0 > .item:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; border-radius: 6px; }
 /* 侧栏使用细滑块与透明轨道，去掉系统箭头，避免白色滚动槽切开阅读背景。 */
 .reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline) { scrollbar-width: thin; scrollbar-color: var(--reading-scroll-thumb) transparent; }
 .reading-layout :is(.VPSidebar, .VPLocalNavOutlineDropdown .outline)::-webkit-scrollbar { width: 5px; height: 5px; }

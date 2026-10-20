@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 10
 title: 从重复下单到并发接单：订单约束怎么落到数据库
 description: takeMe 的 requestId 建单幂等、当前读、条件更新与统一加锁顺序，处理重复提交和接单竞争。
 date: 2026-10-11

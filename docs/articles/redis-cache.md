@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 40
 title: 服务目录缓存：把空值、失效和并发回源一起考虑
 description: takeMe 服务目录与看板缓存的键设计、空值哨兵、TTL 抖动、提交后失效及单 JVM 回源合并。
 date: 2026-10-11

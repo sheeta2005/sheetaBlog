@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 30
 title: 订单通知为什么使用 Outbox
 description: takeMe 中业务事务、Outbox 投递、发送确认与消费去重的关系及失败边界。
 ---

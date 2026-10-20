@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 20
 title: 预约超时为什么要重新读取订单状态
 description: takeMe 通过定时扫描与独立事务复核，区分未支付整单、无人接单及超时未开始的服务项。
 date: 2026-10-11

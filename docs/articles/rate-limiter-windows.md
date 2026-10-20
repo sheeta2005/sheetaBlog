@@ -1,4 +1,6 @@
 ---
+project: rate-limiter
+order: 10
 title: Redis 双窗口限流：固定窗口与滑动窗口的取舍
 description: 独立限流 Starter 的 HASH 固定窗口、ZSET 滑动窗口、Redis 时间基准、Lua 原子判断与键隔离。
 date: 2026-10-11

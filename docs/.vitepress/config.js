@@ -1,6 +1,10 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 import { readFileSync } from 'node:fs'
+import { generateProjectSidebar } from './projectSidebar.js'
+
+// 项目介绍与工程文章共用同一棵导航树，跨目录阅读时保留项目分组。
+const projectSidebar = generateProjectSidebar()
 
 // 内联首屏底色与微型插画，外部样式和背景图片未到时也有完整的主题底色。
 const homeBackgroundStyle = readFileSync(new URL('./theme/homeBackground.css', import.meta.url), 'utf8')
@@ -187,23 +191,11 @@ export default defineConfig({
       linkText: '返回首页 →'
     },
 
-    // 侧边栏配置（为每个专栏单独生成）
-    sidebar: organizeBackendSidebar(generateSidebar([
-      // 新增项目与复盘的阅读导航，沿用已有的自动侧边栏生成方式。
-      {
-        documentRootPath: 'docs',
-        scanStartPath: 'projects',
-        resolvePath: '/projects/',
-        useTitleFromFrontmatter: true,
-        useTitleFromFileHeading: true
-      },
-      {
-        documentRootPath: 'docs',
-        scanStartPath: 'articles',
-        resolvePath: '/articles/',
-        useTitleFromFrontmatter: true,
-        useTitleFromFileHeading: true
-      },
+    // 学习专栏继续按目录生成，项目与精选文章按明确归属生成。
+    sidebar: {
+      '/projects/': projectSidebar,
+      '/articles/': projectSidebar,
+      ...organizeBackendSidebar(generateSidebar([
       {
         documentRootPath: 'docs',
         scanStartPath: 'posts/algorithm',
@@ -254,7 +246,8 @@ export default defineConfig({
         useTitleFromFrontmatter: true,
         useTitleFromFileHeading: true
       }
-    ]))
+      ]))
+    }
 
   },
 

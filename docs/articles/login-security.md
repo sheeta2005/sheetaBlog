@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 70
 title: JWT 之外：角色校验、数据归属与登录限频
 description: takeMe 的三角色认证、实时账号状态、资源归属校验及账号优先的 Redis Lua 登录限流。
 date: 2026-10-11

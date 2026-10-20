@@ -11,6 +11,8 @@ const { hasSidebar } = useSidebar()
 const { headers } = useLocalNav()
 const isHome = computed(() => frontmatter.value.layout === 'home')
 const isReading = computed(() => !page.value.isNotFound && (!frontmatter.value.layout || frontmatter.value.layout === 'doc'))
+// 仅项目聚合导航增加层级样式，学习笔记继续使用原来的侧栏外观。
+const isProjectReading = computed(() => /^(projects|articles)\//.test(page.value.relativePath))
 // 两侧仅收起展示，不卸载导航和目录，保留滚动位置、分组与章节状态。
 const navCollapsed = ref(false)
 const outlineCollapsed = ref(false)
@@ -201,7 +203,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <DefaultTheme.Layout :class="{ 'home-intro-play': playIntro, 'home-intro-waiting': introWaiting, 'home-background-pending': backgroundPending, 'reading-layout': isReading, 'reading-nav-collapsed': isReading && navCollapsed, 'reading-outline-collapsed': isReading && outlineCollapsed }">
+  <DefaultTheme.Layout :class="{ 'home-intro-play': playIntro, 'home-intro-waiting': introWaiting, 'home-background-pending': backgroundPending, 'reading-layout': isReading, 'project-reading-layout': isProjectReading, 'reading-nav-collapsed': isReading && navCollapsed, 'reading-outline-collapsed': isReading && outlineCollapsed }">
     <template #layout-top>
       <div v-if="isReading && hasSidebar" class="reading-nav-control">
         <button class="reading-sidebar-toggle" type="button" :aria-label="navCollapsed ? '展开文章导航' : '收起文章导航'" :title="navCollapsed ? '展开文章导航' : '收起文章导航'" :aria-expanded="!navCollapsed" aria-controls="VPSidebarNav" @click="navCollapsed = !navCollapsed">

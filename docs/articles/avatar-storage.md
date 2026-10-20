@@ -1,4 +1,6 @@
 ---
+project: takeme
+order: 80
 title: 头像上传不只涉及 OSS：文件校验与字段更新
 description: takeMe 的 OSS 头像上传、扩展名和大小校验、UUID 对象名及避免覆盖并发账号数据的字段更新。
 date: 2026-10-11

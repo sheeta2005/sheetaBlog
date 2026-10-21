@@ -2,9 +2,11 @@ import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 import { readFileSync } from 'node:fs'
 import { generateProjectSidebar } from './projectSidebar.js'
+import { generateFeaturedSidebar } from './featured.js'
 
-// 项目介绍与工程文章共用同一棵导航树，跨目录阅读时保留项目分组。
+// 项目按完整阅读链路导航，精选文章单独按大类和标精状态导航。
 const projectSidebar = generateProjectSidebar()
+const featuredSidebar = generateFeaturedSidebar()
 
 // 内联首屏底色与微型插画，外部样式和背景图片未到时也有完整的主题底色。
 const homeBackgroundStyle = readFileSync(new URL('./theme/homeBackground.css', import.meta.url), 'utf8')
@@ -108,7 +110,7 @@ export default defineConfig({
   themeConfig: {
     appearance: 'dark',
 
-    // 优先展示求职项目与工程复盘，原有专栏统一收进学习笔记。
+    // 优先展示项目实践与全站精选，完整学习专栏继续从学习笔记进入。
     nav: [
       { text: '首页', link: '/' },
       { text: '项目实践', link: '/projects/' },
@@ -194,7 +196,7 @@ export default defineConfig({
     // 学习专栏继续按目录生成，项目与精选文章按明确归属生成。
     sidebar: {
       '/projects/': projectSidebar,
-      '/articles/': projectSidebar,
+      '/articles/': featuredSidebar,
       ...organizeBackendSidebar(generateSidebar([
       {
         documentRootPath: 'docs',

@@ -1,17 +1,20 @@
 <script setup>
 import DefaultTheme, { useLocalNav, useSidebar } from 'vitepress/theme'
-import { useData, useRoute } from 'vitepress'
+import { useData, useRoute, withBase } from 'vitepress'
 import { computed, nextTick, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import ReadingSettings from './ReadingSettings.vue'
 import ReadingProgress from './ReadingProgress.vue'
 import { playThemeScene } from './themeScene.js'
+import { data as featuredCategories } from '../featured.data.js'
 
 const { isDark, frontmatter, page } = useData()
+// 入选原文保留所属专栏导航，同时提供返回对应精选分类的入口。
+const featuredCategory = computed(() => featuredCategories.find(category => category.articles.some(article => article.relativePath === page.value.relativePath)))
 const { hasSidebar } = useSidebar()
 const { headers } = useLocalNav()
 const isHome = computed(() => frontmatter.value.layout === 'home')
 const isReading = computed(() => !page.value.isNotFound && (!frontmatter.value.layout || frontmatter.value.layout === 'doc'))
-// 仅项目聚合导航增加层级样式，学习笔记继续使用原来的侧栏外观。
+// 项目与精选聚合导航增加层级样式，学习笔记继续使用原来的侧栏外观。
 const isProjectReading = computed(() => /^(projects|articles)\//.test(page.value.relativePath))
 // 两侧仅收起展示，不卸载导航和目录，保留滚动位置、分组与章节状态。
 const navCollapsed = ref(false)
@@ -210,6 +213,13 @@ onUnmounted(() => {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M9 4v16" /><path :d="navCollapsed ? 'm13 9 3 3-3 3' : 'm16 9-3 3 3 3'" /></svg>
         </button>
       </div>
+    </template>
+    <template #doc-before>
+      <nav v-if="featuredCategory" class="featured-breadcrumb" aria-label="精选文章导航">
+        <a :href="withBase('/articles/')">精选文章</a>
+        <span aria-hidden="true">/</span>
+        <a :href="withBase(featuredCategory.url)">{{ featuredCategory.title }}</a>
+      </nav>
     </template>
     <template #sidebar-nav-before><p v-if="isReading" class="reading-sidebar-heading">文章导航</p></template>
     <template #aside-outline-before>

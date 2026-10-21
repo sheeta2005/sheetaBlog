@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 20
 title: mvcc
 date: 2026-06-07
 revised: 2026-10-10

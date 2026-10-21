@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 10
 project: takeme
 order: 10
 title: 从重复下单到并发接单：订单约束怎么落到数据库

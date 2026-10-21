@@ -47,4 +47,4 @@ description: takeMe 社区助老平台与 Redis 双窗口限流 Starter 的业�
 
 项目介绍及新增专题结合简历与 2026 年 10 月 11 日核对的本地代码整理。已有性能数据保留原测量环境与时间，限流测试的历史记录和当前报告在对应文章中分别说明。
 
-[浏览全部工程文章](/articles/) · [进入后端专栏](/posts/backend/)
+[浏览项目实践精选](/articles/featured/projects) · [进入后端专栏](/posts/backend/)

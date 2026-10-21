@@ -43,7 +43,7 @@ test('未知项目标识会报出文章位置，避免静默遗漏', t => {
   assert.throws(() => generateProjectSidebar(root), /typo\.md.*take-me/)
 })
 
-test('现有精选文章完整归属，保留原有项目顺序与所有链接', () => {
+test('现有工程文章完整归属，保留原有项目顺序与所有链接', () => {
   const sidebar = generateProjectSidebar()
   assert.deepEqual(sidebar.map(group => group.items[0].link), [
     '/projects/rate-limiter', '/projects/skytakeout', '/projects/takeme', '/projects/tlias', '/projects/xu-speak-to-me'

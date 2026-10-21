@@ -136,6 +136,22 @@ html body .reading-layout .VPDoc .vp-doc blockquote { background: var(--reading-
 .VPDoc .vp-doc .article-reading-list > a:is(:hover, :focus-visible) { background: var(--vp-c-brand-soft); border-color: var(--vp-c-brand-1); }
 .article-reading-list > a:is(:hover, :focus-visible) .article-list-arrow { transform: translateX(3px); }
 .VPDoc .vp-doc .article-reading-list > a:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+/* 首页和精选总览共用分类卡片；窄屏自然变为单列，沿用日夜主题颜色。 */
+.featured-category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 14px; margin: 20px 0; }
+@media (min-width: 768px) { .VPHome .featured-category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.featured-category-grid > .featured-category-card { display: flex; flex-direction: column; gap: 10px; padding: 20px; border: 1px solid var(--reading-edge); border-radius: 12px; color: var(--reading-ink); background: var(--reading-paper); text-decoration: none; }
+.featured-category-card strong { color: var(--vp-c-brand-1); font-size: 1.08em; }
+.featured-category-count, .featured-category-description, .featured-category-summary, .featured-empty { color: var(--reading-muted); font-size: .9em; }
+.featured-category-description { flex: 1; line-height: 1.8; }
+.featured-category-action { color: var(--vp-c-brand-1); font-size: .85em; }
+.featured-category-grid > .featured-category-card:is(:hover, :focus-visible) { border-color: var(--vp-c-brand-1); background: var(--vp-c-brand-soft); }
+.featured-category-card:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+.featured-category-links, .featured-breadcrumb { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .85em; }
+.featured-breadcrumb { margin-bottom: 16px; color: var(--reading-muted); }
+.featured-breadcrumb a { color: var(--vp-c-brand-1); }
+.featured-breadcrumb a:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+.featured-article-label { grid-column: 1; color: var(--reading-muted); font-size: .75em; }
+.article-reading-list .featured-article-label ~ .article-list-arrow { grid-row: 1 / 4; }
 html:not(.dark) .reading-settings { --vp-c-text-2: var(--reading-muted); --vp-c-text-3: var(--reading-muted); }
 /* 桌面控制入口始终保留；隐藏导航内容会同时退出键盘与读屏的访问顺序。 */
 .reading-nav-control { display: none; }

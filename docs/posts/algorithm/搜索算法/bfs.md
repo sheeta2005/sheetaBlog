@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 20
 title: BFS 广度优先搜索
 date: 2026-06-09
 tags: [Java, 算法, BFS, 广度优先搜索]

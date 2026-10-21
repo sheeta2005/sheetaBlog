@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 30
 project: takeme
 order: 60
 title: 从 N+1 查询到批量装配

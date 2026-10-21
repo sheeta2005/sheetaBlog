@@ -32,45 +32,18 @@ features:
     linkText: 了解组件实现与边界
 ---
 
-<!-- 首页按阅读顺序分区，文章标题与摘要分行，方便快速浏览。 -->
+<script setup>
+import FeaturedArticles from './.vitepress/theme/FeaturedArticles.vue'
+</script>
+
+<!-- 首页精选与总览共用分类入口，数量随文章标精状态更新。 -->
 <section class="home-panel home-recaps" aria-labelledby="home-recaps-title">
   <div class="home-panel-heading">
-    <h2 id="home-recaps-title">精选工程复盘</h2>
-    <a href="/articles/">全部文章 →</a>
+    <h2 id="home-recaps-title">精选文章</h2>
+    <a href="/articles/">浏览全部分类 →</a>
   </div>
-  <p class="home-section-description">记录实现过程、技术取舍与验证边界，保留失败结果和待验证的问题。</p>
-  <ul class="home-article-list">
-    <li>
-      <a href="/articles/loadtest">
-        <strong>一次突发压测失败后的排查</strong>
-        <span>从延迟、错误、GC 与通知积压分析问题，区分目标负载和实际容量。</span>
-      </a>
-    </li>
-    <li>
-      <a href="/articles/sql-optimization">
-        <strong>从 N+1 查询到批量装配</strong>
-        <span>对比查询次数、索引与冷缓存回源，记录优化后的短测结果。</span>
-      </a>
-    </li>
-    <li>
-      <a href="/articles/outbox">
-        <strong>订单通知为什么使用 Outbox</strong>
-        <span>梳理数据库提交、消息重试与消费去重的关系。</span>
-      </a>
-    </li>
-    <li>
-      <a href="/articles/order-concurrency">
-        <strong>从重复下单到并发接单</strong>
-        <span>用 requestId、行锁与条件更新，处理重复提交、接单竞争和锁顺序冲突。</span>
-      </a>
-    </li>
-    <li>
-      <a href="/articles/rate-limiter-windows">
-        <strong>Redis 双窗口限流的取舍</strong>
-        <span>对比 HASH 固定窗口与 ZSET 滑动窗口，理解时间边界、状态量和 Lua 原子判断。</span>
-      </a>
-    </li>
-  </ul>
+  <p class="home-section-description">按分类阅读项目复盘、技术笔记与随笔中的精选内容。</p>
+  <FeaturedArticles />
 </section>
 
 <!-- 桌面并排展示辅助入口，窄屏自动变为上下排列。 -->

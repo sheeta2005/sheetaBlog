@@ -29,7 +29,7 @@ export function generateProjectSidebar(docsRoot = fileURLToPath(new URL('../', i
     const { data } = matter(readFileSync(join(docsRoot, 'projects', `${id}.md`), 'utf8'))
     // 未设置顺序的文章排在末尾，同序时按链接排序，保证构建结果稳定。
     const articles = projects.get(id).sort((a, b) => a.order - b.order || a.link.localeCompare(b.link))
-    // 项目标题只切换折叠，介绍作为首个子项；链接从站点根路径解析，供两类页面共用。
+    // 项目标题只切换折叠，介绍作为首个子项；从站点根路径解析并保留原有文章地址。
     return {
       text: data.title,
       // 初始收起，当前文章所属分组由 VitePress 原生导航自动展开。

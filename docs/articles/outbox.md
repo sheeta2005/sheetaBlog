@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 20
 project: takeme
 order: 30
 title: 订单通知为什么使用 Outbox

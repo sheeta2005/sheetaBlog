@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 40
 project: takeme
 order: 50
 title: 一次突发压测失败后的排查

@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 10
 title: springboot自动配置原理
 date: 2026-06-08
 revised: 2026-10-10

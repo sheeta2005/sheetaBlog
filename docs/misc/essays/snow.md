@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 10
 title: 雪
 description: 我不太喜欢斯洛尔的冬。
 date: 2026-10-11

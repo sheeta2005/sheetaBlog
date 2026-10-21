@@ -1,3 +1,10 @@
+---
+title: TypeScript 学习笔记
+description: TypeScript 基础类型、接口、类与 Java 类型系统对照。
+featured: true
+featuredOrder: 10
+---
+
 # TypeScript 学习笔记
 ## 0. 前言
 - 主题：TypeScript 基础入门、基础类型、类、接口、类型标注、TS与Java接口区别

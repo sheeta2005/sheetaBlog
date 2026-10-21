@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 60
 project: rate-limiter
 order: 40
 title: 用真实 Redis 验证限流：从阈值到故障策略

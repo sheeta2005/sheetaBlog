@@ -1,3 +1,10 @@
+---
+title: Pinia & Vue3 核心笔记
+description: Vue 3 组合式 API、响应式基础与 Pinia 状态管理。
+featured: true
+featuredOrder: 20
+---
+
 # Pinia & Vue3 核心笔记
 ## 1. Pinia 简介与优势
 - 提供更简单的API，去掉了 mutation

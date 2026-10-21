@@ -1,4 +1,6 @@
 ---
+featured: true
+featuredOrder: 50
 project: rate-limiter
 order: 10
 title: Redis 双窗口限流：固定窗口与滑动窗口的取舍
